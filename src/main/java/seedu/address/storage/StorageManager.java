@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -26,7 +24,6 @@ public class StorageManager implements Storage {
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        requireAllNonNull(addressBookStorage, userPrefsStorage);
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
