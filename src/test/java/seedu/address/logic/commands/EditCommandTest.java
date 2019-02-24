@@ -172,7 +172,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void toStringMethod_producesExpectedOutput() {
+    public void toStringMethod() {
         Index index = Index.fromOneBased(1);
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         EditCommand editCommand = new EditCommand(index, editPersonDescriptor);

@@ -169,7 +169,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void toStringMethod_producesExpectedOutput() {
+    public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }
 }

@@ -53,7 +53,7 @@ public class CommandResultTest {
     }
 
     @Test
-    public void toStringMethod_producesExpectedOutput() {
+    public void toStringMethod() {
         CommandResult commandResult = new CommandResult("feedback");
         String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + commandResult.getFeedbackToUser() + ", showHelp=" + commandResult.isShowHelp()

@@ -38,7 +38,7 @@ public class AppParametersTest {
     }
 
     @Test
-    public void toStringMethod_producesExpectedOutput() {
+    public void toStringMethod() {
         AppParameters appParameters = new AppParameters();
         String expected = AppParameters.class.getCanonicalName() + "{configPath=" + appParameters.getConfigPath() + "}";
         assertEquals(expected, appParameters.toString());
