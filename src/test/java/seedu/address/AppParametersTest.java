@@ -38,10 +38,10 @@ public class AppParametersTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void toStringMethod_producesExpectedOutput() {
         AppParameters appParameters = new AppParameters();
         String expected = AppParameters.class.getCanonicalName() + "{configPath=" + appParameters.getConfigPath() + "}";
-        assertEquals(expected, new AppParameters().toString());
+        assertEquals(expected, appParameters.toString());
     }
 
     private static class ParametersStub extends Application.Parameters {

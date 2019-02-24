@@ -58,7 +58,7 @@ public class EditPersonDescriptorTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void toStringMethod_producesExpectedOutput() {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
                 + editPersonDescriptor.getName().orElse(null) + ", phone="

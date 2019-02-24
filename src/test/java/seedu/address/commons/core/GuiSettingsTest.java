@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class GuiSettingsTest {
     @Test
-    public void toStringMethod() {
+    public void toStringMethod_producesExpectedOutput() {
         GuiSettings guiSettings = new GuiSettings();
         String expected = GuiSettings.class.getCanonicalName() + "{windowWidth=" + guiSettings.getWindowWidth()
                 + ", windowHeight=" + guiSettings.getWindowHeight() + ", windowCoordinates="

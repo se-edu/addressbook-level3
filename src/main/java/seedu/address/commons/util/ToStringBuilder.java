@@ -29,6 +29,10 @@ public class ToStringBuilder {
 
     /**
      * Adds a field name/value pair to the output string.
+     *
+     * @param fieldName The name of the field.
+     * @param fieldValue The value of the field.
+     * @return A reference to this {@code ToStringBuilder} object, allowing method calls to be chained.
      */
     public ToStringBuilder add(String fieldName, Object fieldValue) {
         if (hasField) {
@@ -42,6 +46,7 @@ public class ToStringBuilder {
     /**
      * Returns the built formatted string representation.
      */
+    @Override
     public String toString() {
         return stringBuilder.toString() + OBJECT_SUFFIX;
     }

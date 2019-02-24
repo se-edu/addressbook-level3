@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class ConfigTest {
 
     @Test
-    public void toStringMethod() {
+    public void toStringMethod_producesExpectedOutput() {
         Config config = new Config();
         String expected = Config.class.getCanonicalName() + "{logLevel=" + config.getLogLevel()
                 + ", userPrefsFilePath=" + config.getUserPrefsFilePath() + "}";
