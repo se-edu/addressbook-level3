@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -13,9 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,9 +23,6 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     private final AddressBook addressBook = new AddressBook();
 
@@ -37,8 +33,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        thrown.expect(NullPointerException.class);
-        addressBook.resetData(null);
+        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
     }
 
     @Test
@@ -56,14 +51,12 @@ public class AddressBookTest {
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
-        thrown.expect(DuplicatePersonException.class);
-        addressBook.resetData(newData);
+        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        thrown.expect(NullPointerException.class);
-        addressBook.hasPerson(null);
+        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
 
     @Test
@@ -87,8 +80,7 @@ public class AddressBookTest {
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        thrown.expect(UnsupportedOperationException.class);
-        addressBook.getPersonList().remove(0);
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
     /**
