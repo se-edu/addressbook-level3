@@ -3,245 +3,231 @@
 :toc: macro
 :toc-title:
 :toclevels: 1
-:sectnums:
-:sectnumlevels: 1
 :imagesDir: images
 :stylesDir: stylesheets
-:repoURL: https://github.com/se-edu/addressbook-level35/tree/master
+ifdef::env-github[]
+:note-caption: :information_source:
+endif::[]
 
 After studying this code and completing the corresponding exercises, you should be able to,
 
 toc::[]
 
-'''
+== Utilize User Stories `[LO-UserStories]`
 
-== Use High-Level Designs `[LO-HighLevelDesign]`
+=== References
 
-Note how the <<DeveloperGuide#architecture, Developer Guide>> describes the high-level design using an _Architecture Diagrams_ and high-level sequence diagrams.
+* https://se-edu.github.io/se-book/specifyingRequirements/userStories/[se-edu/se-book: Requirements: Specifying Requirements: User Stories]
 
-*Resources*
+=== Exercise: Add more user stories
 
-* https://se-edu.github.io/se-book/architecture/[se-edu/se-book: Design: Architecture]
-* https://se-edu.github.io/se-book/design/introduction/multilevelDesign/[se-edu/se-book: Design: Introduction: Multi-Level Design]
+* Assume you are planing to expand the functionality of the AddressBook (but keep it as a CLI application).
+What other user stories do you think AddressBook should support? Add those user stories to the `DeveloperGuide.adoc`.
 
-'''
+== Utilize use cases `[LO-UseCases]`
 
-== Use Event-Driven Programming `[LO-EventDriven]`
+=== References
 
-The JavaFX framework, which this code base uses for its UI, uses _events_ to communicate user input (such as mouse movement and button presses) to interested _event consumers_.
-The JavaFX event loop acts as an _event dispatcher_ to transmit events to event consumers.
+* https://se-edu.github.io/se-book/specifyingRequirements/useCases/[se-edu/se-book: Requirements: Specifying Requirements: Use Cases]
 
-*Resources*
+=== Exercise: Add a 'Rename tag' use case
 
-* https://docs.oracle.com/javase/8/javafx/events-tutorial/events.htm[JavaFX: Handling Events]
-* https://se-edu.github.io/se-book/architecture/architecturalStyles/eventDriven/[se-edu/se-book: Design: Architecture: Architecture Styles: Event-Driven Architectural Style]
+* Add a use case to the `DeveloperGuide.adoc` to cover the case of _renaming of an existing tag_.
+e.g. rename the tag `friends` to `buddies` (i.e. all persons who had the `friends` tag will now have
+a `buddies` tag instead)
+Assume that AddressBook confirms the change with the user before carrying out the operation.
 
-'''
+== Use Non Functional Requirements `[LO-NFR]`
 
-== Use API Design `[LO-ApiDesign]`
+=== References
 
-Note how components of AddressBook have well-defined APIs. For example, the API of the `Logic` component is given in the link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
-image:LogicClassDiagram.png[width="800"]
+* https://se-edu.github.io/se-book/requirements/nonFunctionalRequirements/[se-edu/se-book: Requirements: Non-Functional Requirements]
 
-*Resources*
+=== Exercise: Add more NFRs
 
-* https://se-edu.github.io/se-book/reuse/apis/[se-edu/se-book: Implementation: Reuse: APIs]
+* Add some more NFRs to the `DeveloperGuide.adoc`
 
-'''
+== Use Polymorphism `[LO-Polymorphism]`
 
-== Use Assertions `[LO-Assertions]`
+Note how the `Command::execute()` method shows polymorphic behavior.
 
-Note how the AddressBook app uses Java ``assert``s to verify assumptions.
+=== References
 
-*Resources*
+* https://se-edu.github.io/se-book/oop/polymorphism/[se-edu/se-book: Paradigms: OOP: Polymorphism]
+* https://se-edu.github.io/se-book/cppToJava/inheritance/polymorphism/[se-edu/se-book: C++ to Java: OOP: Polymorphism]
 
-* https://se-edu.github.io/se-book/errorHandling/assertions/[se-edu/se-book: Implementation: Error Handling: Assertions]
+=== Exercise: Add a polymorphic `isMutating` method
 
-=== Exercise: Add more assertions
+* Add a method `boolean isMutating()` to the `Command` class. This method will return `true` for
+command types that mutate the data. e.g. `AddCommand`
+* Currently, AddressBook data are saved to the file after every command.
+Take advantage of the the new method you added to limit file saving to only for command types that mutate data.
+i.e. `add` command should always save the data while `list` command should never save data to the file.
 
-* Make sure assertions are enabled in your IDE by forcing an assertion failure (e.g. add `assert false;` somewhere in the code and run the code to ensure the runtime reports an assertion failure).
-* Add more assertions to AddressBook as you see fit.
+[NOTE]
+====
+There may be better ways to limit file saving to commands that mutate data. The above approach, while not
+optimal, will give you chance to implement a polymorphic behavior.
+====
 
+== Use abstract classes/methods `[LO-Abstract]`
 
-'''
+=== References
 
-== Use Logging `[LO-Logging]`
+* https://se-edu.github.io/se-book/oop/inheritance/abstractClasses/[se-edu/se-book: Paradigms: OOP: Abstract Classes]
+* https://se-edu.github.io/se-book/cppToJava/inheritance/abstractClassesAndMethods/[se-edu/se-book: C++ to Java: OOP: Abstract Classes]
 
-Note <<DeveloperGuide#logging, how the AddressBook app uses Java's `java.util.log` package to do logging>>.
+=== Exercise: Make `Command#execute()` method abstract
 
-*Resources*
+* Make the `Command#execute()` method abstract (hint: refer to the comment given below the method)
 
-* https://se-edu.github.io/se-book/errorHandling/logging/[se-edu/se-book: Implementation: Error Handling: Logging]
+== Use interfaces `[LO-Interfaces]`
 
-=== Exercise: Add more logging
+Note how the `Person` class implements the `ReadOnlyPerson` interface so that clients who don't need write access to `Person` objects can access `Person` objects through the `ReadOnlyPerson` interface instead.
 
-Add more logging to AddressBook as you see fit.
+image::ReadOnlyPersonUsage.png[width=500]
 
+=== References
 
-'''
+* https://se-edu.github.io/se-book/oop/inheritance/interfaces/[se-edu/se-book: Paradigms: OOP: Abstract Interfaces]
+* https://se-edu.github.io/se-book/cppToJava/inheritance/interfaces/[se-edu/se-book: C++ to Java: OOP: Abstract Interfaces]
 
-== Use Defensive Coding `[LO-DefensiveCoding]`
+=== Exercise: Add a `Printable` interface
 
-Note how AddressBook uses the `ReadOnly*` interfaces to prevent objects being modified by clients who are not supposed to modify them.
-
-*Resources*
-
-* https://se-edu.github.io/se-book/errorHandling/defensiveProgramming/[se-edu/se-book: Implementation: Error Handling: Defensive Programming]
-
-=== Exercise: identify more places for defensive coding
-
-Analyze the AddressBook code/design to identify,
-
-* where defensive coding is used
-* where the code can be more defensive
-
-'''
-
-== Use Build Automation `[LO-BuildAutomation]`
-
-Note <<UsingGradle#, how the AddressBook app uses Gradle to automate build tasks>>.
-
-*Resources*
-
-* https://se-edu.github.io/se-book/integration/buildAutomation/what/[se-edu/se-book: Implementation: Integration: Build Automation: What]
-
-=== Exercise: Use gradle to run tasks
-
-* Use gradle to do these tasks: Run all tests, build the jar file.
-
-=== Exercise: Use gradle to manage dependencies
-
-* Note how the build script `build.gradle` file manages third party dependencies such as Jackson. Update that file to manage a third-party library dependency.
-
-
-'''
-
-== Use Continuous Integration `[LO-ContinuousIntegration]`
-
-Note <<UsingTravis#, how the AddressBook app uses Travis to perform Continuous Integration>>. (https://travis-ci.org/se-edu/addressbook-level35[image:https://travis-ci.org/se-edu/addressbook-level35.svg?branch=master[Build Status]])
-
-*Resources*
-
-* https://se-edu.github.io/se-book/integration/buildAutomation/continuousIntegrationDeployment/[se-edu/se-book: Implementation: Integration: Build Automation: CI & CD]
-
-=== Exercise: Use Travis in your own project
-
-* Set up Travis to perform CI on your own fork.
-
-
-'''
-
-== Use Code Coverage `[LO-CodeCoverage]`
-
-Note how our CI server <<UsingTravis#, Travis uses Coveralls to report code coverage>>. (https://coveralls.io/github/se-edu/addressbook-level35?branch=master[image:https://coveralls.io/repos/github/se-edu/addressbook-level35/badge.svg?branch=master[Coverage Status]]) After <<UsingCoveralls#, setting up Coveralls>> for your project, you can visit Coveralls website to find details about the coverage of code pushed to your repo. https://coveralls.io/github/se-edu/addressbook-level35?branch=master[Here] is an example.
-
-*Resources*
-
-* https://se-edu.github.io/se-book/testing/testCoverage/[se-edu/se-book: QA: Testing: Test Coverage]
-
-=== Exercise: Use the IDE to measure coverage locally
-
-* Use the IDE to measure code coverage of your tests.
-
-'''
-
-== Apply Test Case Design Heuristics `[LO-TestCaseDesignHeuristics]`
-
-The link:{repoURL}/src/test/java/seedu/address/commons/util/StringUtilTest.java[`StringUtilTest.java`]
-class gives some examples of how to use _Equivalence Partitions_, _Boundary Value Analysis_, and _Test Input Combination Heuristics_ to improve the efficiency and effectiveness of test cases testing the link:../src/main/java/seedu/address/commons/util/StringUtil.java[`StringUtil.java`] class.
-
-*Resources*
-
-* https://se-edu.github.io/se-book/testCaseDesign/[se-edu/se-book: QA: Test Case Design]
-
-=== Exercise: Apply Test Case Design Heuristics to other places
-
-* Use the test case design heuristics mentioned above to improve test cases in other places.
-
-'''
-
-== Write Integration Tests `[LO-IntegrationTests]`
-
-Consider the link:{repoURL}/src/test/java/seedu/address/storage/StorageManagerTest.java[`StorageManagerTest.java`] class.
-
-* Test methods `prefsReadSave()` and `addressBookReadSave()` are integration tests. Note how they simply test if The `StorageManager` class is correctly wired to its dependencies.
-* Test method `handleAddressBookChangedEvent_exceptionThrown_eventRaised()` is a unit test because it uses _dependency injection_ to isolate the SUT `StorageManager#handleAddressBookChangedEvent(...)` from its dependencies.
-
-Compare the above with link:{repoURL}/src/test/java/seedu/address/logic/LogicManagerTest.java[`LogicManagerTest`]. Some of the tests in that class (e.g. `execute_*` methods) are neither integration nor unit tests. They are _integration + unit_ tests because they not only check if the LogicManager is correctly wired to its dependencies, but also checks the working of its dependencies. For example, the following two lines test the `LogicManager` but also the `Parser`.
-
+* Add a `Printable` interface as follows.
++
+image::PrintableInterface.png[width=400]
+* `Override` the `getPrintableString` in classes `Name`, `Phone`, `Email`, and `Address` so that each produces a printable string representation of the object. e.g. `Name: John Smith`, `Phone: 12349862`
+* Add the following method in a suitable place of some other class. Note how the method depends on the Interface.
++
 [source,java]
 ----
-@Test
-public void execute_invalidCommandFormat_throwsParseException() {
-    ...
-    assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
-    assertHistoryCorrect(invalidCommand);
-}
+/**
+ * Returns a concatenated version of the printable strings of each object.
+ */
+String getPrintableString(Printable... printables) {
+----
++
+The above method can be used to get a printable string representing a bunch of person details.
+For example, you should be able to call that method like this:
++
+[source,java]
+----
+// p is a Person object
+return getPrintableString(p.getPhone(), p.getEmail(), p.getAddress());
 ----
 
-*Resources*
+== Follow Liskov Substitution Principle `[LO-LSP]`
 
-* https://se-edu.github.io/se-book/testing/testingTypes/[se-edu/se-book: QA: Testing: Testing Types]
+=== References
 
-=== Exercise: Write unit and integration tests for the same method.
+* https://se-edu.github.io/se-book/principles/liskovSubstitutionPrinciple/[se-edu/se-book: Principles: Liskov Substitution Principle]
 
-* Write a unit test for a high-level method somewhere in the code base (or a new method you wrote).
-* Write an integration test for the same method.
+=== Exercise: Add an exception to an overridden method
 
-'''
+* Add a `throws Exception` clause to the `AddCommand::execute` method. Notice how Java compiler will not allow it,
+unless you add the same `throws` clause to the parent class method. This is because if a child class throws
+an exception that is not specified by the Parent's contract, the child class is no longer substitutable in place of
+the parent class.
+* Also note that while in the above example the compiler enforces LSP, there are other situations where it is up to
+the programmer to enforce it. For example, if the method in the parent class works for `null` input, the overridden
+method in the child class should not reject `null` inputs. This will not be enforced by the compiler.
 
-== Apply Design Patterns `[LO-DesignPatterns]`
+== Use Java-FX for GUI programming `[LO-JavaFx]`
 
-Here are some example design patterns used in the code base.
+=== References
 
-* *Singleton Pattern* : link:{repoURL}/src/main/java/seedu/address/commons/core/EventsCenter.java[`EventsCenter.java`] is Singleton class. Its single instance can be accessed using the `EventsCenter.getInstance()` method.
-* *Facade Pattern* : link:{repoURL}/src/main/java/seedu/address/storage/StorageManager.java[`StorageManager.java`] is not only shielding the internals of the Storage component from outsiders, it is mostly redirecting method calls to its internal components (i.e. minimal logic in the class itself). Therefore, `StorageManager` can be considered a Facade class.
-* *Command Pattern* : The link:{repoURL}/src/main/java/seedu/address/logic/commands/Command.java[`Command.java`] and its sub classes implement the Command Pattern.
-* *Observer Pattern*: The code base uses JavaFX's https://docs.oracle.com/javase/8/javafx/api/javafx/beans/value/ObservableValue.html[`ObservableValue`] interface to allow objects to watch for changes in data.
-This interface is an implementation of the Observer pattern.
-Objects that are interested in changes to an `ObservableValue` can register a listener via `ObservableValue#addListener(...)`.
-When the value represented by the `ObservableValue` changes, it will notify all registered listeners.
-* *MVC Pattern* :
-** The 'View' part of the application is mostly in the `.fxml` files in the `src/main/resources/view` folder.
-** `Model` component contains the 'Model'. However, note that it is possible to view the `Logic` as the model because it hides the `Model` behind it and the view has to go through the `Logic` to access the `Model`.
-** Sub classes of link:{repoURL}/src/main/java/seedu/address/ui/UiPart.java[`UiPart`] (e.g. `PersonListPanel` ) act as 'Controllers', each controlling some part of the UI and communicating with the 'Model' (via the `Logic` component which sits between the 'Controller' and the 'Model').
-* *Abstraction Occurrence Pattern* : Not currently used in the app.
+* https://se-edu.github.io/se-book/javaTools/javaFXBasic/[se-edu/se-book: Tools: Java: JavaFX: Basic]
 
-*Resources*
+=== Exercise: Enhance GUI
 
-* https://se-edu.github.io/se-book/designPatterns/[se-edu/se-book: Design: Design Patterns]
+* Do some enhancements to the AddressBook GUI. e.g. add an application icon, change font size/style
 
-=== Exercise: Discover other possible applications of the patterns
+== Analyze Coupling and Cohesion of designs `[LO-CouplingCohesion]`
 
-* Find other possible applications of the patterns to improve the current design. e.g. where else in the design can you apply the Singleton pattern?
-* Discuss pros and cons of applying the pattern in each of the situations you found in the previous step.
+* Notice how having a separate `Formattter` class (an application of the Single Responsibility Principle) improves the _cohesion_ of the `MainWindow` class as well as the `Formatter` class.
 
-=== Exercise: Find more applicable patterns
+=== References
 
-* Learn other _Gang of Four_ Design patterns to see if they are applicable to the app.
+* https://se-edu.github.io/se-book/designFundamentals/coupling/[se-edu/se-book: Design: Design Principles: Coupling]
+* https://se-edu.github.io/se-book/designFundamentals/cohesion/[se-edu/se-book: Design: Design Principles: Cohesion]
 
-'''
+=== Exercise: Identify places to reduce coupling and increase cohesion
 
-== Use Static Analysis `[LO-StaticAnalysis]`
+* Where else in the design coupling can be reduced further, or cohesion can be increased further?
 
-Note how this project uses the http://checkstyle.sourceforge.net/[CheckStyle] static analysis tool to confirm compliance with the coding standard.
+[[apply-dependency-inversion-principle-lo-dip]]
+== Apply Dependency Inversion Principle `[LO-DIP]`
 
-*Resources*
+=== References
 
-* https://se-edu.github.io/se-book/qualityAssurance/staticAnalysis/[se-edu/se-book: QA: Static Analysis]
+* https://se-edu.github.io/se-book/principles/dependencyInversionPrinciple/[se-edu/se-book: Principles: Dependency Inversion Principle]
 
-=== Exercise: Use CheckStyle locally to check style compliance
+=== Exercise: Invert dependency from Logic to Storage
 
-* Install the CheckStyle plugin for your IDE and use it to check compliance of your code with our style rules (given in `/config/checkstyle/checkstyle.xml`).
+* Note how `Logic` class depends on the `StorageFile` class. This is a violation of DIP.
+* Modify the implementation as follows so that both `Logic` and `StorageFile` now depend on the
+`abstract` class `Storage`.
++
+image::LogicStroageFileDIP.png[width=300]
+* Where else in the code do you notice the application of DIP?
 
-'''
+== Use Dependency Injection `[LO-DI]`
 
-== Do Code Reviews `[LO-CodeReview]`
+Note how `Logic` class depends on the `StorageFile` class. This means when testing the `Logic` class,
+our test cases execute the `StorageFile` class as well. What if we want to test the `Logic` class without
+getting the `StorageFile` class involved? That is a situation where we can use _Dependency Injection_.
 
-* Note how some PRs in this project have been reviewed by other developers. Here is an https://github.com/se-edu/addressbook-level35/pull/147[example].
-* Also note how we have used https://www.codacy.com[Codacy] to do automate some part of the code review workload (https://www.codacy.com/app/damith/addressbook-level35?utm_source=github.com&utm_medium=referral&utm_content=se-edu/addressbook-level35&utm_campaign=Badge_Grade[image:https://api.codacy.com/project/badge/Grade/fc0b7775cf7f4fdeaf08776f3d8e364a[Codacy Badge]])
+=== References
 
+* https://se-edu.github.io/se-book/testing/dependencyInjection/[se-edu/se-book: Quality Assurance: Testing: Dependency Injection]
 
-=== Exercise: Review a PR
+=== Exercise: Facilitate injecting a StorageStub
 
-* Review PRs created by team members.
+* Change the implementation as follows so that we can inject a `StorageStub` when testing the `Logic`
+class.
++
+image::DependencyInjection.png[width=600]
++
+[NOTE]
+====
+If you did the exercise in <<apply-dependency-inversion-principle-lo-dip, `LO-DIP`>>
+already but those changes are in a different branch, you may be able to reuse some of those commits
+by cherry picking them from that branch to the branch you created for this exercise.
+
+Note: _cherry picking_ is simply copy-pasting a commit from one branch to another. In SourceTree, you can
+right-click on the commit your want to copy to the current branch, and choose 'Cherry pick'.
+====
+
+* Implement the `StorageStub` such that calls to the `save` method do nothing (i.e. empty method body). +
+* Update the `LogicTest` to work with the `StorageStub` instead of the actual `StorageFile` object.
+i.e. `Logic` injects a `StorageStub` object to replace the dependency of `Logic` on `StorageFile` before
+testing `Logic`.
+* The example above uses <<apply-dependency-inversion-principle-lo-dip, DIP>> as a means to achieve DI.
+Note that there is another way to inject a `StorageStub` object, as shown below.
+In this case we do not apply the DIP but we still achieve DI.
++
+image::DependencyInjectionWithoutDIP.png[width=250]
+
+== Apply Open-Closed Principle `[LO-OCP]`
+
+=== References
+
+* https://se-edu.github.io/se-book/principles/openClosedPrinciple/[se-edu/se-book: Principles: Open-Closed Principle]
+
+=== Exercise: Analyze OCP-compliance of the `Logic` class
+
+* Consider adding a new command to the Address Book. e.g. an `edit` command. Notice how little you need to change in the `Logic` class to extend its behavior so that it can execute the new command.
+That is because `Logic` follows the OCP i.e. `Logic` is _open to be extended_ with more commands but _closed for modifications_.
+* Is it possible to make the `Parser` class more OCP-compliant in terms of extending it to handle more
+command types?
+* In terms of how it saves data, does `Logic` become more OCP-compliant
+after applying DIP as given in <<apply-dependency-inversion-principle-lo-dip, `LO-DIP`>>?
+How can you improve `Logic`'s OCP-compliance further so that it can not only work with different types
+of storages, but different number of storages (e.g. save to both a text file and a database).
+
+== Work in a 3KLoC code base `[LO-3KLoC]`
+
+=== Exercise: Enhance AddressBook
+
+* Enhance AddressBook in some way. e.g. add a new command
