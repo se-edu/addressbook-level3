@@ -83,9 +83,9 @@ optimal, will give you chance to implement a polymorphic behavior.
 
 == Use interfaces `[LO-Interfaces]`
 
-Note how the `Person` class implements the `ReadOnlyPerson` interface so that clients who don't need write access to `Person` objects can access `Person` objects through the `ReadOnlyPerson` interface instead.
+Note how the `AddressBook` class implements the `ReadOnlyAddressBook` interface so that clients who don't need write access to the `AddressBook` can access the `AddressBook` through the `ReadOnlyAddressBook` interface instead.
 
-image::ReadOnlyPersonUsage.png[width=500]
+image::ReadOnlyAddressBookUsage.png[width=500]
 
 === References
 
