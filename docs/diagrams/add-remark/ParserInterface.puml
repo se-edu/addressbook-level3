@@ -1,0 +1,19 @@
+@startuml
+!include ../style.puml
+Interface Parser LOGIC_COLOR_T1
+
+Class RemarkCommandParser LOGIC_COLOR_T1{
++parse : RemarkCommand
+}
+
+Class ParserException LOGIC_COLOR_T1
+
+RemarkCommandParser -up-|> Parser
+Parser .right.> ParserException : throws
+
+show members
+
+skinparam classFontColor #000000
+skinparam classAttributeIconSize 0
+@enduml
+
