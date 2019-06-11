@@ -198,15 +198,15 @@ image::DependencyInjectionWithoutDIP.png[width=250]
 
 * https://se-edu.github.io/se-book/principles/openClosedPrinciple/[se-edu/se-book: Principles: Open-Closed Principle]
 
-=== Exercise: Analyze OCP-compliance of the `Logic` class
+=== Exercise: Analyze OCP-compliance of the `LogicManager` class
 
-* Consider adding a new command to the Address Book. e.g. an `edit` command. Notice how little you need to change in the `Logic` class to extend its behavior so that it can execute the new command.
-That is because `Logic` follows the OCP i.e. `Logic` is _open to be extended_ with more commands but _closed for modifications_.
-* Is it possible to make the `Parser` class more OCP-compliant in terms of extending it to handle more
+* Consider adding a new command to the Address Book. e.g. an `edit` command. Notice how little you need to change in the `LogicManager` class to extend its behavior so that it can execute the new command.
+That is because `LogicManager` follows the OCP i.e. `LogicManager` is _open to be extended_ with more commands but _closed for modifications_.
+* Is it possible to make the `AddressBookParser` class more OCP-compliant in terms of extending it to handle more
 command types?
-* In terms of how it saves data, does `Logic` become more OCP-compliant
-after applying DIP as given in <<apply-dependency-inversion-principle-lo-dip, `LO-DIP`>>?
-How can you improve `Logic`'s OCP-compliance further so that it can not only work with different types
+* In terms of how it saves data, is `LogicManager` more OCP-compliant
+due to the application of DIP as given in <<apply-dependency-inversion-principle-lo-dip, `LO-DIP`>>?
+How can you improve ``LogicManager``'s OCP-compliance further so that it can not only work with different types
 of storages, but different number of storages (e.g. save to both a text file and a database).
 
 == Work in a 3KLoC code base `[LO-3KLoC]`
