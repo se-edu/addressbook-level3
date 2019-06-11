@@ -159,18 +159,15 @@ method in the child class should not reject `null` inputs. This will not be enfo
 [[apply-dependency-inversion-principle-lo-dip]]
 == Apply Dependency Inversion Principle `[LO-DIP]`
 
+* Note how the `LogicManager` class doesn't depend on `StorageManager` directly, but rather the interface `Storage`.
+This is an application of the Dependency Inversion Principle.
++
+image::LogicStorageDIP.png[width=300]
+* Where else in the code do you notice the application of DIP?
+
 === References
 
 * https://se-edu.github.io/se-book/principles/dependencyInversionPrinciple/[se-edu/se-book: Principles: Dependency Inversion Principle]
-
-=== Exercise: Invert dependency from Logic to Storage
-
-* Note how `Logic` class depends on the `StorageFile` class. This is a violation of DIP.
-* Modify the implementation as follows so that both `Logic` and `StorageFile` now depend on the
-`abstract` class `Storage`.
-+
-image::LogicStroageFileDIP.png[width=300]
-* Where else in the code do you notice the application of DIP?
 
 == Use Dependency Injection `[LO-DI]`
 
