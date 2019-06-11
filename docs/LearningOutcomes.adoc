@@ -145,7 +145,7 @@ method in the child class should not reject `null` inputs. This will not be enfo
 
 == Analyze Coupling and Cohesion of designs `[LO-CouplingCohesion]`
 
-* Notice how having a separate `Formattter` class (an application of the Single Responsibility Principle) improves the _cohesion_ of the `MainWindow` class as well as the `Formatter` class.
+* Notice how having a separate `ParserUtil` class to handle user input validation, space trimming etc. of model data (an application of the Single Responsibility Principle) improves the _cohesion_ of the model component (since it does not need to be concerned with handling user input) as well as the `ParserUtil` class.
 
 === References
 
