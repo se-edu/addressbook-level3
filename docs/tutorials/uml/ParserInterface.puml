@@ -1,0 +1,15 @@
+@startuml
+
+Interface Parser<T extends Command> {
+---
++ parse() : T
+{exceptions: ParseException}
+}
+
+Class RemarkCommandParser {
++parse : RemarkCommand
+}
+
+RemarkCommandParser -up-|> Parser : <<bind>> RemarkCommand
+@enduml
+
