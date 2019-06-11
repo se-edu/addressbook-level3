@@ -188,11 +188,11 @@ optimal, will give you chance to implement a polymorphic behavior.</p>
 <h2 id="use-interfaces-code-lo-interfaces-code"><a class="link" href="#use-interfaces-code-lo-interfaces-code">Use interfaces <code>[LO-Interfaces]</code></a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Note how the <code>Person</code> class implements the <code>ReadOnlyPerson</code> interface so that clients who don&#8217;t need write access to <code>Person</code> objects can access <code>Person</code> objects through the <code>ReadOnlyPerson</code> interface instead.</p>
+<p>Note how the <code>AddressBook</code> class implements the <code>ReadOnlyAddressBook</code> interface so that clients who don&#8217;t need write access to the <code>AddressBook</code> can access the <code>AddressBook</code> through the <code>ReadOnlyAddressBook</code> interface instead.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ReadOnlyPersonUsage.png" alt="ReadOnlyPersonUsage" width="500">
+<img src="images/ReadOnlyAddressBookUsage.png" alt="ReadOnlyAddressBookUsage" width="500">
 </div>
 </div>
 <div class="sect2">
@@ -313,7 +313,7 @@ method in the child class should not reject <code>null</code> inputs. This will 
 <div class="ulist">
 <ul>
 <li>
-<p>Notice how having a separate <code>Formattter</code> class (an application of the Single Responsibility Principle) improves the <em>cohesion</em> of the <code>MainWindow</code> class as well as the <code>Formatter</code> class.</p>
+<p>Notice how having a separate <code>ParserUtil</code> class to handle user input validation, space trimming etc. of model data (an application of the Single Responsibility Principle) improves the <em>cohesion</em> of the model component (since it does not need to be concerned with handling user input) as well as the <code>ParserUtil</code> class.</p>
 </li>
 </ul>
 </div>
@@ -345,34 +345,28 @@ method in the child class should not reject <code>null</code> inputs. This will 
 <div class="sect1">
 <h2 id="apply-dependency-inversion-principle-lo-dip"><a class="link" href="#apply-dependency-inversion-principle-lo-dip">Apply Dependency Inversion Principle <code>[LO-DIP]</code></a></h2>
 <div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Note how the <code>LogicManager</code> class doesn&#8217;t depend on <code>StorageManager</code> directly, but rather the interface <code>Storage</code>.
+This is an application of the Dependency Inversion Principle.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/LogicStorageDIP.png" alt="LogicStorageDIP" width="300">
+</div>
+</div>
+</li>
+<li>
+<p>Where else in the code do you notice the application of DIP?</p>
+</li>
+</ul>
+</div>
 <div class="sect2">
 <h3 id="references-10"><a class="link" href="#references-10">References</a></h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://se-edu.github.io/se-book/principles/dependencyInversionPrinciple/">se-edu/se-book: Principles: Dependency Inversion Principle</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercise-invert-dependency-from-logic-to-storage"><a class="link" href="#exercise-invert-dependency-from-logic-to-storage">Exercise: Invert dependency from Logic to Storage</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Note how <code>Logic</code> class depends on the <code>StorageFile</code> class. This is a violation of DIP.</p>
-</li>
-<li>
-<p>Modify the implementation as follows so that both <code>Logic</code> and <code>StorageFile</code> now depend on the
-<code>abstract</code> class <code>Storage</code>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/LogicStroageFileDIP.png" alt="LogicStroageFileDIP" width="300">
-</div>
-</div>
-</li>
-<li>
-<p>Where else in the code do you notice the application of DIP?</p>
 </li>
 </ul>
 </div>
@@ -503,4 +497,4 @@ of storages, but different number of storages (e.g. save to both a text file and
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-05-29 10:39:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-06-11 14:23:41 UTC</div></div></div></body></html>
