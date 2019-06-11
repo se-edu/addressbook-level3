@@ -1,0 +1,34 @@
+@startuml
+!include ../style.puml
+
+Class "{abstract}\nCommand" as Command LOGIC_COLOR_T1{
+---
++ {abstract} execute(Model) : CommandResult
+}
+
+Class CommandException LOGIC_COLOR_T1
+
+Class RemarkCommand LOGIC_COLOR_T1{
++ COMMAND_WORD : String
++ MESSAGE_USAGE : String
++ MESSAGE_NOT_IMPLEMENTED_YET: String
+'Empty spaces to ensure that box resizes to fit text
+　　　　　　　　　　　　　　　　　　　　　　　　
+'Do _not_ change the previous line
+---
++ execute(Model) : CommandResult
+}
+
+RemarkCommand -up-|> Command
+RemarkCommand -up[hidden]-|> Command
+RemarkCommand .right.> CommandException : > throws
+Command .right.> CommandException : > throws
+
+
+skinparam classAttributeIconSize 0
+skinparam classFontColor #000000
+hide circle
+show members
+hide CommandException members
+@enduml
+
