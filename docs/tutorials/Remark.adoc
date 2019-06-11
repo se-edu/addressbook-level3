@@ -3,7 +3,7 @@
 :toc:
 :toc-title:
 :toc-placement: preamble
-:imagesDir: images/remark
+:imagesDir: ../images/remark
 :stylesDir: ../stylesheets
 :xrefstyle: full
 ifdef::env-github[]
@@ -31,9 +31,8 @@ commands implement `Command` which means that they must override `execute()`. By
 instance of `CommandResult` upon success and throws a `CommandException` otherwise. This exception is handled
 gracefully and the error message provided to `CommandException` is printed the application.
 
-[.right.center]
 .UML diagram describing the relationship between RemarkCommand and Command
-image::CommandInterface.png[width=385px, height=385px, float="right", align="center"]
+image::CommandInterface.png[width=385px, height=385px]
 {empty} +
 Let's start by creating a new `RemarkCommand` class in the `src/main/java/seedu/address/logic/command` directory.
 
