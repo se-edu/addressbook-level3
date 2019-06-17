@@ -1,5 +1,5 @@
 = Tutorial - Tracing a Command Execution Path
-:site-section: Tutorial
+:site-section: DeveloperGuide
 :toc: macro
 :toc-title:
 :imagesDir: ../images/reading
