@@ -1,7 +1,5 @@
 = Tutorial - Tracing a Command Execution Path
 :site-section: DeveloperGuide
-:toc: macro
-:toc-title:
 :imagesDir: ../images/tracing
 :stylesDir: ../stylesheets
 :xrefstyle: full
