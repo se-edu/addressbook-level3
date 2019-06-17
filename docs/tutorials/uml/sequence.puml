@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+
+Participant ":LogicManager" as logic LOGIC_COLOR
+Participant ":AddressBookParser" as abp LOGIC_COLOR
+Participant ":EditCommandParser" as ecp LOGIC_COLOR
+Participant ":EditCommand" as ec LOGIC_COLOR
+
+
+[-> logic : execute
+activate logic
+logic -> abp ++: parseCommand
+create ecp
+abp -> ecp
+abp -> ecp ++: parse
+create ec
+ecp -> ec ++: index, editPersonDescriptor
+ec -> ecp --
+ecp -> abp --: command
+abp -> logic --: command
+
+@enduml
