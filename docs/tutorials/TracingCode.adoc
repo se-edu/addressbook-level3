@@ -2,14 +2,13 @@
 :site-section: DeveloperGuide
 :toc: macro
 :toc-title:
-:imagesDir: ../images/reading
+:imagesDir: ../images/tracing
 :stylesDir: ../stylesheets
 :xrefstyle: full
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 :warning-caption: :warning:
-:source-highlighter: highlightjs
 endif::[]
 
 [quote, Robert C. Martin, Clean Code: A Handbook of Agile Software Craftsmanship ]
@@ -73,10 +72,6 @@ Bingo! `MainWindow#executeCommand()` seems to be exactly what we're looking for!
 Now let's set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left
 gutter to set a breakpoint, as shown below.
 image:LeftGutter.png[width=1171px, height=154px]
-
-
-[qanda]
-
 
 == Tracing the execution path
 
