@@ -30,7 +30,7 @@ It also has a sequence diagram (reproduced below) that tells us how a command pr
 .Architecture sequence diagram from the developer guide
 image::../ArchitectureSequenceDiagram.png[]
 
-Note how the diagram shows only how the execution flows _between_ the main component. That is, it does not show details of
+Note how the diagram shows only how the execution flows _between_ the main components. That is, it does not show details of
 the execution path _inside_ each component. By hiding those details, the diagram succeeds in informing the reader
 about the overall execution path of a command without overwhelming the reader with too much details.
 In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of the code base.
@@ -47,7 +47,7 @@ As you know, the first step of debugging is to put in a breakpoint where you wan
 For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement
 of the `main` method. In our case, we would want to begin the tracing at the very point where the App start processing
 user input i.e., somewhere in the UI component, and then trace through how the execution proceeds through the UI component.
-However, the execution path through a GUI is often somewhat obscure due to various _even-driven mechanisms_
+However, the execution path through a GUI is often somewhat obscure due to various _event-driven mechanisms_
 used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers
 control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component
 through a method named `execute`. Searching through the code base for `execute()` yields a promising candidate in
