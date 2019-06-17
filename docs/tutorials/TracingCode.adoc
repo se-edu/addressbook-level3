@@ -15,7 +15,6 @@ endif::[]
 Indeed, the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as
 part of the effort to write new code.  ...[Therefore,] making it easy to read makes it easier to write.
 
-{empty} +
 When trying to understand an unfamiliar code base, one common strategy used is to trace some representative execution
 path through the code base. One easy way to trace an execution path is to use a debugger to step through the code.
 In this tutorial, you will be using the IntelliJ IDEA's debugger to trace the execution path of a specific user command.
@@ -24,13 +23,12 @@ Before we jump into the code, it is useful to get an idea of the overall structu
 application. This is provided in the 'Architecture' section of the developer guide. In particular, the
 architecture diagram (reproduced below), tells us that the App consists of several components.
 
-image::ComponentDiagram.png[width=609px, height=547px]
+image::../ArchitectureDiagram.png[]
 
 It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.
 
 .Architecture sequence diagram from the developer guide
-image::ArchitectureSequence.png[width=828px, height=626px]
-{empty} +
+image::../ArchitectureSequenceDiagram.png[]
 
 Note how the diagram shows only how the execution flows _between_ the main component. That is, it does not show details of
 the execution path _inside_ each component. By hiding those details, the diagram succeeds in informing the reader
@@ -56,22 +54,20 @@ through a method named `execute`. Searching through the code base for `execute()
 `seedu.address.ui.CommandBox.CommandExecutor`.
 
 .Using the `Search for target by name` feature. `Navigate` > `Symbol`.
-image::Execute.png[width=1011px, height=372px]
-{empty} +
+image::Execute.png[]
 
 A quick look at the class confirms that this is indeed close to what we're looking for. However, it is just an
 `Interface`. Let's delve further and find the implementation of the interface by using the `Find Usages` feature in
 IntelliJ IDEA.
 
 .`Find Usages` tool window. `Edit` > `Find` > `Find Usages`.
-image::FindUsages.png[width=968px, height=394px]
-{empty} +
+image::FindUsages.png[]
 
 Bingo! `MainWindow#executeCommand()` seems to be exactly what we're looking for!
 
 Now let's set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left
 gutter to set a breakpoint, as shown below.
-image:LeftGutter.png[width=1171px, height=154px]
+image:LeftGutter.png[]
 
 == Tracing the execution path
 
@@ -89,14 +85,14 @@ what happens inside the component and where the execution transfers to another c
 . Enter `edit 1 n/Alice Yeoh` into the command box and press `Enter`.
 . The Debugger tool window should show up and look something like this:
 +
-image:DebuggerStep1.png[width=1351px,height=485px]
+image:DebuggerStep1.png[]
 . Use the `Show execution point` feature to jump to the line of code that we stopped at:
 +
-image:ShowExecutionPoint.png[width=525px,height=91px]
+image:ShowExecutionPoint.png[]
 . `CommandResult commandResult = logic.execute(commandText);` is the line that you end up at.
 . We are interested in the `logic.execute(commandText)` portion of that line so let's `Step in` into that method call:
 +
-image:StepInto.png[width=525px, height=90px]
+image:StepInto.png[]
 . We end up in `LogicManager#execute()`. Let's take a look at the body of the method and annotate what we can deduce.
 +
 .LogicManager#execute()
@@ -127,7 +123,7 @@ public CommandResult execute(String commandText) throws CommandException, ParseE
 . `LogicManager#execute()` appears to delegate most of the heavy lifting to other components. Let's take a closer
 look at each one.
 . `Step over` the logging code since it is of no interest to us now.
-image:StepOver.png[width=525px, height=83px]
+image:StepOver.png[]
 +
 . `Step into` the line where user input in parsed from a String to a Command.
 +
@@ -143,7 +139,7 @@ public Command parseCommand(String userInput) throws ParseException {
 . `Step over` until you reach the `switch` statement. The `Variables` window now shows the value of both
 `commandWord` and `arguments` :
 +
-image:Variables.png[width=1310px, height=403px]
+image:Variables.png[]
 . We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 . Stepping into the `switch`, we obviously stop at
 +
@@ -168,14 +164,14 @@ Sometimes you might end up stepping into functions that are not of interest. Sim
 command and store any possible changes in an `EditPersonDescriptor`. Recall that we can verify the contents of
 `editPersonDesciptor` through the `Variable` tool window.
 +
-image:EditCommand.png[width=666px, height=313px]
+image:EditCommand.png[]
 . Let's continue stepping through until we return to `LogicManager#execute()`.
 +
 The sequence diagram below shows the details of the execution path through the Logic component.
 Does the execution path you traced in the code so far matches with the diagram?
 +
 .Tracing an `edit` command through the Logic component
-image::LogicSequenceDiagram.png[width=1080px, height=476px]
+image::LogicSequenceDiagram.png[]
 
 . Now let's see what happens when we call `command#execute()`!
 +
@@ -233,18 +229,14 @@ public void setFeedbackToUser(String feedbackToUser) {
 ----
 . Finally, we step through until we reach the end of `MainWindow#executeCommand()`.
 
-[discrete]
 == Conclusion
 
 In this tutorial, we traced a valid edit command from raw user input to the result being displayed to the user. From
 this tutorial, you learned more about the inner workings of AddressBook and how the various components mesh together
 to form one cohesive product.
 
-
-{empty} +
-[lead]
 .What's next?
-====
+****
 Here are some quick questions you can try to answer based on your execution path tracing. In some cases, you can
 do further tracing for the given commands to find exactly what happens.
 
@@ -265,5 +257,4 @@ handled?
 .. Add a new command
 .. Add a new field to `Person`
 .. Add a new entity to the address book
-====
-
+****
