@@ -171,9 +171,8 @@ image::LogicStorageDIP.png[width=300]
 
 == Use Dependency Injection `[LO-DI]`
 
-Note how `Logic` class depends on the `StorageFile` class. This means when testing the `Logic` class,
-our test cases execute the `StorageFile` class as well. What if we want to test the `Logic` class without
-getting the `StorageFile` class involved? That is a situation where we can use _Dependency Injection_.
+Notice how the `LogicManager` class does not depend on the `StorageManager` class, but depends on the `Storage` interface.
+This allows us to use _Dependency Injection_ to test the `LogicManager` class without getting the `StorageManager` class involved.
 
 === References
 
@@ -181,25 +180,12 @@ getting the `StorageFile` class involved? That is a situation where we can use _
 
 === Exercise: Facilitate injecting a StorageStub
 
-* Change the implementation as follows so that we can inject a `StorageStub` when testing the `Logic`
-class.
+* Notice how `LogicManagerTest` tests `LogicManager` by constructing a `StorageManager` object.
+* Implement `StorageStub` such that calls to its `save*` methods do nothing (i.e. empty method body).
+* Update `LogicManagerTest` to work with the `StorageStub` instead of the actual `StorageManager` object.
+i.e. `LogicManagerTest` injects a `StorageStub` object when constructing a `LogicManager` before testing it.
 +
 image::DependencyInjection.png[width=600]
-+
-[NOTE]
-====
-If you did the exercise in <<apply-dependency-inversion-principle-lo-dip, `LO-DIP`>>
-already but those changes are in a different branch, you may be able to reuse some of those commits
-by cherry picking them from that branch to the branch you created for this exercise.
-
-Note: _cherry picking_ is simply copy-pasting a commit from one branch to another. In SourceTree, you can
-right-click on the commit your want to copy to the current branch, and choose 'Cherry pick'.
-====
-
-* Implement the `StorageStub` such that calls to the `save` method do nothing (i.e. empty method body). +
-* Update the `LogicTest` to work with the `StorageStub` instead of the actual `StorageFile` object.
-i.e. `Logic` injects a `StorageStub` object to replace the dependency of `Logic` on `StorageFile` before
-testing `Logic`.
 * The example above uses <<apply-dependency-inversion-principle-lo-dip, DIP>> as a means to achieve DI.
 Note that there is another way to inject a `StorageStub` object, as shown below.
 In this case we do not apply the DIP but we still achieve DI.
