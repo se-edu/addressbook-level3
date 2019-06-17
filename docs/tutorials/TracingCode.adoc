@@ -2,7 +2,7 @@
 :site-section: Tutorial
 :toc: macro
 :toc-title:
-:imagesDir: images/reading
+:imagesDir: ../images/reading
 :stylesDir: ../stylesheets
 :xrefstyle: full
 ifdef::env-github[]
