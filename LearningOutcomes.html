@@ -377,9 +377,8 @@ This is an application of the Dependency Inversion Principle.</p>
 <h2 id="use-dependency-injection-code-lo-di-code"><a class="link" href="#use-dependency-injection-code-lo-di-code">Use Dependency Injection <code>[LO-DI]</code></a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Note how <code>Logic</code> class depends on the <code>StorageFile</code> class. This means when testing the <code>Logic</code> class,
-our test cases execute the <code>StorageFile</code> class as well. What if we want to test the <code>Logic</code> class without
-getting the <code>StorageFile</code> class involved? That is a situation where we can use <em>Dependency Injection</em>.</p>
+<p>Notice how the <code>LogicManager</code> class does not depend on the <code>StorageManager</code> class, but depends on the <code>Storage</code> interface.
+This allows us to use <em>Dependency Injection</em> to test the <code>LogicManager</code> class without getting the <code>StorageManager</code> class involved.</p>
 </div>
 <div class="sect2">
 <h3 id="references-11"><a class="link" href="#references-11">References</a></h3>
@@ -396,41 +395,19 @@ getting the <code>StorageFile</code> class involved? That is a situation where w
 <div class="ulist">
 <ul>
 <li>
-<p>Change the implementation as follows so that we can inject a <code>StorageStub</code> when testing the <code>Logic</code>
-class.</p>
+<p>Notice how <code>LogicManagerTest</code> tests <code>LogicManager</code> by constructing a <code>StorageManager</code> object.</p>
+</li>
+<li>
+<p>Implement <code>StorageStub</code> such that calls to its <code>save*</code> methods do nothing (i.e. empty method body).</p>
+</li>
+<li>
+<p>Update <code>LogicManagerTest</code> to work with the <code>StorageStub</code> instead of the actual <code>StorageManager</code> object.
+i.e. <code>LogicManagerTest</code> injects a <code>StorageStub</code> object when constructing a <code>LogicManager</code> before testing it.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/DependencyInjection.png" alt="DependencyInjection" width="600">
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you did the exercise in <a href="#apply-dependency-inversion-principle-lo-dip"><code>LO-DIP</code></a>
-already but those changes are in a different branch, you may be able to reuse some of those commits
-by cherry picking them from that branch to the branch you created for this exercise.</p>
-</div>
-<div class="paragraph">
-<p>Note: <em>cherry picking</em> is simply copy-pasting a commit from one branch to another. In SourceTree, you can
-right-click on the commit your want to copy to the current branch, and choose 'Cherry pick'.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Implement the <code>StorageStub</code> such that calls to the <code>save</code> method do nothing (i.e. empty method body).<br></p>
-</li>
-<li>
-<p>Update the <code>LogicTest</code> to work with the <code>StorageStub</code> instead of the actual <code>StorageFile</code> object.
-i.e. <code>Logic</code> injects a <code>StorageStub</code> object to replace the dependency of <code>Logic</code> on <code>StorageFile</code> before
-testing <code>Logic</code>.</p>
 </li>
 <li>
 <p>The example above uses <a href="#apply-dependency-inversion-principle-lo-dip">DIP</a> as a means to achieve DI.
@@ -497,4 +474,4 @@ of storages, but different number of storages (e.g. save to both a text file and
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-06-11 14:23:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-06-21 09:00:16 UTC</div></div></div></body></html>
