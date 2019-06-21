@@ -1,0 +1,100 @@
+= Tutorial - Removing a field from an entity
+:site-section: Tutorial
+:toc: macro
+:toc-title:
+:imagesDir: images/remove
+:stylesDir: ../stylesheets
+:xrefstyle: full
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:warning-caption: :warning:
+:source-highlighter: highlightjs
+endif::[]
+
+[quote, Charles Maturin, Motto to "Bertram"]
+'Tis well to be merry and wise,
+'Tis well to be honest and true;
+'Tis well to be off with the old love,
+Before you are on with the new.
+
+{empty} +
+
+== Introduction
+When working on Address Book, you will most likely find that some features and fields that are no longer necessary.
+Consider refactoring the existing `Person` model to suit your use case.
+
+In this tutorial, we'll do exactly just that and remove the `Address` field from `Person`.
+
+== Safely deleting `Address`
+
+Fortunately, the IntelliJ IDEA provides a robust refactoring tool that can identify _most_ usages. Let's try to use
+it as much as we can.
+
+=== Assisted refactoring
+We start by identifying ``Address``'s usages. Select the `Address` class and perfom a `Refactor` >
+`Safe Delete` through the menu.
+
+.Unsafe delete?
+image::UnsafeDelete.png[width=787px. height=238px]
+{empty} +
+
+Choose to `View Usages` and you should be presented with a list of conflicts.
+
+.Short list of conflicts
+image::SafeDeleteConflicts.png[width=955, height=640px]
+{empty} +
+
+Resolve each conflict by recursively performing ``Safe Delete``s. Let's try removing references to `Address` in
+`EditPersonDescriptor`.
+
+. Safe delete the field `address` in `EditPersonDescriptor`
+. Select `Yes` when prompted to remove getters and setters
+. Select `View Usages` again image:UnsafeDeleteOnField.png[width=1145px, height=583px]
+. Remove the usages of `address` and select `Do refactor` when you are done.
+. Repeat the steps for the remaining usages of `Address`
+
+After you are done, verify that the application still works by compiling and running it again.
+
+=== Manual refactoring
+
+Unfortunately, there are usages of `Address` that IntelliJ IDEA cannot identify. Let's fix them.
+
+You may have noticed that there is a `$address` in each `PersonCard`.
+image:$address.png[width=1090px, height=890px]
+A quick look at the `PersonCard` class and its
+`fxml` file quickly reveals why it slipped past the automated refactoring.
+
+.PersonCard.java
+[source, java]
+----
+...
+@FXML
+private Label address;
+...
+----
+
+.PersonCard.fxml
+[source, xml]
+----
+...
+<Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+<Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+<Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+...
+----
+
+After removing the `Label`, we can proceed to formally test our code. If everything went well, you should have most
+of your tests pass. Fix any remaining errors until the tests all pass.
+
+== Tidying up
+
+At this point, your application is working as intended and all your tests are passing. What's left to do is to clean
+up test data and references to `Address` in the documentation.
+
+A simple way to generate valid test data is to delete the storage file `data/addressbook.json` and use your
+application to add dummy values. Don't forget to modify a copy of valid data to produce invalid data!
+
+
+
+
