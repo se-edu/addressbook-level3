@@ -438,21 +438,21 @@ In this case we do not apply the DIP but we still achieve DI.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exercise-analyze-ocp-compliance-of-the-code-logic-code-class"><a class="link" href="#exercise-analyze-ocp-compliance-of-the-code-logic-code-class">Exercise: Analyze OCP-compliance of the <code>Logic</code> class</a></h3>
+<h3 id="exercise-analyze-ocp-compliance-of-the-code-logicmanager-code-class"><a class="link" href="#exercise-analyze-ocp-compliance-of-the-code-logicmanager-code-class">Exercise: Analyze OCP-compliance of the <code>LogicManager</code> class</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Consider adding a new command to the Address Book. e.g. an <code>edit</code> command. Notice how little you need to change in the <code>Logic</code> class to extend its behavior so that it can execute the new command.
-That is because <code>Logic</code> follows the OCP i.e. <code>Logic</code> is <em>open to be extended</em> with more commands but <em>closed for modifications</em>.</p>
+<p>Consider adding a new command to the Address Book. e.g. an <code>edit</code> command. Notice how little you need to change in the <code>LogicManager</code> class to extend its behavior so that it can execute the new command.
+That is because <code>LogicManager</code> follows the OCP i.e. <code>LogicManager</code> is <em>open to be extended</em> with more commands but <em>closed for modifications</em>.</p>
 </li>
 <li>
-<p>Is it possible to make the <code>Parser</code> class more OCP-compliant in terms of extending it to handle more
+<p>Is it possible to make the <code>AddressBookParser</code> class more OCP-compliant in terms of extending it to handle more
 command types?</p>
 </li>
 <li>
-<p>In terms of how it saves data, does <code>Logic</code> become more OCP-compliant
-after applying DIP as given in <a href="#apply-dependency-inversion-principle-lo-dip"><code>LO-DIP</code></a>?
-How can you improve `Logic&#8217;s OCP-compliance further so that it can not only work with different types
+<p>In terms of how it saves data, is <code>LogicManager</code> more OCP-compliant
+due to the application of DIP as given in <a href="#apply-dependency-inversion-principle-lo-dip"><code>LO-DIP</code></a>?
+How can you improve <code>LogicManager</code>'s OCP-compliance further so that it can not only work with different types
 of storages, but different number of storages (e.g. save to both a text file and a database).</p>
 </li>
 </ul>
@@ -474,4 +474,4 @@ of storages, but different number of storages (e.g. save to both a text file and
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-06-21 09:00:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-06-24 18:18:49 UTC</div></div></div></body></html>
