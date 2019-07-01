@@ -2,6 +2,15 @@
 :site-section: DeveloperGuide
 :imagesDir: images
 :stylesDir: stylesheets
+ifdef::env-github[]
+:note-caption: :information_source:
+endif::[]
+
+[NOTE]
+====
+This document was originally written for _AddressBook Level 4_ and hence its screenshots refer to `addressbook-level4`.
+For use with _AddressBook Level 3.5_, wherever `addressbook-level4` is used in the screenshots, you should use *`addressbook-level35`*.
+====
 
 https://www.netlify.com/[Netlify] is an automated hosting platform for deploying static websites. With the aid of build tools such as Gradle, Netlify provides a smoother experience for previewing documentation. This can be done by using Netlify's https://www.netlify.com/blog/2016/07/20/introducing-deploy-previews-in-netlify/[Deploy Previews] feature, which shows a preview of the updated documentation whenever a pull request is made.
 

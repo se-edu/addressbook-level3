@@ -8,6 +8,12 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 
+[NOTE]
+====
+This document was originally written for _AddressBook Level 4_ and hence its screenshots refer to `addressbook-level4`.
+For use with _AddressBook Level 3.5_, wherever `addressbook-level4` is used in the screenshots, you should use *`addressbook-level35`*.
+====
+
 == Configuring Checkstyle-IDEA
 
 . Install the Checkstyle-IDEA plugin by going to `File` > `Settings` (Windows/Linux), or `IntelliJ IDEA` > `Preferences...` (macOS). +
