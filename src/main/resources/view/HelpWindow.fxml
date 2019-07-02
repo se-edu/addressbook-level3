@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Scene?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.web.WebView?>
-
 <!-- TODO: set a more appropriate initial size -->
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.stage.Stage?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Help" maximized="true">
   <icons>
