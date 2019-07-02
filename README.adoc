@@ -1,4 +1,4 @@
-= Address Book (Level 3.5)
+= Address Book Minimal(Level 3.5)
 ifdef::env-github,env-browser[:relfileprefix: docs/]
 
 https://travis-ci.org/se-edu/addressbook-level35[image:https://travis-ci.org/se-edu/addressbook-level35.svg?branch=master[Build Status]]
