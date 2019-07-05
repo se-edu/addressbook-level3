@@ -9,7 +9,7 @@ endif::[]
 [NOTE]
 ====
 This document was originally written for _AddressBook Level 4_ and hence its screenshots refer to `addressbook-level4`.
-For use with _AddressBook Level 3.5_, wherever `addressbook-level4` is used in the screenshots, you should use *`addressbook-level35`*.
+For use with _AddressBook Level 3_, wherever `addressbook-level4` is used in the screenshots, you should use *`addressbook-level3`*.
 ====
 
 https://www.appveyor.com/[AppVeyor] is a _Continuous Integration_ platform for GitHub projects. It runs its builds on Windows virtual machines.
@@ -88,7 +88,7 @@ Convert it to the asciidoc format as follows:
 The asciidoc code should look similar to:
 +
 ----
-https://ci.appveyor.com/project/damithc/addressbook-level35[image:https://ci.appveyor.com/api/projects/status/3boko2x2vr5cc3w2?svg=true[Build status]]
+https://ci.appveyor.com/project/damithc/addressbook-level3[image:https://ci.appveyor.com/api/projects/status/3boko2x2vr5cc3w2?svg=true[Build status]]
 ----
 +
 Copy and paste the asciidoc code to your `README.adoc` file.

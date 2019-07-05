@@ -9,7 +9,7 @@ endif::[]
 [NOTE]
 ====
 This document was originally written for _AddressBook Level 4_ and hence its screenshots refer to `addressbook-level4`.
-For use with _AddressBook Level 3.5_, wherever `addressbook-level4` is used in the screenshots, you should use *`addressbook-level35`*.
+For use with _AddressBook Level 3_, wherever `addressbook-level4` is used in the screenshots, you should use *`addressbook-level3`*.
 ====
 
 https://coveralls.io/[Coveralls] is a web service that tracks code coverage over time for GitHub projects.
