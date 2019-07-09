@@ -1,0 +1,57 @@
+= AddressBook Level 3 - Testing
+:site-section: DeveloperGuide
+:toc:
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:warning-caption: :warning:
+endif::[]
+:repoURL: https://github.com/se-edu/addressbook-level3/tree/master
+
+== Running Tests
+
+There are two ways to run tests.
+
+*Method 1: Using IntelliJ JUnit test runner*
+
+* To run all tests, right-click on the `src/test/java` folder and choose `Run 'All Tests'`
+* To run a subset of tests, you can right-click on a test package, test class, or a test and choose `Run 'ABC'`
+
+*Method 2: Using Gradle*
+
+* Open a console and run the command `gradlew clean test` (Mac/Linux: `./gradlew clean test`)
+
+[NOTE]
+See <<UsingGradle#, UsingGradle.adoc>> for more info on how to run tests using Gradle.
+
+== Types of tests
+
+We have three types of tests:
+
+.  _Unit tests_ targeting the lowest level methods/classes. +
+e.g. `seedu.address.commons.StringUtilTest`
+.  _Integration tests_ that are checking the integration of multiple code units (those code units are assumed to be working). +
+e.g. `seedu.address.storage.StorageManagerTest`
+.  Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together. +
+e.g. `seedu.address.logic.LogicManagerTest`
+
+
+== Troubleshooting Testing
+**Problem: `HelpWindowTest` fails with a `NullPointerException`.**
+
+* Reason: One of its dependencies, `HelpWindow.html` in `src/main/resources/docs` is missing.
+* Solution: Execute Gradle task `processResources`.
+
+**Problem: Keyboard and mouse movements are not simulated on macOS Mojave, resulting in GUI Tests failure.**
+
+* Reason: From macOS Mojave onwards, applications without `Accessibility` permission cannot simulate certain keyboard and mouse movements.
+* Solution: Open `System Preferences`, click `Security and Privacy` -> `Privacy` -> `Accessibility`, and check the box beside `Intellij IDEA`.
+
+.`Accessibility` permission is granted to `IntelliJ IDEA`
+image::testfx-idea-accessibility-permissions.png[width="600"]
