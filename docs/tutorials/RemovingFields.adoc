@@ -2,7 +2,7 @@
 :site-section: Tutorial
 :toc: macro
 :toc-title:
-:imagesDir: images/remove
+:imagesDir: ../images/remove
 :stylesDir: ../stylesheets
 :xrefstyle: full
 ifdef::env-github[]
@@ -91,7 +91,7 @@ Fix any remaining errors until the tests all pass.
 == Tidying up
 
 At this point, your application is working as intended and all your tests are passing.
-What's left to do is to clean up test data and references to `Address` in the documentation.
+What's left to do is to clean up references to `Address` in test data and documentation.
 
 A simple way to generate valid test data is to delete the storage file `data/addressbook.json` and use your application to add dummy values.
 Don't forget to modify a copy of valid data to produce invalid data!
