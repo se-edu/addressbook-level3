@@ -1,5 +1,5 @@
 = Tutorial - Removing a field from an entity
-:site-section: Tutorial
+:site-section: DeveloperGuide
 :toc: macro
 :toc-title:
 :imagesDir: ../images/remove
