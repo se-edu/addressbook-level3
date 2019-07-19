@@ -34,10 +34,9 @@ image::ArchitectureSequence.png[width=828px, height=626px]
 {empty} +
 
 Note how the diagram shows only how the execution flows _between_ the main component. That is, it does not show details of
-the execution path _inside_ each component. By hiding those details, the digram succeeds in informing the reader
-about the
-overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to
-find those omitted details so that you get a more in-depth understanding of the code base.
+the execution path _inside_ each component. By hiding those details, the diagram succeeds in informing the reader
+about the overall execution path of a command without overwhelming the reader with too much details.
+In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of the code base.
 
 Before we proceed, ensure that you have done the following:
 
@@ -51,7 +50,7 @@ As you know, the first step of debugging is to put in a breakpoint where you wan
 For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement
 of the `main` method. In our case, we would want to begin the tracing at the very point where the App start processing
 user input i.e., somewhere in the UI component, and then trace through how the execution proceeds through the UI component.
-However, that the execution path through a GUI is often somewhat obscure due to various _even-driven mechanisms_
+However, the execution path through a GUI is often somewhat obscure due to various _even-driven mechanisms_
 used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers
 control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component
 through a method named `execute`. Searching through the code base for `execute()` yields a promising candidate in
@@ -91,7 +90,7 @@ Over the course of the debugging session, you will encounter every major compone
 what happens inside the component and where the execution transfers to another component.
 ====
 
-. To start the debugging session, simply `Run` > `Debug `Main`
+. To start the debugging session, simply `Run` > `Debug Main`
 . Enter `edit 1 n/Alice Yeoh` into the command box and press `Enter`.
 . The Debugger tool window should show up and look something like this:
 +
@@ -110,14 +109,18 @@ image:StepInto.png[width=525px, height=90px]
 ----
 @Override
 public CommandResult execute(String commandText) throws CommandException, ParseException {
-     logger.info("----------------[USER COMMAND][" + commandText + "]"); //Logging, safe to ignore
+     //Logging, safe to ignore
+     logger.info("----------------[USER COMMAND][" + commandText + "]");
 
      CommandResult commandResult;
-     Command command = addressBookParser.parseCommand(commandText); //Parse user input from String to a Command
-     commandResult = command.execute(model); //Executes the Command and stores the result
+     //Parse user input from String to a Command
+     Command command = addressBookParser.parseCommand(commandText);
+     //Executes the Command and stores the result
+     commandResult = command.execute(model);
 
      try {
-         //We can deduce that the previous line of code modifies model in some way since it's being stored here.
+         //We can deduce that the previous line of code modifies model in some way
+         // since it's being stored here.
          storage.saveAddressBook(model.getAddressBook());
      } catch (IOException ioe) {
          throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -209,7 +212,8 @@ constructor.
 /**
  * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
  *
- * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+ * @param source future changes to this will not affect the created
+ * {@code JsonSerializableAddressBook}.
  */
 public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
     persons.addAll(
