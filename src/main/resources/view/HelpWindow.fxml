@@ -10,7 +10,7 @@
 
 <!-- TODO: set a more appropriate initial size -->
 
-<fx:root maximized="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maximized="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -23,7 +23,7 @@
                      <Insets right="5.0" />
                   </HBox.margin>
                </Label>
-               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="📋 Copy URL">
+               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
                   <HBox.margin>
                      <Insets left="5.0" />
                   </HBox.margin>
