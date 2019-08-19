@@ -43,11 +43,6 @@ e.g. `seedu.address.logic.LogicManagerTest`
 
 
 == Troubleshooting Testing
-**Problem: `HelpWindowTest` fails with a `NullPointerException`.**
-
-* Reason: One of its dependencies, `HelpWindow.html` in `src/main/resources/docs` is missing.
-* Solution: Execute Gradle task `processResources`.
-
 **Problem: Keyboard and mouse movements are not simulated on macOS Mojave, resulting in GUI Tests failure.**
 
 * Reason: From macOS Mojave onwards, applications without `Accessibility` permission cannot simulate certain keyboard and mouse movements.
