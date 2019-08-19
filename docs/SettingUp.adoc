@@ -33,8 +33,7 @@ Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plu
 . Click `Import Project`
 . Locate the `build.gradle` file and select it. Click `OK`
 . Click `Open as Project`
-. Click `OK` to accept the default settings
-. Open a console and run the command `gradlew processResources` (Mac/Linux: `./gradlew processResources`). It should finish with the `BUILD SUCCESSFUL` message. +
+. Click `OK` to accept the default settings +
 This will generate all resources required by the application and tests.
 
 == Verifying the setup
