@@ -1,3 +1,0 @@
-:no-site-header:
-
-include::UserGuide.adoc[]
