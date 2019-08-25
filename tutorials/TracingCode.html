@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Tutorial - Tracing a Command Execution Path</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Tutorial - Tracing a Command Execution Path</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+Indeed, the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as
+part of the effort to write new code.  &#8230;&#8203;[Therefore,] making it easy to read makes it easier to write.
+</blockquote>
+<div class="attribution">
+&#8212; Robert C. Martin<br>
+<cite>Clean Code: A Handbook of Agile Software Craftsmanship</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>When trying to understand an unfamiliar code base, one common strategy used is to trace some representative execution
+path through the code base. One easy way to trace an execution path is to use a debugger to step through the code.
+In this tutorial, you will be using the IntelliJ IDEA&#8217;s debugger to trace the execution path of a specific user command.</p>
+</div>
+<div class="paragraph">
+<p>Before we jump into the code, it is useful to get an idea of the overall structure and the high-level behavior of the
+application. This is provided in the 'Architecture' section of the developer guide. In particular, the
+architecture diagram (reproduced below), tells us that the App consists of several components.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ArchitectureDiagram.png" alt="ArchitectureDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ArchitectureSequenceDiagram.png" alt="ArchitectureSequenceDiagram">
+</div>
+<div class="title">Figure 1. Architecture sequence diagram from the developer guide</div>
+</div>
+<div class="paragraph">
+<p>Note how the diagram shows only how the execution flows <em>between</em> the main components. That is, it does not show details of
+the execution path <em>inside</em> each component. By hiding those details, the diagram succeeds in informing the reader
+about the overall execution path of a command without overwhelming the reader with too much details.
+In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of the code base.</p>
+</div>
+<div class="paragraph">
+<p>Before we proceed, ensure that you have done the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Read the <em>Architecture</em> section of the DG</p>
+</li>
+<li>
+<p>Set up the project in Intellij IDEA</p>
+</li>
+<li>
+<p>Learn basic debugging features of Intellij IDEA</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-a-break-point"><a class="link" href="#setting-a-break-point">Setting a break point</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution.
+For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement
+of the <code>main</code> method. In our case, we would want to begin the tracing at the very point where the App start processing
+user input i.e., somewhere in the UI component, and then trace through how the execution proceeds through the UI component.
+However, the execution path through a GUI is often somewhat obscure due to various <em>event-driven mechanisms</em>
+used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers
+control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component
+through a method named <code>execute</code>. Searching through the code base for <code>execute()</code> yields a promising candidate in
+<code>seedu.address.ui.CommandBox.CommandExecutor</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/tracing/Execute.png" alt="Execute">
+</div>
+<div class="title">Figure 2. Using the <code>Search for target by name</code> feature. <code>Navigate</code> &gt; <code>Symbol</code>.</div>
+</div>
+<div class="paragraph">
+<p>A quick look at the class confirms that this is indeed close to what we&#8217;re looking for. However, it is just an
+<code>Interface</code>. Let&#8217;s delve further and find the implementation of the interface by using the <code>Find Usages</code> feature in
+IntelliJ IDEA.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/tracing/FindUsages.png" alt="FindUsages">
+</div>
+<div class="title">Figure 3. <code>Find Usages</code> tool window. <code>Edit</code> &gt; <code>Find</code> &gt; <code>Find Usages</code>.</div>
+</div>
+<div class="paragraph">
+<p>Bingo! <code>MainWindow#executeCommand()</code> seems to be exactly what we&#8217;re looking for!</p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left
+gutter to set a breakpoint, as shown below.
+<span class="image"><img src="../images/tracing/LeftGutter.png" alt="LeftGutter"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tracing-the-execution-path"><a class="link" href="#tracing-the-execution-path">Tracing the execution path</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Recall from the User Guide that the <code>edit</code> command has the format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]
+[a/ADDRESS] [t/TAG]&#8230;&#8203;</code> For this tutorial we will be issuing the command <code>edit 1 n/Alice Yeoh</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Taking notes</div>
+<div class="paragraph">
+<p>Over the course of the debugging session, you will encounter every major component in the application. Try to jot down
+what happens inside the component and where the execution transfers to another component.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To start the debugging session, simply <code>Run</code> &gt; <code>Debug Main</code></p>
+</li>
+<li>
+<p>Enter <code>edit 1 n/Alice Yeoh</code> into the command box and press <code>Enter</code>.</p>
+</li>
+<li>
+<p>The Debugger tool window should show up and look something like this:</p>
+<div class="paragraph">
+<p><span class="image"><img src="../images/tracing/DebuggerStep1.png" alt="DebuggerStep1"></span></p>
+</div>
+</li>
+<li>
+<p>Use the <code>Show execution point</code> feature to jump to the line of code that we stopped at:</p>
+<div class="paragraph">
+<p><span class="image"><img src="../images/tracing/ShowExecutionPoint.png" alt="ShowExecutionPoint"></span></p>
+</div>
+</li>
+<li>
+<p><code>CommandResult commandResult = logic.execute(commandText);</code> is the line that you end up at.</p>
+</li>
+<li>
+<p>We are interested in the <code>logic.execute(commandText)</code> portion of that line so let&#8217;s <code>Step in</code> into that method call:</p>
+<div class="paragraph">
+<p><span class="image"><img src="../images/tracing/StepInto.png" alt="StepInto"></span></p>
+</div>
+</li>
+<li>
+<p>We end up in <code>LogicManager#execute()</code>. Let&#8217;s take a look at the body of the method and annotate what we can deduce.</p>
+<div class="listingblock">
+<div class="title">LogicManager#execute()</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> CommandResult execute(<span class="predefined-type">String</span> commandText) <span class="directive">throws</span> CommandException, <span class="exception">ParseException</span> {
+     <span class="comment">//Logging, safe to ignore</span>
+     logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">----------------[USER COMMAND][</span><span class="delimiter">&quot;</span></span> + commandText + <span class="string"><span class="delimiter">&quot;</span><span class="content">]</span><span class="delimiter">&quot;</span></span>);
+
+     CommandResult commandResult;
+     <span class="comment">//Parse user input from String to a Command</span>
+     Command command = addressBookParser.parseCommand(commandText);
+     <span class="comment">//Executes the Command and stores the result</span>
+     commandResult = command.execute(model);
+
+     <span class="keyword">try</span> {
+         <span class="comment">//We can deduce that the previous line of code modifies model in some way</span>
+         <span class="comment">// since it's being stored here.</span>
+         storage.saveAddressBook(model.getAddressBook());
+     } <span class="keyword">catch</span> (<span class="exception">IOException</span> ioe) {
+         <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+     }
+
+     <span class="keyword">return</span> commandResult;
+ }</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>LogicManager#execute()</code> appears to delegate most of the heavy lifting to other components. Let&#8217;s take a closer
+look at each one.</p>
+</li>
+<li>
+<p><code>Step over</code> the logging code since it is of no interest to us now.
+<span class="image"><img src="../images/tracing/StepOver.png" alt="StepOver"></span></p>
+</li>
+<li>
+<p><code>Step into</code> the line where user input in parsed from a String to a Command.</p>
+<div class="listingblock">
+<div class="title">AddressBookParser#parseCommand()</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> Command parseCommand(<span class="predefined-type">String</span> userInput) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+    ...
+    final <span class="predefined-type">String</span> commandWord = matcher.group(<span class="string"><span class="delimiter">&quot;</span><span class="content">commandWord</span><span class="delimiter">&quot;</span></span>);
+    <span class="directive">final</span> <span class="predefined-type">String</span> arguments = matcher.group(<span class="string"><span class="delimiter">&quot;</span><span class="content">arguments</span><span class="delimiter">&quot;</span></span>);
+    ...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>Step over</code> until you reach the <code>switch</code> statement. The <code>Variables</code> window now shows the value of both
+<code>commandWord</code> and <code>arguments</code> :</p>
+<div class="paragraph">
+<p><span class="image"><img src="../images/tracing/Variables.png" alt="Variables"></span></p>
+</div>
+</li>
+<li>
+<p>We see that the value of <code>commandWord</code> is now <code>edit</code> but <code>arguments</code> is still not processed in any meaningful way.</p>
+</li>
+<li>
+<p>Stepping into the <code>switch</code>, we obviously stop at</p>
+<div class="listingblock">
+<div class="title">AddressBookParser#parseCommand()</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">...
+case EditCommand.COMMAND_WORD:
+    <span class="keyword">return</span> <span class="keyword">new</span> EditCommandParser().parse(arguments);
+...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Let&#8217;s see what <code>EditCommandParser#parse()</code> does by stepping into it.</p>
+</li>
+<li>
+<p>Stepping through the method shows that it calls <code>ArgumentTokenizer#tokenize()</code> and <code>ParserUtil#parseIndex()</code> to
+obtain the arguments and index required.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Stepping out</div>
+<div class="paragraph">
+<p>Sometimes you might end up stepping into functions that are not of interest. Simply <code>step out</code> of them!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>The rest of the method seems to exhaustively check for the existence of each possible parameter of the <code>edit</code>
+command and store any possible changes in an <code>EditPersonDescriptor</code>. Recall that we can verify the contents of
+<code>editPersonDesciptor</code> through the <code>Variable</code> tool window.</p>
+<div class="paragraph">
+<p><span class="image"><img src="../images/tracing/EditCommand.png" alt="EditCommand"></span></p>
+</div>
+</li>
+<li>
+<p>Let&#8217;s continue stepping through until we return to <code>LogicManager#execute()</code>.</p>
+<div class="paragraph">
+<p>The sequence diagram below shows the details of the execution path through the Logic component.
+Does the execution path you traced in the code so far matches with the diagram?</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/tracing/LogicSequenceDiagram.png" alt="LogicSequenceDiagram">
+</div>
+<div class="title">Figure 4. Tracing an <code>edit</code> command through the Logic component</div>
+</div>
+</li>
+<li>
+<p>Now let&#8217;s see what happens when we call <code>command#execute()</code>!</p>
+<div class="listingblock">
+<div class="title">EditCommand#execute()</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> CommandResult execute(Model model) <span class="directive">throws</span> CommandException {
+    ...
+    Person personToEdit = lastShownList.get(index.getZeroBased());
+    Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+    <span class="keyword">if</span> (!personToEdit.isSamePerson(editedPerson) &amp;&amp; model.hasPerson(editedPerson)) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> CommandException(MESSAGE_DUPLICATE_PERSON);
+    }
+    model.setPerson(personToEdit, editedPerson);
+    model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    <span class="keyword">return</span> <span class="keyword">new</span> CommandResult(<span class="predefined-type">String</span>.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>As suspected, <code>command#execute()</code> does indeed make changes to <code>model</code>.</p>
+</li>
+<li>
+<p>We can a closer look at how storage works by repeatedly stepping into the code until we arrive at
+<code>JsonAddressBook#saveAddressBook()</code>.</p>
+</li>
+<li>
+<p>Again, it appears that the heavy lifting is delegated. Let&#8217;s take a look at <code>JsonSerializableAddressBook</code>'s
+constructor.</p>
+<div class="listingblock">
+<div class="title">JsonSerializableAddressBook#JsonSerializableAddressBook()</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">/**
+ * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+ *
+ * @param source future changes to this will not affect the created
+ * {@code JsonSerializableAddressBook}.
+ */</span>
+<span class="directive">public</span> JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    persons.addAll(
+        source.getPersonList()
+              .stream()
+              .map(JsonAdaptedPerson::<span class="keyword">new</span>)
+              .collect(Collectors.toList()));
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>It appears that a <code>JsonAdaptedPerson</code> is created for each <code>Person</code> and then added to the
+<code>JsonSerializableAddressBook</code>.</p>
+</li>
+<li>
+<p>We can continue to step through until we return to <code>MainWindow#executeCommand()</code>.</p>
+</li>
+<li>
+<p>Stepping into <code>resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());</code>, we end up in:</p>
+<div class="listingblock">
+<div class="title">ResultDisplay#setFeedbackToUser()</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> setFeedbackToUser(<span class="predefined-type">String</span> feedbackToUser) {
+    requireNonNull(feedbackToUser);
+    resultDisplay.setText(feedbackToUser);
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Finally, we step through until we reach the end of <code>MainWindow#executeCommand()</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion"><a class="link" href="#conclusion">Conclusion</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this tutorial, we traced a valid edit command from raw user input to the result being displayed to the user. From
+this tutorial, you learned more about the inner workings of AddressBook and how the various components mesh together
+to form one cohesive product.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">What&#8217;s next?</div>
+<div class="paragraph">
+<p>Here are some quick questions you can try to answer based on your execution path tracing. In some cases, you can
+do further tracing for the given commands to find exactly what happens.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In this tutorial, we traced the "happy path" (i.e., no errors). What do you think will happen if we traced the following commands
+instead? What exceptions do you think will be thrown(if any), where will the exceptions be thrown and where will they be
+handled?</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>redit 1 n/Alice Yu</code></p>
+</li>
+<li>
+<p><code>edit 0 n/Alice Yu</code></p>
+</li>
+<li>
+<p><code>edit 1 n/Alex Yeoh</code></p>
+</li>
+<li>
+<p><code>edit 1</code></p>
+</li>
+<li>
+<p><code>edit 1 n/アリス ユー</code></p>
+</li>
+<li>
+<p><code>edit 1 t/one t/two t/three t/one</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>What components will you have to modify to perform the following enhancements to the application?</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Make command words case-insensitive</p>
+</li>
+<li>
+<p>Allow <code>delete</code> to remove more than one index at a time</p>
+</li>
+<li>
+<p>Save the address book in the CSV format instead</p>
+</li>
+<li>
+<p>Add a new command</p>
+</li>
+<li>
+<p>Add a new field to <code>Person</code></p>
+</li>
+<li>
+<p>Add a new entity to the address book</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-08-25 13:57:52 UTC</div></div></div></body></html>
