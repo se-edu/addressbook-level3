@@ -36,6 +36,7 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
         root.sizeToScene();
+        root.setResizable(false);
     }
 
     /**
