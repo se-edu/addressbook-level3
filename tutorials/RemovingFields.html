@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Tutorial - Removing a field from an entity</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Tutorial - Removing a field from an entity</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
+</blockquote>
+<div class="attribution">
+&#8212; Antoine de Saint-Exupery
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When working on Address Book, you will most likely find that some features and fields that are no longer necessary.
+In scenarios like this, you can consider refactoring the existing <code>Person</code> model to suit your use case.</p>
+</div>
+<div class="paragraph">
+<p>In this tutorial, we&#8217;ll do exactly just that and remove the <code>address</code> field from <code>Person</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="safely-deleting-code-address-code"><a class="link" href="#safely-deleting-code-address-code">Safely deleting <code>Address</code></a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Fortunately, the IntelliJ IDEA provides a robust refactoring tool that can identify <em>most</em> usages.
+Let&#8217;s try to use it as much as we can.</p>
+</div>
+<div class="sect2">
+<h3 id="assisted-refactoring"><a class="link" href="#assisted-refactoring">Assisted refactoring</a></h3>
+<div class="paragraph">
+<p>The <code>address</code> field in <code>Person</code> is actually an instance of the <code>seedu.address.model.person.Address</code> class.
+Since removing the <code>Address</code> class will break the application, we start by identifying <code>Address</code>'s usages.
+This allows us to see code that depends on <code>Address</code> to function properly and edit them on a case-by-case basis.
+Right-click the <code>Address</code> class and select <code>Refactor</code> &gt; <code>Safe Delete</code> through the menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/remove/UnsafeDelete.png" alt="UnsafeDelete" width="787px. height=238px">
+</div>
+<div class="title">Figure 1. Usages detected</div>
+</div>
+<div class="paragraph">
+<p>Choose to <code>View Usages</code> and you should be presented with a list of <code>Safe Delete Conflicts</code>.
+These conflicts describe locations in which the <code>Address</code> class is used.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/remove/SafeDeleteConflicts.png" alt="SafeDeleteConflicts" width="955" height="640px">
+</div>
+<div class="title">Figure 2. List of conflicts</div>
+</div>
+<div class="paragraph">
+<p>Remove usages of <code>Address</code> by performing <code>Safe Delete</code>s on each entry.
+You will need to exercise discretion when removing usages of <code>Address</code>.
+Functions like <code>ParserUtil#parseAddress()</code> can be safely removed but its usages must be removed as well.
+Other usages like in <code>EditPersonDescriptor</code> may require more careful inspection.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try removing references to <code>Address</code> in <code>EditPersonDescriptor</code>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Safe delete the field <code>address</code> in <code>EditPersonDescriptor</code></p>
+</li>
+<li>
+<p>Select <code>Yes</code> when prompted to remove getters and setters</p>
+</li>
+<li>
+<p>Select <code>View Usages</code> again <span class="image"><img src="../images/remove/UnsafeDeleteOnField.png" alt="UnsafeDeleteOnField" width="1145px" height="583px"></span></p>
+</li>
+<li>
+<p>Remove the usages of <code>address</code> and select <code>Do refactor</code> when you are done.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Removing usages may result in errors.
+Exercise discretion and fix them.
+For example, removing the <code>address</code> field from the <code>Person</code> class will require you to modify its constructor.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Repeat the steps for the remaining usages of <code>Address</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After you are done, verify that the application still works by compiling and running it again.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="manual-refactoring"><a class="link" href="#manual-refactoring">Manual refactoring</a></h3>
+<div class="paragraph">
+<p>Unfortunately, there are usages of <code>Address</code> that IntelliJ IDEA cannot identify.
+You can find them by searching for instances of the word <code>address</code> in your code (<code>Edit</code> &gt; <code>Find</code> &gt; <code>Find in path</code>).</p>
+</div>
+<div class="paragraph">
+<p>Places of interest to look out for would be resources used by the application.
+<code>main/resources</code> contains images and <code>fxml</code> files used by the application and <code>test/resources</code> contains test data.
+For example, there is a <code>$address</code> in each <code>PersonCard</code> that has not been removed nor identified.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/remove/$address.png" alt="$address" width="1090px" height="890px">
+</div>
+</div>
+<div class="paragraph">
+<p>A quick look at the <code>PersonCard</code> class and its <code>fxml</code> file quickly reveals why it slipped past the automated refactoring.</p>
+</div>
+<div class="listingblock">
+<div class="title">PersonCard.java</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">...
+<span class="annotation">@FXML</span>
+<span class="directive">private</span> <span class="predefined-type">Label</span> address;
+...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">PersonCard.fxml</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml">...
+<span class="tag">&lt;Label</span> <span class="attribute-name">fx:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">phone</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">styleClass</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cell_small_label</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">\$phone</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;Label</span> <span class="attribute-name">fx:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">address</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">styleClass</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cell_small_label</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">\$address</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;Label</span> <span class="attribute-name">fx:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">styleClass</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cell_small_label</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">\$email</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After removing the <code>Label</code>, we can proceed to formally test our code.
+If everything went well, you should have most of your tests pass.
+Fix any remaining errors until the tests all pass.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tidying-up"><a class="link" href="#tidying-up">Tidying up</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this point, your application is working as intended and all your tests are passing.
+What&#8217;s left to do is to clean up references to <code>Address</code> in test data and documentation.</p>
+</div>
+<div class="paragraph">
+<p>In <code>src/test/data/</code>, data meant for testing purposes are stored.
+While keeping the <code>address</code> field in the json files does not cause the tests to fail, it is not good practice to let cruft from old features accumulate.</p>
+</div>
+<div class="listingblock">
+<div class="title">invalidPersonAddressBook.json</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>{
+  "persons": [ {
+    "name": "Person with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  } ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can go through each individual <code>json</code> file and manually remove the <code>address</code> field.</p>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-09-06 07:03:26 UTC</div></div></div></body></html>
