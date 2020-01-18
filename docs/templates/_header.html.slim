@@ -35,6 +35,9 @@
           - if attr? 'site-seedu'
             li.nav-item
               =nav_link('LearningOutcomes', 'LearningOutcomes.html', 'LOs')
+          - if attr? 'site-seedu'
+            li.nav-item
+              = nav_link('Tutorials', 'Tutorials.html', 'Tutorials')
           li.nav-item
             =nav_link('AboutUs', 'AboutUs.html', 'About Us')
           li.nav-item
