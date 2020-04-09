@@ -1,9 +1,14 @@
+---
+layout: page
+title: Removing Fields 
+---
+
 > Perfection is achieved, not when there is nothing more to add, but
 > when there is nothing left to take away.
 > 
 > —  Antoine de Saint-Exupery 
 
-# Introduction
+## Introduction
 
 When working on Address Book, you will most likely find that some
 features and fields that are no longer necessary. In scenarios like
@@ -13,12 +18,12 @@ your use case.
 In this tutorial, we’ll do exactly just that and remove the `address`
 field from `Person`.
 
-# Safely deleting `Address`
+## Safely deleting `Address`
 
 Fortunately, the IntelliJ IDEA provides a robust refactoring tool that
 can identify *most* usages. Let’s try to use it as much as we can.
 
-## Assisted refactoring
+### Assisted refactoring
 
 The `address` field in `Person` is actually an instance of the
 `seedu.address.model.person.Address` class. Since removing the `Address`
@@ -53,16 +58,16 @@ Let’s try removing references to `Address` in `EditPersonDescriptor`.
 4.  Remove the usages of `address` and select `Do refactor` when you are
     done.
     
-    {%include tip.html content="Removing usages may result in errors. Exercise discretion and fix
-    them. For example, removing the `address` field from the `Person`
-    class will require you to modify its constructor." %}
+{%include tip.html content="Removing usages may result in errors. Exercise discretion and fix
+them. For example, removing the `address` field from the `Person`
+class will require you to modify its constructor." %}
 
 5.  Repeat the steps for the remaining usages of `Address`
 
 After you are done, verify that the application still works by compiling
 and running it again.
 
-## Manual refactoring
+### Manual refactoring
 
 Unfortunately, there are usages of `Address` that IntelliJ IDEA cannot
 identify. You can find them by searching for instances of the word
@@ -102,7 +107,7 @@ After removing the `Label`, we can proceed to formally test our code. If
 everything went well, you should have most of your tests pass. Fix any
 remaining errors until the tests all pass.
 
-# Tidying up
+## Tidying up
 
 At this point, your application is working as intended and all your
 tests are passing. What’s left to do is to clean up references to

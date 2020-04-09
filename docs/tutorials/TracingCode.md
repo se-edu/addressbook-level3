@@ -1,3 +1,8 @@
+---
+layout: page
+title: Tracing Code
+---
+
 > Indeed, the ratio of time spent reading versus writing is well over 10
 > to 1. We are constantly reading old code as part of the effort to
 > write new code. …​\[Therefore,\] making it easy to read makes it
@@ -42,7 +47,7 @@ Before we proceed, ensure that you have done the following:
 
 3.  Learn basic debugging features of Intellij IDEA
 
-# Setting a break point
+## Setting a break point
 
 As you know, the first step of debugging is to put in a breakpoint where
 you want the debugger to pause the execution. For example, if you are
@@ -79,7 +84,7 @@ corresponding code. Once there, click on the left gutter to set a
 breakpoint, as shown below.
 ![LeftGutter](../images/tracing/LeftGutter.png)
 
-# Tracing the execution path
+## Tracing the execution path
 
 Recall from the User Guide that the `edit` command has the format: `edit
 INDEX [n/NAME] [p/PHONE] [e/EMAIL]
@@ -186,9 +191,9 @@ component and where the execution transfers to another component." %}
     `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to
     obtain the arguments and index required.
     
-    {%include tip.html content="
-    Sometimes you might end up stepping into functions that are not of
-    interest. Simply `step out` of them\!" %}
+{%include tip.html content="
+Sometimes you might end up stepping into functions that are not of
+interest. Simply `step out` of them\!" %}
 
 16. The rest of the method seems to exhaustively check for the existence
     of each possible parameter of the `edit` command and store any
@@ -277,7 +282,7 @@ component and where the execution transfers to another component." %}
 25. Finally, we step through until we reach the end of
     `MainWindow#executeCommand()`.
 
-# Conclusion
+## Conclusion
 
 In this tutorial, we traced a valid edit command from raw user input to
 the result being displayed to the user. From this tutorial, you learned
