@@ -21,10 +21,7 @@ someone push code to the repo:
   - Runs the `./gradlew clean test coverage coveralls -i` command (see
     [Using Gradle](UsingGradle.md) for more details on what this command
     means).
-
-  - Renders documentation from asciidoc to html and automatically
-    publishes them using GitHub Pages.
-
+    
   - Runs additional [repository-wide checks](#repository-wide-checks).
 
 If you would like to customise your travis build further, you can learn

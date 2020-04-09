@@ -35,19 +35,3 @@ We have three types of tests:
 3.  Hybrids of unit and integration tests. These test are checking
     multiple code units as well as how the are connected together.  
     e.g. `seedu.address.logic.LogicManagerTest`
-
-## Troubleshooting Testing
-
-**Problem: Keyboard and mouse movements are not simulated on macOS
-Mojave, resulting in GUI Tests failure.**
-
-  - Reason: From macOS Mojave onwards, applications without
-    `Accessibility` permission cannot simulate certain keyboard and
-    mouse movements.
-
-  - Solution: Open `System Preferences`, click `Security and Privacy` →
-    `Privacy` → `Accessibility`, and check the box beside `Intellij
-    IDEA`.
-
-![`Accessibility` permission is granted to `IntelliJ
-IDEA`](images/testfx-idea-accessibility-permissions.png)

@@ -3,7 +3,7 @@ layout: page
 title: Documentation
 ---
 
-We use `markdown` for writing documentation.
+We use `kramdown`, a flavor of `markdown` for writing documentation. 
 
 ## Editing Diagrams
 
@@ -12,8 +12,10 @@ and update the UML diagrams in the developer guide.
 
 ## Publishing Documentation
 
-See [Using Travis](UsingTravis.md#deploying-github-pages) to learn
-how to deploy GitHub Pages using Travis.
+1. Go to your organization's repository settings.
+1. Set GitHub Pages to publish from your `master` branch `/docs folder` 
+through:`Options` > `Source` > `master branch /docs folder`.
+
 
 ## Converting Documentation to PDF format
 
