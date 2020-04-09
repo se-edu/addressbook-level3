@@ -1,6 +1,7 @@
 ---
-layout: page
-title: Learning Outcomes
+layout: alt-page
+title: LOs
+alt_title: Learning Outcomes
 ---
 
 After studying this code and completing the corresponding exercises, you
