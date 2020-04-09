@@ -3,6 +3,9 @@ layout: page
 title: User Guide
 ---
 
+* Table of Contents
+{:toc}
+
 ## Introduction
 
 AddressBook Level 3 (AB3) is for those who **prefer to use a desktop app

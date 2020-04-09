@@ -2,6 +2,8 @@
 layout: page
 title: Developer Guide
 ---
+* Table of Contents
+{:toc}
 
 ## Setting up
 
@@ -419,14 +421,14 @@ driven app
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`,
 Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                       | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                                             | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                                                   |                                                                        |
-| `* * *`  | user                                       | delete a person                                                    | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                                              | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide [private contact details](#private-contact-detail) by default | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                                               | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person               |                                                                        |
+| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
 *{More to be added}*
 
@@ -513,7 +515,7 @@ These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 " %}
 
-## Launch and Shutdown
+### Launch and Shutdown
 
 1.  Initial launch
     
@@ -533,7 +535,7 @@ testers are expected to do more *exploratory* testing.
 
 *{ more test cases …​ }*
 
-## Deleting a person
+### Deleting a person
 
 1.  Deleting a person while all persons are listed
     
@@ -555,7 +557,7 @@ testers are expected to do more *exploratory* testing.
 
 *{ more test cases …​ }*
 
-## Saving data
+### Saving data
 
 1.  Dealing with missing/corrupted data files
     

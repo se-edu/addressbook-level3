@@ -13,7 +13,7 @@ automate build-related tasks such as
   - Analyzing code for style compliance
 
 The gradle configuration for this project is defined in the *build
-script* [`build.gradle`](../build.gradle).
+script* `build.gradle`.
 
 {%include note.html content = "To learn more about gradle build scripts, refer [Build Scripts
 Basics](https://docs.gradle.org/current/userguide/tutorial_using_tasks.html)." %}
@@ -66,17 +66,6 @@ which is rather inconvenient. Therefore, we package all dependencies
 into a single JAR files, creating what is also known as a *fat* JAR
 file. To create a fat JAR file, we use the Gradle plugin [shadow
 jar](https://github.com/johnrengelman/shadow)." %}
-
-## Rendering AsciiDoc files
-
-  - **`asciidoctor`**  
-    Converts AsciiDoc files in `docs` to HTML format. Generated HTML
-    files can be found in `build/docs`.
-
-  - **`deployOfflineDocs`**  
-    Updates the offline user guide, and its associated files, used by
-    the Help window in the application. Deployed HTML files and images
-    can be found in `src/main/resources/docs`.
 
 ## Running the application
 

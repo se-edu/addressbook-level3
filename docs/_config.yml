@@ -1,4 +1,4 @@
-title: "AddressBook Level-3"
+title: "AB-3"
 
 is_se_edu: true
 
@@ -10,3 +10,5 @@ header_pages:
   - LearningOutcomes.md
   - AboutUs.md
   - ContactUs.md
+
+markdown: kramdown
