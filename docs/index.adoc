@@ -1,2 +1,0 @@
-:stylesDir: stylesheets
-include::../README.adoc[]
