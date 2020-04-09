@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <a class="site-title" rel="author" href="https://se-edu.github.io/">
+    <img class="site-header-logo" src="{{ "/assets/images/se-edu-logo.png" | relative_url }}">
+    SE-EDU
+  </a>
+
+  <nav class="se-edu-nav">
+    {% for project in site.data.projects %}
+    <a class="page-link" href="{{ project.url }}">{{ project.name | escape }}</a>
+    {% endfor %}
+  </nav>
+
+</div>
