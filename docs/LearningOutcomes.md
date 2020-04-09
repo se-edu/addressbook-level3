@@ -110,7 +110,7 @@ interface so that clients who don’t need write access to the
 ### Exercise: Add a `Printable` interface
 
   - Add a `Printable` interface as follows.
-    
+
     ![PrintableInterface](images/PrintableInterface.png)
 
   - `Override` the `getPrintableString` in classes `Name`, `Phone`,
@@ -120,18 +120,18 @@ interface so that clients who don’t need write access to the
 
   - Add the following method in a suitable place of some other class.
     Note how the method depends on the Interface.
-    
+
     ``` java
     /**
      * Returns a concatenated version of the printable strings of each object.
      */
     String getPrintableString(Printable... printables) {
     ```
-    
+
     The above method can be used to get a printable string representing
     a bunch of person details. For example, you should be able to call
     that method like this:
-    
+
     ``` java
     // p is a Person object
     return getPrintableString(p.getPhone(), p.getEmail(), p.getAddress());
@@ -197,7 +197,7 @@ interface so that clients who don’t need write access to the
   - Note how the `LogicManager` class doesn’t depend on `StorageManager`
     directly, but rather the interface `Storage`. This is an application
     of the Dependency Inversion Principle.
-    
+
     ![LogicStorageDIP](images/LogicStorageDIP.png)
 
   - Where else in the code do you notice the application of DIP?
@@ -231,7 +231,7 @@ without getting the `StorageManager` class involved.
     the actual `StorageManager` object. i.e. `LogicManagerTest` injects
     a `StorageStub` object when constructing a `LogicManager` before
     testing it.
-    
+
     ![DependencyInjection](images/DependencyInjection.png)
 
   - The example above uses
@@ -239,7 +239,7 @@ without getting the `StorageManager` class involved.
     achieve DI. Note that there is another way to inject a `StorageStub`
     object, as shown below. In this case we do not apply the DIP but we
     still achieve DI.
-    
+
     ![DependencyInjectionWithoutDIP](images/DependencyInjectionWithoutDIP.png)
 
 ## Apply Open-Closed Principle `[LO-OCP]`

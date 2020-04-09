@@ -25,13 +25,13 @@ tests using Gradle." %}
 
 We have three types of tests:
 
-1.  *Unit tests* targeting the lowest level methods/classes.  
+1.  *Unit tests* targeting the lowest level methods/classes.
     e.g. `seedu.address.commons.StringUtilTest`
 
 2.  *Integration tests* that are checking the integration of multiple
-    code units (those code units are assumed to be working).  
+    code units (those code units are assumed to be working).
     e.g. `seedu.address.storage.StorageManagerTest`
 
 3.  Hybrids of unit and integration tests. These test are checking
-    multiple code units as well as how the are connected together.  
+    multiple code units as well as how the are connected together.
     e.g. `seedu.address.logic.LogicManagerTest`

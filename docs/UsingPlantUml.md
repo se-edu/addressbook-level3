@@ -229,7 +229,7 @@ definition, the objects is taken to be declared upon its first usage.
 <tr class="odd">
 <td>
 
-<pre> 
+<pre>
 A --> B
 C --> D
 </pre>
@@ -244,13 +244,13 @@ C --> D
 <tr class="even">
 <td>
 
-<pre> 
+<pre>
 'Class C is defined before A
 Class C
 
 A --> B
 C --> D
-</pre> 
+</pre>
 </td>
 <td>
 

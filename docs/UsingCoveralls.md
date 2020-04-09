@@ -25,42 +25,42 @@ Travis CI but not AppVeyor.
     REPOS](https://coveralls.io/repos/new).
 
 3.  Find the switch for the forked repository.
-    
+
       - If the organization is not shown, click `GITHUB SETTINGS` as
         shown below:
-        
+
         ![GitHub settings](images/coveralls/github_settings.png)
-        
+
         This should bring you to a GitHub page that manages the access
         of third-party applications. Depending on whether you are the
         owner of the repository, you can either grant access
-        
+
         ![Grant Access](images/grant_access.png)
-        
+
         or request access
-        
+
         ![Request Access](images/request_access.png)
-        
+
         to Coveralls so that it can access your repository.
-    
+
       - If your repository cannot be found, click `SYNC REPOS`.
-        
+
         ![Sync repos](images/coveralls/sync_repos.png)
 
 4.  Activate the switch.
-    
+
     ![Activate the switch](images/coveralls/flick_repository_switch.png)
 
 5.  Update the link of the `Coverage Status` badge at the top of your
     `README.md` to point to that of your own repo by
     replacing the outlined areas with `your-org-name/your-repo-name`.
-    
+
     ![Coverage Status
     Badge](images/coveralls/coverage_asciidoc_code.png)
 
 6.  You can now see the coverage report for your project after each
     Travis build by clicking on the `Coverage Status` badge.
-    
+
     ![Coverage Report Summary](images/coveralls/coverage_report.png)
 
 ## Disabling Coveralls Automatic Comments on Pull Requests
@@ -72,5 +72,5 @@ settings of your project in Coveralls:
 1.  Click `Settings`.
 
 2.  Uncheck the `LEAVE COMMENTS?` checkbox. Then click `SAVE CHANGES`.
-    
+
     ![Disable comments](images/coveralls/disable_comments.png)

@@ -28,23 +28,23 @@ Start](#_quick_start) to get started. Enjoy\!
 
 4.  Double-click the file to start the app. The GUI should appear in a
     few seconds.
-    
+
     ![Ui](images/Ui.png)
 
-5.  Type the command in the command box and press Enter to execute it.  
+5.  Type the command in the command box and press Enter to execute it.
     e.g. typing **`help`** and pressing Enter will open the help window.
 
 6.  Some example commands you can try:
-    
+
       - **`list`** : lists all contacts
-    
+
       - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John
         street, block 123, #01-01` : adds a contact named `John Doe` to
         the Address Book.
-    
+
       - **`delete`**`3` : deletes the 3rd contact shown in the current
         list
-    
+
       - **`exit`** : exits the app
 
 7.  Refer to [Features](#Features) for details of each command.
@@ -69,7 +69,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book  
+Adds a person to the address book
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 {%include tip.html content="A person can have any number of tags (including 0)" %}
@@ -84,12 +84,12 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.  
+Shows a list of all persons in the address book.
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.  
+Edits an existing person in the address book.
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
   - Edits the person at the specified `INDEX`. The index refers to the
@@ -108,17 +108,17 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Examples:
 
-  - `edit 1 p/91234567 e/johndoe@example.com`  
+  - `edit 1 p/91234567 e/johndoe@example.com`
     Edits the phone number and email address of the 1st person to be
     `91234567` and `johndoe@example.com` respectively.
 
-  - `edit 2 n/Betsy Crower t/`  
+  - `edit 2 n/Betsy Crower t/`
     Edits the name of the 2nd person to be `Betsy Crower` and clears all
     existing tags.
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.  
+Finds persons whose names contain any of the given keywords.
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
   - The search is case insensitive. e.g `hans` will match `Hans`
@@ -135,15 +135,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-  - `find John`  
+  - `find John`
     Returns `john` and `John Doe`
 
-  - `find Betsy Tim John`  
+  - `find Betsy Tim John`
     Returns any person having names `Betsy`, `Tim`, or `John`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.  
+Deletes the specified person from the address book.
 Format: `delete INDEX`
 
   - Deletes the person at the specified `INDEX`.
@@ -155,28 +155,28 @@ Format: `delete INDEX`
 
 Examples:
 
-  - `list`  
-    `delete 2`  
+  - `list`
+    `delete 2`
     Deletes the 2nd person in the address book.
 
-  - `find Betsy`  
-    `delete 1`  
+  - `find Betsy`
+    `delete 1`
     Deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.  
+Clears all entries from the address book.
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.  
+Exits the program.
 Format: `exit`
 
 ### Saving the data
 
 Address book data are saved in the hard disk automatically after any
-command that changes the data.  
+command that changes the data.
 There is no need to save manually.
 
 ### Encrypting data files `[coming in v2.0]`
@@ -185,27 +185,27 @@ There is no need to save manually.
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?  
+**Q**: How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty
 data file it creates with the file that contains the data of your
 previous Address Book folder.
 
 ## Command Summary
 
-  - **Add** `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`  
+  - **Add** `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
     e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123,
     Clementi Rd, 1234665 t/friend t/colleague`
 
   - **Clear** : `clear`
 
-  - **Delete** : `delete INDEX`  
+  - **Delete** : `delete INDEX`
     e.g. `delete 3`
 
   - **Edit** : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]
-    [a/ADDRESS] [t/TAG]…​`  
+    [a/ADDRESS] [t/TAG]…​`
     e.g. `edit 2 n/James Lee e/jameslee@example.com`
 
-  - **Find** : `find KEYWORD [MORE_KEYWORDS]`  
+  - **Find** : `find KEYWORD [MORE_KEYWORDS]`
     e.g. `find James Jake`
 
   - **List** : `list`

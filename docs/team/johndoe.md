@@ -14,20 +14,20 @@ Java, and has about 10 kLoC.
 
   - **Major enhancement**: added **the ability to undo/redo previous
     commands**
-    
+
       - What it does: allows the user to undo all previous commands one
         at a time. Preceding undo commands can be reversed by using the
         redo command.
-    
+
       - Justification: This feature improves the product significantly
         because a user can make mistakes in commands and the app should
         provide a convenient way to rectify them.
-    
+
       - Highlights: This enhancement affects existing commands and
         commands to be added in future. It required an in-depth analysis
         of design alternatives. The implementation too was challenging
         as it required changes to existing commands.
-    
+
       - Credits: *{mention here if you reused any code/ideas from
         elsewhere or if a third-party library is heavily used in the
         feature so that a reader can make a more accurate judgement of
@@ -41,48 +41,48 @@ Java, and has about 10 kLoC.
     files}*
 
   - **Other contributions**:
-    
+
       - Project management:
-        
+
           - Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-    
+
       - Enhancements to existing features:
-        
+
           - Updated the GUI color scheme (Pull requests
             [\#33](https://github.com), [\#34](https://github.com))
-        
+
           - Wrote additional tests for existing features to increase
             coverage from 88% to 92% (Pull requests
             [\#36](https://github.com), [\#38](https://github.com))
-    
+
       - Documentation:
-        
+
           - Did cosmetic tweaks to existing contents of the User Guide:
             [\#14](https://github.com)
-    
+
       - Community:
-        
+
           - PRs reviewed (with non-trivial review comments):
             [\#12](https://github.com), [\#32](https://github.com),
             [\#19](https://github.com), [\#42](https://github.com)
-        
+
           - Contributed to forum discussions (examples:
             [1](https://github.com), [2](https://github.com),
             [3](https://github.com), [4](https://github.com))
-        
+
           - Reported bugs and suggestions for other teams in the class
             (examples: [1](https://github.com), [2](https://github.com),
             [3](https://github.com))
-        
+
           - Some parts of the history feature I added was adopted by
             several other class mates ([1](https://github.com),
             [2](https://github.com))
-    
+
       - Tools:
-        
+
           - Integrated a third party library (Natty) to the project
             ([\#42](https://github.com))
-        
+
           - Integrated a new Github plugin (CircleCI) to the team repo
 
 *{you can add/remove categories in the list above}*
@@ -95,7 +95,7 @@ Java, and has about 10 kLoC.
 
 ## Deleting a person : `delete`
 
-Deletes the specified person from the address book.  
+Deletes the specified person from the address book.
 Format: `delete INDEX`
 
   - Deletes the person at the specified `INDEX`.
@@ -107,12 +107,12 @@ Format: `delete INDEX`
 
 Examples:
 
-  - `list`  
-    `delete 2`  
+  - `list`
+    `delete 2`
     Deletes the 2nd person in the address book.
 
-  - `find Betsy`  
-    `delete 1`  
+  - `find Betsy`
+    `delete 1`
     Deletes the 1st person in the results of the `find` command.
 
 ## Encrypting data files `[coming in v2.0]`
@@ -254,17 +254,17 @@ executes a new command:
 #### Aspect: How undo & redo executes
 
   - **Alternative 1 (current choice):** Saves the entire address book.
-    
+
       - Pros: Easy to implement.
-    
+
       - Cons: May have performance issues in terms of memory usage.
 
   - **Alternative 2:** Individual command knows how to undo/redo by
     itself.
-    
+
       - Pros: Will use less memory (e.g. for `delete`, just save the
         person being deleted).
-    
+
       - Cons: We must ensure that the implementation of each individual
         command are correct.
 
@@ -272,20 +272,20 @@ executes a new command:
 
   - **Alternative 1 (current choice):** Use a list to store the history
     of address book states.
-    
+
       - Pros: Easy for new Computer Science student undergraduates to
         understand, who are likely to be the new incoming developers of
         our project.
-    
+
       - Cons: Logic is duplicated twice. For example, when a new command
         is executed, we must remember to update both `HistoryManager`
         and `VersionedAddressBook`.
 
   - **Alternative 2:** Use `HistoryManager` for undo/redo
-    
+
       - Pros: We do not need to maintain a separate list, and just reuse
         what is already in the codebase.
-    
+
       - Cons: Requires dealing with commands that have already been
         undone: We must remember to skip these commands. Violates Single
         Responsibility Principle and Separation of Concerns as

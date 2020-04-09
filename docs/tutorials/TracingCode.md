@@ -7,9 +7,9 @@ title: Tracing Code
 > to 1. We are constantly reading old code as part of the effort to
 > write new code. …​\[Therefore,\] making it easy to read makes it
 > easier to write.
-> 
+>
 > —  Robert C. Martin Clean Code: A Handbook of Agile Software
-> Craftsmanship 
+> Craftsmanship
 
 When trying to understand an unfamiliar code base, one common strategy
 used is to trace some representative execution path through the code
@@ -102,12 +102,12 @@ component and where the execution transfers to another component." %}
 
 3.  The Debugger tool window should show up and look something like
     this:
-    
+
     ![DebuggerStep1](../images/tracing/DebuggerStep1.png)
 
 4.  Use the `Show execution point` feature to jump to the line of code
     that we stopped at:
-    
+
     ![ShowExecutionPoint](../images/tracing/ShowExecutionPoint.png)
 
 5.  `CommandResult commandResult = logic.execute(commandText);` is the
@@ -115,26 +115,26 @@ component and where the execution transfers to another component." %}
 
 6.  We are interested in the `logic.execute(commandText)` portion of
     that line so let’s `Step in` into that method call:
-    
+
     ![StepInto](../images/tracing/StepInto.png)
 
 7.  We end up in `LogicManager#execute()`. Let’s take a look at the body
     of the method and annotate what we can deduce.
-    
+
     **LogicManager\#execute().**
-    
+
     ``` java
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
          //Logging, safe to ignore
          logger.info("----------------[USER COMMAND][" + commandText + "]");
-    
+
          CommandResult commandResult;
          //Parse user input from String to a Command
          Command command = addressBookParser.parseCommand(commandText);
          //Executes the Command and stores the result
          commandResult = command.execute(model);
-    
+
          try {
              //We can deduce that the previous line of code modifies model in some way
              // since it's being stored here.
@@ -142,7 +142,7 @@ component and where the execution transfers to another component." %}
          } catch (IOException ioe) {
              throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
          }
-    
+
          return commandResult;
      }
     ```
@@ -155,9 +155,9 @@ component and where the execution transfers to another component." %}
 
 10. `Step into` the line where user input in parsed from a String to a
     Command.
-    
+
     **AddressBookParser\#parseCommand().**
-    
+
     ``` java
     public Command parseCommand(String userInput) throws ParseException {
         ...
@@ -168,16 +168,16 @@ component and where the execution transfers to another component." %}
 
 11. `Step over` until you reach the `switch` statement. The `Variables`
     window now shows the value of both `commandWord` and `arguments` :
-    
+
     ![Variables](../images/tracing/Variables.png)
 
 12. We see that the value of `commandWord` is now `edit` but `arguments`
     is still not processed in any meaningful way.
 
 13. Stepping into the `switch`, we obviously stop at
-    
+
     **AddressBookParser\#parseCommand().**
-    
+
     ``` java
     ...
     case EditCommand.COMMAND_WORD:
@@ -190,7 +190,7 @@ component and where the execution transfers to another component." %}
 15. Stepping through the method shows that it calls
     `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to
     obtain the arguments and index required.
-    
+
 {%include tip.html content="
 Sometimes you might end up stepping into functions that are not of
 interest. Simply `step out` of them\!" %}
@@ -200,23 +200,23 @@ interest. Simply `step out` of them\!" %}
     possible changes in an `EditPersonDescriptor`. Recall that we can
     verify the contents of `editPersonDesciptor` through the `Variable`
     tool window.
-    
+
     ![EditCommand](../images/tracing/EditCommand.png)
 
 17. Let’s continue stepping through until we return to
     `LogicManager#execute()`.
-    
+
     The sequence diagram below shows the details of the execution path
     through the Logic component. Does the execution path you traced in
     the code so far matches with the diagram?
-    
+
     ![Tracing an `edit` command through the Logic
     component](../images/tracing/LogicSequenceDiagram.png)
 
 18. Now let’s see what happens when we call `command#execute()`\!
-    
+
     **EditCommand\#execute().**
-    
+
     ``` java
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -241,9 +241,9 @@ interest. Simply `step out` of them\!" %}
 
 21. Again, it appears that the heavy lifting is delegated. Let’s take a
     look at `JsonSerializableAddressBook`'s constructor.
-    
+
     **JsonSerializableAddressBook\#JsonSerializableAddressBook().**
-    
+
     ``` java
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
@@ -269,9 +269,9 @@ interest. Simply `step out` of them\!" %}
 24. Stepping into
     `resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());`,
     we end up in:
-    
+
     **ResultDisplay\#setFeedbackToUser().**
-    
+
     ``` java
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
@@ -297,30 +297,30 @@ the given commands to find exactly what happens.
     do you think will happen if we traced the following commands
     instead? What exceptions do you think will be thrown(if any), where
     will the exceptions be thrown and where will they be handled?
-    
+
     1.  `redit 1 n/Alice Yu`
-    
+
     2.  `edit 0 n/Alice Yu`
-    
+
     3.  `edit 1 n/Alex Yeoh`
-    
+
     4.  `edit 1`
-    
+
     5.  `edit 1 n/アリス ユー`
-    
+
     6.  `edit 1 t/one t/two t/three t/one`
 
 2.  What components will you have to modify to perform the following
     enhancements to the application?
-    
+
     1.  Make command words case-insensitive
-    
+
     2.  Allow `delete` to remove more than one index at a time
-    
+
     3.  Save the address book in the CSV format instead
-    
+
     4.  Add a new command
-    
+
     5.  Add a new field to `Person`
-    
+
     6.  Add a new entity to the address book

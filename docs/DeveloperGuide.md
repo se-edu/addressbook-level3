@@ -132,9 +132,9 @@ component for the `execute("delete 1")` API call.
 ![Interactions Inside the Logic Component for the `delete 1`
 Command](images/DeleteSequenceDiagram.png)
 
-{%include tip.html 
-content = "The lifeline for `DeleteCommandParser` should end at the 
-destroy marker (X) but due to a limitation of PlantUML, the lifeline 
+{%include tip.html
+content = "The lifeline for `DeleteCommandParser` should end at the
+destroy marker (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram."%}
 
 ### Model component
@@ -162,7 +162,7 @@ As a more OOP model, we can store a `Tag` list in `Address Book`, which
 `Person` can reference. This would allow `Address Book` to only require
 one `Tag` object per unique `Tag`, instead of each `Person` needing
 their own `Tag` object. An example of how such a model may look like is
-given below.  
+given below.
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 " %}
@@ -312,17 +312,17 @@ executes a new command:
 ##### Aspect: How undo & redo executes
 
   - **Alternative 1 (current choice):** Saves the entire address book.
-    
+
       - Pros: Easy to implement.
-    
+
       - Cons: May have performance issues in terms of memory usage.
 
   - **Alternative 2:** Individual command knows how to undo/redo by
     itself.
-    
+
       - Pros: Will use less memory (e.g. for `delete`, just save the
         person being deleted).
-    
+
       - Cons: We must ensure that the implementation of each individual
         command are correct.
 
@@ -330,20 +330,20 @@ executes a new command:
 
   - **Alternative 1 (current choice):** Use a list to store the history
     of address book states.
-    
+
       - Pros: Easy for new Computer Science student undergraduates to
         understand, who are likely to be the new incoming developers of
         our project.
-    
+
       - Cons: Logic is duplicated twice. For example, when a new command
         is executed, we must remember to update both `HistoryManager`
         and `VersionedAddressBook`.
 
   - **Alternative 2:** Use `HistoryManager` for undo/redo
-    
+
       - Pros: We do not need to maintain a separate list, and just reuse
         what is already in the codebase.
-    
+
       - Cons: Requires dealing with commands that have already been
         undone: We must remember to skip these commands. Violates Single
         Responsibility Principle and Separation of Concerns as
@@ -448,19 +448,19 @@ Low (unlikely to have) - `*`
 3.  User requests to delete a specific person in the list
 
 4.  AddressBook deletes the person
-    
+
     Use case ends.
 
 **Extensions**
 
   - 2a. The list is empty.
-    
+
     Use case ends.
 
   - 3a. The given index is invalid.
-    
+
       - 3a1. AddressBook shows an error message.
-        
+
         Use case resumes at step 2.
 
 *{More to be added}*
@@ -482,10 +482,10 @@ Low (unlikely to have) - `*`
 
 ## Glossary
 
-  - Mainstream OS  
+  - Mainstream OS
     Windows, Linux, Unix, OS-X
 
-  - Private contact detail  
+  - Private contact detail
     A contact detail that is not meant to be shared with others
 
 ## Product Survey
@@ -518,19 +518,19 @@ testers are expected to do more *exploratory* testing.
 ### Launch and Shutdown
 
 1.  Initial launch
-    
+
     1.  Download the jar file and copy into an empty folder
-    
-    2.  Double-click the jar file  
+
+    2.  Double-click the jar file
         Expected: Shows the GUI with a set of sample contacts. The
         window size may not be optimum.
 
 2.  Saving window preferences
-    
+
     1.  Resize the window to an optimum size. Move the window to a
         different location. Close the window.
-    
-    2.  Re-launch the app by double-clicking the jar file.  
+
+    2.  Re-launch the app by double-clicking the jar file.
         Expected: The most recent window size and location is retained.
 
 *{ more test cases …​ }*
@@ -538,21 +538,21 @@ testers are expected to do more *exploratory* testing.
 ### Deleting a person
 
 1.  Deleting a person while all persons are listed
-    
+
     1.  Prerequisites: List all persons using the `list` command.
         Multiple persons in the list.
-    
-    2.  Test case: `delete 1`  
+
+    2.  Test case: `delete 1`
         Expected: First contact is deleted from the list. Details of the
         deleted contact shown in the status message. Timestamp in the
         status bar is updated.
-    
-    3.  Test case: `delete 0`  
+
+    3.  Test case: `delete 0`
         Expected: No person is deleted. Error details shown in the
         status message. Status bar remains the same.
-    
+
     4.  Other incorrect delete commands to try: `delete`, `delete x`
-        (where x is larger than the list size) *{give more}*  
+        (where x is larger than the list size) *{give more}*
         Expected: Similar to previous.
 
 *{ more test cases …​ }*
@@ -560,7 +560,7 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1.  Dealing with missing/corrupted data files
-    
+
     1.  *{explain how to simulate a missing/corrupted file and the
         expected behavior}*
 

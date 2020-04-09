@@ -2,17 +2,17 @@
 layout: page
 title: Using Checkstyle
 ---
-{%include note.html content = "This document was originally written for 
-*AddressBook Level 4* and hence its screenshots refer to 
-`addressbook-level4`. For use with *AddressBook Level 3*, wherever 
+{%include note.html content = "This document was originally written for
+*AddressBook Level 4* and hence its screenshots refer to
+`addressbook-level4`. For use with *AddressBook Level 3*, wherever
 `addressbook-level4` is used in the screenshots, you
 should use **`addressbook-level3`**." %}
 
 ## Configuring Checkstyle-IDEA
 
 1.  Install the Checkstyle-IDEA plugin by going to `File` \> `Settings`
-    (Windows/Linux), or `IntelliJ IDEA` \> `Preferences…​` (macOS).  
-    Select `Plugins`, press `Browse Repository`, and find the plugin.  
+    (Windows/Linux), or `IntelliJ IDEA` \> `Preferences…​` (macOS).
+    Select `Plugins`, press `Browse Repository`, and find the plugin.
     Restart the IDE to complete the installation.
 
 2.  Click `File` \> `Settings…​` \> `Other Settings` \> `Checkstyle`
@@ -23,10 +23,10 @@ should use **`addressbook-level3`**." %}
 4.  Ensure that the `Checkstyle version` is set to `8.1`. This is the
     same version that we are using inside Gradle, so that you won’t get
     any errors due to version incompatibility
-    
+
       - If `Checkstyle version` is not set to `8.1`, set it to version
         `8.1` and click `Apply`
-        
+
         ![checkstyle idea scan
         scope](images/checkstyle-idea-scan-scope.png)
 
@@ -42,7 +42,7 @@ should use **`addressbook-level3`**." %}
 9.  Click `Next` \> `Finish`
 
 10. Mark `Active` for the newly imported check configuration
-    
+
     ![checkstyle idea
     configuration](images/checkstyle-idea-configuration.png)
 

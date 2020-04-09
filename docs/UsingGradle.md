@@ -33,11 +33,11 @@ enter the Gradle command. Gradle commands look like this:
 
 ## Cleaning the Project
 
-  - **`clean`**  
+  - **`clean`**
     Deletes the files created during the previous build tasks (e.g.
     files in the `build` folder). e.g. `./gradlew clean`
 
-{%include tip.html content="**`clean` to force Gradle to execute a task**:  
+{%include tip.html content="**`clean` to force Gradle to execute a task**:
 When running a Gradle task, Gradle will try to figure out if the task
 needs running at all. If Gradle determines that the output of the task
 will be same as the previous time, it will not run the task. For
@@ -50,13 +50,13 @@ execute the task." %}
 
 ## Creating the JAR file
 
-  - **`shadowJar`**  
+  - **`shadowJar`**
     Creates the `addressbook.jar` file in the `build/jar` folder, *if
-    the current file is outdated*.  
+    the current file is outdated*.
     e.g. `./gradlew shadowJar`
 
 To force Gradle to create the JAR file even if the current one is
-up-to-date, you can ‘clean’ first.  
+up-to-date, you can ‘clean’ first.
 e.g. `./gradlew clean shadowJar`
 
 {%include note.html content = "**Why do we create a fat JAR?** If we package only our own class files
@@ -69,18 +69,18 @@ jar](https://github.com/johnrengelman/shadow)." %}
 
 ## Running the application
 
-  - **`run`**  
+  - **`run`**
     Builds and runs the application.
 
-  - **`runShadow`**  
+  - **`runShadow`**
     Builds the application as a fat JAR, and then runs it.
 
 ## Running code style checks
 
-  - **`checkstyleMain`**  
+  - **`checkstyleMain`**
     Runs the code style check for the main code base
 
-  - **`checkstyleTest`**  
+  - **`checkstyleTest`**
     Runs the code style check for the test code base
 
 The set of code style rules implemented can be found in
@@ -90,7 +90,7 @@ the section and `//CODESTYLE.ON: RuleName` at the end of the section.
 
 ## Running Tests
 
-  - **`test`**  
+  - **`test`**
     Runs all tests.
 
 Here are some examples:
@@ -104,16 +104,16 @@ Here are some examples:
 There is no need to run these Gradle tasks manually as they are called
 automatically by other relevant Gradle tasks.
 
-  - **`compileJava`**  
+  - **`compileJava`**
     Checks whether the project has the required dependencies to compile
     and run the main program, and download any missing dependencies
-    before compiling the classes.  
+    before compiling the classes.
     See `build.gradle` → `allprojects` → `dependencies` → `compile` for
     the list of dependencies required.
 
-  - **`compileTestJava`**  
+  - **`compileTestJava`**
     Checks whether the project has the required dependencies to perform
     testing, and download any missing dependencies before compiling the
-    test classes.  
+    test classes.
     See `build.gradle` → `allprojects` → `dependencies` → `testCompile`
     for the list of dependencies required.

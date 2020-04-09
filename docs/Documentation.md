@@ -3,7 +3,7 @@ layout: page
 title: Documentation
 ---
 
-We use `kramdown`, a flavor of `markdown` for writing documentation. 
+We use `kramdown`, a flavor of `markdown` for writing documentation.
 
 ## Editing Diagrams
 
@@ -13,7 +13,7 @@ and update the UML diagrams in the developer guide.
 ## Publishing Documentation
 
 1. Go to your organization's repository settings.
-1. Set GitHub Pages to publish from your `master` branch `/docs folder` 
+1. Set GitHub Pages to publish from your `master` branch `/docs folder`
 through:`Options` > `Source` > `master branch /docs folder`.
 
 
@@ -43,10 +43,9 @@ affect how all the documentation within this project are rendered.
 
 |Attribute|Description|
 |---|---|
-|`title`|The title of your site, usually the name of your project|
-|`is-se-edu`|Set this to `false` if your project is not an official SE-EDU project|
- 
- 
+|`title`|The title of your site, usually the name of your project.|
+|`is-se-edu`|Set this to `false` if your project is not an official SE-EDU project.|
+
 ## Site Template
 
 The files in `docs/_include` and `docs/_layouts` control the template
@@ -55,5 +54,5 @@ of the pages; the files in `docs/_sass` control the style of the pages.
 {%include warning.html content="Modifying these files
 requires some knowledge and experience with Jekyll.
 You should only modify them if you need greater control over the site’s
-layout. The SE-EDU team does notprovide support for modified template 
+layout. The SE-EDU team does notprovide support for modified template
 files." %}
