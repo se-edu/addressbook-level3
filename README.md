@@ -34,11 +34,7 @@ chat](https://badges.gitter.im/se-edu/Lobby.svg)](https://gitter.im/se-edu/Lobby
 
   - [Developer Guide](docs/DeveloperGuide.md)
 
-  - [Learning Outcomes](docs/LearningOutcomes.md)
-
   - [About Us](docs/AboutUs.md)
-
-  - [Contact Us](docs/ContactUs.md)
 
 # Acknowledgements
 

@@ -1,29 +1,5 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
-.site-header-logo {
-  height: $base-font-size * 1.5;
-  width: $base-font-size * 1.5;
-}
-
-.se-edu-nav {
-  position: static;
-  float: right;
-  border: none;
-  background-color: inherit;
-
-  .page-link {
-    color: $text-color;
-    line-height: $base-line-height;
-    display: inline;
-    padding: 0;
-
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-    margin-left: auto;
-  }
-}
-
 h2, h3, h4, h5, h6 {
   color: #e46c0a;
 }

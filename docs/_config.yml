@@ -1,15 +1,9 @@
 title: "AB-3"
-
-is_se_edu: true
-
 theme: minima
 
 header_pages:
   - UserGuide.md
   - DeveloperGuide.md
-  - LearningOutcomes.md
-  - Tutorials.md
   - AboutUs.md
-  - ContactUs.md
 
 markdown: kramdown

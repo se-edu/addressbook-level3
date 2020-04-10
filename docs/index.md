@@ -34,11 +34,7 @@ chat](https://badges.gitter.im/se-edu/Lobby.svg)](https://gitter.im/se-edu/Lobby
 
   - [Developer Guide](DeveloperGuide.md)
 
-  - [Learning Outcomes](LearningOutcomes.md)
-
   - [About Us](AboutUs.md)
-
-  - [Contact Us](ContactUs.md)
 
 # Acknowledgements
 
@@ -50,4 +46,4 @@ chat](https://badges.gitter.im/se-edu/Lobby.svg)](https://gitter.im/se-edu/Lobby
     [Jackson](https://github.com/FasterXML/jackson),
     [JUnit5](https://github.com/junit-team/junit5)
 
-# Licence : [MIT](LICENSE)
+# Licence : [MIT](https://github.com/se-edu/addressbook-level3/blob/master/LICENSE)

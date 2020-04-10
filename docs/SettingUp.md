@@ -71,16 +71,15 @@ Intellij to check style-compliance as you write code.
 
 ### Updating documentation to match your fork
 
-After forking the repo, the documentation will still have the SE-EDU
-branding and refer to the `se-edu/addressbook-level3` repo.
+After forking the repo, the documentation will still refer to the 
+`se-edu/addressbook-level3` repo.
 
 If you plan to develop this fork as a separate product (i.e. instead of
 contributing to `se-edu/addressbook-level3`), you should configure the
 site-wide documentation to suit your own project.
 
-The configuration file can be found at `docs/_config.yml`.
-Set `is-se-edu` to `false` and change the `title` to your project's
-title.
+The configuration file can be found at `docs/_config.yml`. Change the
+`title` to your project's title.
 
 ### Setting up CI
 
