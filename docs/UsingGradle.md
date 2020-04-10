@@ -15,8 +15,11 @@ automate build-related tasks such as
 The gradle configuration for this project is defined in the *build
 script* `build.gradle`.
 
-{%include note.html content = "To learn more about gradle build scripts, refer [Build Scripts
-Basics](https://docs.gradle.org/current/userguide/tutorial_using_tasks.html)." %}
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+To learn more about gradle build scripts, refer [Build Scripts
+Basics](https://docs.gradle.org/current/userguide/tutorial_using_tasks.html).
+</div>
 
 ## Running Gradle Commands
 
@@ -28,8 +31,11 @@ enter the Gradle command. Gradle commands look like this:
   - On Mac/Linux: `./gradlew <task1> <task2>…​` e.g. `./gradlew clean
     test`
 
-{%include note.html content = "If you do not specify any tasks, Gradlew will run the default tasks
-`clean` `test` `coverage`" %}
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+If you do not specify any tasks, Gradlew will run the default tasks
+`clean` `test` `coverage`
+</div>
 
 ## Cleaning the Project
 
@@ -37,7 +43,8 @@ enter the Gradle command. Gradle commands look like this:
     Deletes the files created during the previous build tasks (e.g.
     files in the `build` folder). e.g. `./gradlew clean`
 
-{%include tip.html content="**`clean` to force Gradle to execute a task**:
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip: </b>
+**`clean` to force Gradle to execute a task**:
 When running a Gradle task, Gradle will try to figure out if the task
 needs running at all. If Gradle determines that the output of the task
 will be same as the previous time, it will not run the task. For
@@ -46,7 +53,8 @@ files have not changed since the last time the JAR file was built. If we
 want to force Gradle to run a task, we can combine that task with
 `clean`. Once the build files have been `clean` ed, Gradle has no way to
 determine if the output will be same as before, so it will be forced to
-execute the task." %}
+execute the task.
+</div>
 
 ## Creating the JAR file
 
@@ -59,13 +67,16 @@ To force Gradle to create the JAR file even if the current one is
 up-to-date, you can ‘clean’ first.
 e.g. `./gradlew clean shadowJar`
 
-{%include note.html content = "**Why do we create a fat JAR?** If we package only our own class files
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+**Why do we create a fat JAR?** If we package only our own class files
 into the JAR file, it will not work properly unless the user has all the
 other JAR files (i.e. third party libraries) our classes depend on,
 which is rather inconvenient. Therefore, we package all dependencies
 into a single JAR files, creating what is also known as a *fat* JAR
 file. To create a fat JAR file, we use the Gradle plugin [shadow
-jar](https://github.com/johnrengelman/shadow)." %}
+jar](https://github.com/johnrengelman/shadow).
+</div>
 
 ## Running the application
 

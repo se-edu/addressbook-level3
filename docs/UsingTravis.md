@@ -3,10 +3,13 @@ layout: page
 title: Using Travis
 ---
 
-{%include note.html content = "This document was originally written for *AddressBook Level 4* and hence
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+This document was originally written for *AddressBook Level 4* and hence
 its screenshots refer to `addressbook-level4`. For use with *AddressBook
 Level 3*, wherever `addressbook-level4` is used in the screenshots, you
-should use **`addressbook-level3`**." %}
+should use **`addressbook-level3`**.
+</div>
 
 [Travis CI](https://travis-ci.org/) is a *Continuous Integration*
 platform for GitHub projects.

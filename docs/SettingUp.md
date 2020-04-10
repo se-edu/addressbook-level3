@@ -9,9 +9,12 @@ title: Setting Up
 
 2.  **IntelliJ** IDE
 
-{%include note.html content = "IntelliJ by default has Gradle and JavaFx
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+IntelliJ by default has Gradle and JavaFx
 plugins installed.  Do not disable them. If you have disabled them, go
-to `File` \> `Settings` \> `Plugins` to re-enable them." %}
+to `File` \> `Settings` \> `Plugins` to re-enable them.
+</div>
 
 ## Setting up the project in your computer
 
@@ -89,15 +92,21 @@ Set up Travis to perform Continuous Integration (CI) for your fork. See
 After setting up Travis, you can optionally set up coverage reporting
 for your team fork (see [Using Coveralls](UsingCoveralls.md)).
 
-{%include note.html content = "Coverage reporting could be useful for a team repository that hosts the
-final version but it is not that useful for your personal fork." %}
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+Coverage reporting could be useful for a team repository that hosts the
+final version but it is not that useful for your personal fork.
+</div>
 
 Optionally, you can set up AppVeyor as a second CI (see
 [Using AppVeyor](UsingAppVeyor.md)).
 
-{%include note.html content = "Having both Travis and AppVeyor ensures your App works on both
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+Having both Travis and AppVeyor ensures your App works on both
 Unix-based platforms and Windows-based platforms (Travis is Unix-based
-and AppVeyor is Windows-based)" %}
+and AppVeyor is Windows-based)
+</div>
 
 ### Getting started with coding
 

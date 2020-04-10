@@ -91,10 +91,11 @@ INDEX [n/NAME] [p/PHONE] [e/EMAIL]
 [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command
 `edit 1 n/Alice Yeoh`.
 
-{%include tip.html content="
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip: </b>
 Over the course of the debugging session, you will encounter every major
 component in the application. Try to jot down what happens inside the
-component and where the execution transfers to another component." %}
+component and where the execution transfers to another component.
+</div>
 
 1.  To start the debugging session, simply `Run` \> `Debug Main`
 
@@ -191,9 +192,10 @@ component and where the execution transfers to another component." %}
     `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to
     obtain the arguments and index required.
 
-{%include tip.html content="
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip: </b>
 Sometimes you might end up stepping into functions that are not of
-interest. Simply `step out` of them\!" %}
+interest. Simply `step out` of them\!
+</div>
 
 16. The rest of the method seems to exhaustively check for the existence
     of each possible parameter of the `edit` command and store any

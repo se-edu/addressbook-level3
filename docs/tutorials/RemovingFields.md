@@ -58,9 +58,11 @@ Let’s try removing references to `Address` in `EditPersonDescriptor`.
 4.  Remove the usages of `address` and select `Do refactor` when you are
     done.
 
-{%include tip.html content="Removing usages may result in errors. Exercise discretion and fix
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip: </b>
+Removing usages may result in errors. Exercise discretion and fix
 them. For example, removing the `address` field from the `Person`
-class will require you to modify its constructor." %}
+class will require you to modify its constructor.
+</div>
 
 5.  Repeat the steps for the remaining usages of `Address`
 

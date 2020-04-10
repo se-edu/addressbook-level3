@@ -47,7 +47,10 @@ The `PlantUML integration` plugin allows you to export individual
 diagrams to a location of your choosing. Click the `Save Current Diagram
 Only` button and choose the location to export the image file.
 
-{%include note.html content = "You will have to `git add` any new diagrams generated\!" %}
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+You will have to `git add` any new diagrams generated\!
+</div>
 
 ## Common tasks
 
@@ -99,8 +102,11 @@ by PlantUML has a lot of overlapping lines that are hard to decipher:
 ![The UI class diagram without additional
 formatting](images/plantuml/RawUiDiagram.png)
 
-{%include note.html content = "In most cases, you should consider decomposing the diagram into smaller
-ones or focusing on a more specific portion of the diagram." %}
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+In most cases, you should consider decomposing the diagram into smaller
+ones or focusing on a more specific portion of the diagram.
+</div>
 
 Here are some of the techniques we used in this project to obtain a more
 palatable diagram.
@@ -278,4 +284,6 @@ package "Rule Of Thumb";{
 </tbody>
 </table>
 
-{%include tip.html content="Explicitly define all symbols to avoid any potential layout mishaps." %}
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip: </b>
+Explicitly define all symbols to avoid any potential layout mishaps.
+</div>

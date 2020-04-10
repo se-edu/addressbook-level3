@@ -3,11 +3,14 @@ layout: page
 title: Using AppVeyor
 ---
 
-{%include note.html content = "This document was originally written for
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+This document was originally written for
 *AddressBook Level 4* and hence its screenshots refer to
 `addressbook-level4`. For use with *AddressBook Level 3*, wherever
 `addressbook-level4` is used in the screenshots, you should use
-**`addressbook-level3`**." %}
+**`addressbook-level3`**.
+</div>
 
 
 [AppVeyor](https://www.appveyor.com/) is a *Continuous Integration*

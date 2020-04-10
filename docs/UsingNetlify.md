@@ -3,10 +3,13 @@ layout: page
 title: Using Netlify
 ---
 
-{%include note.html content = "This document was originally written for *AddressBook Level 4* and hence
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+This document was originally written for *AddressBook Level 4* and hence
 its screenshots refer to `addressbook-level4`. For use with *AddressBook
 Level 3*, wherever `addressbook-level4` is used in the screenshots, you
-should use **`addressbook-level3`**." %}
+should use **`addressbook-level3`**.
+</div>
 
 [Netlify](https://www.netlify.com/) is an automated hosting platform for
 deploying static websites. With the aid of build tools such as Gradle,
@@ -47,13 +50,19 @@ pull request is made.
 
       - Build command: `./gradlew asciidoctor`
 
-        {%include note.html content = "The build command is the command that builds the documentation
-        into HTML format." %}
+        <div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+The build command is the command that builds the documentation
+        into HTML format.
+</div>
 
       - Publish directory: `build/docs/html5`
 
-        {%include note.html content = "The publish directory is the directory in which the built HTML
-        documentation resides." %}
+        <div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+The publish directory is the directory in which the built HTML
+        documentation resides.
+</div>
 
 7.  Once Netlify has completed building your project, you can now:
 

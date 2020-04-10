@@ -18,8 +18,11 @@ There are two ways to run tests.
   - Open a console and run the command `gradlew clean test` (Mac/Linux:
     `./gradlew clean test`)
 
-{%include note.html content = "See [Using Gradle](UsingGradle.md) for more info on how to run
-tests using Gradle." %}
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>
+
+See [Using Gradle](UsingGradle.md) for more info on how to run
+tests using Gradle.
+</div>
 
 ## Types of tests
 

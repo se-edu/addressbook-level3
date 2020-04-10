@@ -72,7 +72,9 @@ Format: `help`
 Adds a person to the address book
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-{%include tip.html content="A person can have any number of tags (including 0)" %}
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip: </b>
+A person can have any number of tags (including 0)
+</div>
 
 Examples:
 

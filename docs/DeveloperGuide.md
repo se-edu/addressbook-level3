@@ -18,13 +18,14 @@ Refer to the guide [here](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level
 design of the App. Given below is a quick overview of each component.
 
-{%include tip.html content="
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip: </b>
 The `.puml` files used to create diagrams in this document can be found
 in the
 [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/)
 folder. Refer to the [Using PlantUML](UsingPlantUml.md) guide to learn
 how to create and edit diagrams.
-"%}
+
+</div>
 
 `Main` has two classes called
 [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
@@ -132,10 +133,10 @@ component for the `execute("delete 1")` API call.
 ![Interactions Inside the Logic Component for the `delete 1`
 Command](images/DeleteSequenceDiagram.png)
 
-{%include tip.html
-content = "The lifeline for `DeleteCommandParser` should end at the
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>The lifeline for `DeleteCommandParser` should end at the
 destroy marker (X) but due to a limitation of PlantUML, the lifeline
-reaches the end of diagram."%}
+reaches the end of diagram.
+</div>
 
 ### Model component
 
@@ -157,15 +158,15 @@ The `Model`,
   - does not depend on any of the other three components.
 
 
-{%include note.html content="
-As a more OOP model, we can store a `Tag` list in `Address Book`, which
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>As a more OOP model, we can store a `Tag` list in `Address Book`, which
 `Person` can reference. This would allow `Address Book` to only require
 one `Tag` object per unique `Tag`, instead of each `Person` needing
 their own `Tag` object. An example of how such a model may look like is
 given below.
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-" %}
+
+</div>
 
 
 ### Storage component
@@ -238,11 +239,11 @@ modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-{%include note.html content="
-If a command fails its execution, it will not call
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>If a command fails its execution, it will not call
 `Model#commitAddressBook()`, so the address book state will not be saved
 into the `addressBookStateList`.
-" %}
+
+</div>
 
 Step 4. The user now decides that adding the person was a mistake, and
 decides to undo that action by executing the `undo` command. The `undo`
@@ -252,37 +253,37 @@ address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-{%include note.html content="
-If the `currentStatePointer` is at index 0, pointing to the initial
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>If the `currentStatePointer` is at index 0, pointing to the initial
 address book state, then there are no previous address book states to
 restore. The `undo` command uses `Model#canUndoAddressBook()` to check
 if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
-" %}
+
+</div>
 
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-{%include note.html content="
-The lifeline for `UndoCommand` should end at the destroy marker (X) but
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>The lifeline for `UndoCommand` should end at the destroy marker (X) but
 due to a limitation of PlantUML, the lifeline reaches the end of
 diagram.
-" %}
+
+</div>
 
 The `redo` command does the opposite — it calls
 `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
 to the right, pointing to the previously undone state, and restores the
 address book to that state.
 
-{%include note.html content="
-If the `currentStatePointer` is at index `addressBookStateList.size()
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>If the `currentStatePointer` is at index `addressBookStateList.size()
 - 1`, pointing to the latest address book state, then there are no
 undone address book states to restore. The `redo` command uses
 `Model#canRedoAddressBook()` to check if this is the case. If so, it
 will return an error to the user rather than attempting to perform the
 redo.
-" %}
+
+</div>
 
 Step 5. The user then decides to execute the command `list`. Commands
 that do not modify the address book, such as `list`, will usually not
@@ -510,10 +511,10 @@ Cons:
 
 Given below are instructions to test the app manually.
 
-{%include note.html content="
-These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: <b>Note: </b>These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-" %}
+
+</div>
 
 ### Launch and Shutdown
 

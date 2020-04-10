@@ -51,8 +51,10 @@ affect how all the documentation within this project are rendered.
 The files in `docs/_include` and `docs/_layouts` control the template
 of the pages; the files in `docs/_sass` control the style of the pages.
 
-{%include warning.html content="Modifying these files
+<div markdown="span" class="alert alert-warning">:warning: <b>Warning: </b>
+Modifying these files
 requires some knowledge and experience with Jekyll.
 You should only modify them if you need greater control over the site’s
 layout. The SE-EDU team does notprovide support for modified template
-files." %}
+files.
+</div>
