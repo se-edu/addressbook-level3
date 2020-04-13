@@ -17,9 +17,9 @@ Singapore](http://www.comp.nus.edu.sg).
 
 ![damithc](images/damithc.jpg)
 
-\[[homepage](http://www.comp.nus.edu.sg/~damithch)\]
-\[[github](https://github.com/damithc)\]
-\[[portfolio](team/johndoe.md)\]
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+[[github](https://github.com/damithc)]
+[[portfolio](team/johndoe.md)]
 
 Role: Project Advisor
 
@@ -27,8 +27,8 @@ Role: Project Advisor
 
 ![lejolly](images/lejolly.jpg)
 
-\[[github](http://github.com/lejolly)\]
-\[[portfolio](team/johndoe.md)\]
+[[github](http://github.com/lejolly)]
+[[portfolio](team/johndoe.md)]
 
 Role: Team Lead
 Responsibilities: UI
@@ -37,7 +37,7 @@ Responsibilities: UI
 
 ![yijinl](images/yijinl.jpg)
 
-\[[github](http://github.com/yijinl)\] \[[portfolio](team/johndoe.md)\]
+[[github](http://github.com/yijinl)] [[portfolio](team/johndoe.md)]
 
 Role: Developer
 Responsibilities: Data
@@ -46,8 +46,8 @@ Responsibilities: Data
 
 ![m133225](images/m133225.jpg)
 
-\[[github](http://github.com/m133225)\]
-\[[portfolio](team/johndoe.md)\]
+[[github](http://github.com/m133225)]
+[[portfolio](team/johndoe.md)]
 
 Role: Developer
 Responsibilities: Dev Ops + Threading
@@ -56,8 +56,8 @@ Responsibilities: Dev Ops + Threading
 
 ![yl coder](images/yl_coder.jpg)
 
-\[[github](http://github.com/yl-coder)\]
-\[[portfolio](team/johndoe.md)\]
+[[github](http://github.com/yl-coder)]
+[[portfolio](team/johndoe.md)]
 
 Role: Developer
 Responsibilities: UI
