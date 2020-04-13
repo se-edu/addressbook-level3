@@ -163,6 +163,7 @@ The `Model`,
 one `Tag` object per unique `Tag`, instead of each `Person` needing
 their own `Tag` object. An example of how such a model may look like is
 given below.
+<br>
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
