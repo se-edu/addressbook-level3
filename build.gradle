@@ -1,20 +1,10 @@
-// Gradle Configuration File
-// For more details take a look at the Java Quickstart chapter in the Gradle
-// user guide available at http://gradle.org/docs/5.2.1/userguide/tutorial_java_projects.html
-
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 plugins {
     id 'java'
-    id 'jacoco'
     id 'checkstyle'
-    id 'com.github.kt3k.coveralls' version '2.4.0'
     id 'com.github.johnrengelman.shadow' version '4.0.4'
-    id 'org.asciidoctor.convert' version '1.5.6'
     id 'application'
 }
 
-// Specifies the entry point of the application
 mainClassName = 'seedu.address.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -27,14 +17,6 @@ repositories {
 
 checkstyle {
     toolVersion = '8.1'
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination file("${buildDir}/jacocoHtml")
-    }
 }
 
 test {
@@ -72,84 +54,4 @@ shadowJar {
     destinationDir = file("${buildDir}/jar/")
 }
 
-task coverage(type: JacocoReport) {
-    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
-    classDirectories.from files(sourceSets.main.output)
-    executionData.from files(jacocoTestReport.executionData)
-    afterEvaluate {
-        classDirectories.from files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/*.jar'])
-        })
-    }
-    reports {
-        html.enabled = true
-        xml.enabled = true
-    }
-}
-
-coveralls {
-    sourceDirs = sourceSets.main.allSource.srcDirs.absolutePath
-    jacocoReportPath = "${buildDir}/reports/jacoco/coverage/coverage.xml"
-}
-
-tasks.coveralls {
-    dependsOn coverage
-    onlyIf { System.env.'CI' }
-}
-
-test {
-    testLogging {
-        events TestLogEvent.FAILED, TestLogEvent.SKIPPED
-
-        // Prints the currently running test's name in the CI's build log,
-        // so that we can check if tests are being silently skipped or
-        // stalling the build.
-        if (System.env.'CI') {
-            events << TestLogEvent.STARTED
-        }
-    }
-
-    jacoco {
-        destinationFile = new File("${buildDir}/jacoco/test.exec")
-    }
-}
-
-asciidoctor {
-    backends 'html5'
-    sourceDir 'docs'
-    outputDir "${buildDir}/docs"
-
-    options = [
-        template_dirs: [file("${sourceDir}/templates")],
-    ]
-
-    attributes = [
-        linkcss: true,
-        stylesheet: 'gh-pages.css',
-        'source-highlighter': 'coderay',
-        icons: 'font',
-        experimental: true,
-        sectlinks: true,
-        idprefix: '',  // for compatibility with GitHub preview
-        idseparator: '-',
-        'site-root': "${sourceDir}",  // must be the same as sourceDir, do not modify
-        'site-name': 'AddressBook-Level3',
-        'site-githuburl': 'https://github.com/se-edu/addressbook-level3',
-        'site-seedu': true,  // delete this line if your project is not a fork (not a SE-EDU project)
-    ]
-
-    options['template_dirs'].each {
-        inputs.files fileTree(it)
-    }
-}
-
-// Copies stylesheets into the directory containing generated HTML files as
-// Asciidoctor does not copy linked CSS files to the output directory when rendering.
-// This is needed for linked stylesheets and embedded stylesheets which import other files.
-task copyStylesheets(type: Copy) {
-    from "${asciidoctor.sourceDir}/stylesheets"
-    into "${asciidoctor.outputDir}/html5/stylesheets"
-}
-asciidoctor.dependsOn copyStylesheets
-
-defaultTasks 'clean', 'test', 'coverage', 'asciidoctor'
+defaultTasks 'clean', 'test'

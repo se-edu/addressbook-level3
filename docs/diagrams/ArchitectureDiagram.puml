@@ -9,34 +9,23 @@ Package " "<<Rectangle>>{
     Class Logic LOGIC_COLOR
     Class Storage STORAGE_COLOR
     Class Model MODEL_COLOR
-    Class Main MODEL_COLOR_T1
+    Class Main #grey
     Class Commons LOGIC_COLOR_T2
-    Class "Log Center" as Logs UI_COLOR_T2
-    Class Hidden #FFFFFF
-    Class HiddenUI #FFFFFF
-    Class HiddenModel #FFFFFF
-
-
 }
+
 Class "<$user>" as User MODEL_COLOR_T2
 Class "<$documents>" as File UI_COLOR_T1
 
 
-HiddenUI -up[hidden]-> UI
-HiddenModel -left[hidden]-> Model
-Main -up-> HiddenUI
-Main -left-> HiddenModel
-UI -> Logic
-UI -right-> Model
-Logic -> Storage
-Logic -down-> Model
+UI -[#green]> Logic
+UI -right[#green]-> Model
+Logic -[#blue]-> Storage
+Logic -down[#blue]-> Model
+Main -[#grey]-> UI
+Main -[#grey]-> Logic
+Main -[#grey]-> Storage
+Main -up[#grey]-> Model
 
-Logs -right- Commons
-Hidden .down.> Commons
-Hidden .down.> Commons
-Hidden .down.> Commons
-
-Storage .right.>File
-User --> UI
-Main --> Hidden
+Storage .right[STORAGE_COLOR].>File
+User ..> UI
 @enduml
