@@ -29,6 +29,10 @@
     <property name="file" value="${config_loc}/suppressions.xml"/>
   </module>
 
+  <module name="LineLength">
+    <!-- Checks if a line is too long. -->
+    <property name="max" value="120"/>
+  </module>
 
   <!-- All Java AST specific tests live under TreeWalker module. -->
   <module name="TreeWalker">
@@ -154,11 +158,6 @@
 
     <!-- Checks if a catch block is empty and does not contain any comments. -->
     <module name="EmptyCatchBlock"/>
-
-    <module name="LineLength">
-      <!-- Checks if a line is too long. -->
-      <property name="max" value="120"/>
-    </module>
 
     <module name="LeftCurly">
       <!-- Checks for placement of the left curly brace ('{'). -->
@@ -384,37 +383,20 @@
 
     <!-- Checks that every public method (excluding getters, setters and constructors) has a header comment. -->
     <module name="JavadocMethod">
-      <!-- Checks public methods that have more than 1 line of code.
-        Single line of code methods are often due to refactor for readability.
-      -->
-      <property name="minLineCount" value="1"/>
       <property name="allowedAnnotations" value="Override, Test, BeforeAll, BeforeEach, AfterAll, AfterEach, Subscribe"/>
       <property name="scope" value="public"/>
-      <property name="allowUndeclaredRTE" value="true"/>
-      <property name="allowThrowsTagsForSubclasses" value="true"/>
+      <property name="validateThrows" value="false"/>
       <property name="allowMissingParamTags" value="true"/>
-      <property name="allowMissingThrowsTags" value="true"/>
       <property name="allowMissingReturnTag" value="true"/>
-      <property name="allowMissingPropertyJavadoc" value="true"/>
-      <property name="ignoreMethodNamesRegex" value="(set.*|get.*)"/>
       <property name="tokens" value="METHOD_DEF, ANNOTATION_FIELD_DEF"/>
     </module>
-    <!-- Checks that every non-trivial private method (excluding getters, setters and constructors) has a header comment. -->
-    <module name="JavadocMethod">
-      <!-- Checks private methods that have more than 3 lines of code.
-        We define methods that have more than 3 lines of code as non-trivial.
-      -->
-      <property name="minLineCount" value="3"/>
-      <property name="allowedAnnotations" value="Override, Test, BeforeAll, BeforeEach, AfterAll, AfterEach, Subscribe"/>
-      <property name="scope" value="private"/>
-      <property name="allowUndeclaredRTE" value="true"/>
-      <property name="allowThrowsTagsForSubclasses" value="true"/>
-      <property name="allowMissingParamTags" value="true"/>
-      <property name="allowMissingThrowsTags" value="true"/>
-      <property name="allowMissingReturnTag" value="true"/>
+
+    <module name="InvalidJavadocPosition"/>
+
+    <module name="MissingJavadocMethodCheck">
+      <property name="minLineCount" value="1"/>
       <property name="allowMissingPropertyJavadoc" value="true"/>
       <property name="ignoreMethodNamesRegex" value="(set.*|get.*)"/>
-      <property name="tokens" value="METHOD_DEF, ANNOTATION_FIELD_DEF"/>
     </module>
 
   </module>
