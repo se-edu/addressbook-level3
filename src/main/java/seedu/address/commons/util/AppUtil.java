@@ -10,6 +10,9 @@ import seedu.address.MainApp;
  */
 public class AppUtil {
 
+    /**
+     * Gets an {@code Image} from the specified path.
+     */
     public static Image getImage(String imagePath) {
         requireNonNull(imagePath);
         return new Image(MainApp.class.getResourceAsStream(imagePath));
