@@ -50,8 +50,6 @@ dependencies {
 
 shadowJar {
     archiveName = 'addressbook.jar'
-
-    destinationDir = file("${buildDir}/jar/")
 }
 
 defaultTasks 'clean', 'test'
