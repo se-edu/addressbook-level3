@@ -63,7 +63,7 @@ This project follows [oss-generic coding standards](https://oss-generic.github.i
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
 
-Optionally, you can follow the [Using Checkstyle](UsingCheckstyle.md) document to configure Intellij to check style-compliance as you write code.
+Optionally, you can follow the [_Checkstyle Tutorial_ at se-edu/guides](https://se-education.org/guides/checkstyleTutorial.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
 
 </div>
 
