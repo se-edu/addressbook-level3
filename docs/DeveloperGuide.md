@@ -245,7 +245,6 @@ Certain properties of the application can be controlled (e.g user prefs file loc
   * Related: [Using PlantUML](UsingPlantUml.md), [Using Netlify](UsingNetlify.md)
 * [Testing Guide](Testing.md)
 * [Dev Ops Guide](DevOps.md)
-  * Related: [Using Gradle](UsingGradle.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
