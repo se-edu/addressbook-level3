@@ -106,7 +106,7 @@ public class ArgumentTokenizerTest {
         assertPreambleEmpty(argMultimap);
         assertArgumentAbsent(argMultimap, pSlash);
 
-        /** Also covers: testing for prefixes not specified as a prefix **/
+        /* Also covers: testing for prefixes not specified as a prefix */
 
         // Prefixes not previously given to the tokenizer should not return any values
         argsString = unknownPrefix + "some value";
