@@ -21,6 +21,9 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
+    /**
+     * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
+     */
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
