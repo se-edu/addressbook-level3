@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Logging Guide
+title: Logging guide
 ---
 
 We are using `java.util.logging` package for logging. The `LogsCenter`

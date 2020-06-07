@@ -7,7 +7,7 @@ _{The dummy content given below serves as a placeholder to be used by future for
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-## Project Team
+## Project team
 
 ### John Doe
 

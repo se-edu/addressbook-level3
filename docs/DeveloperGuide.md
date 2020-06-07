@@ -133,7 +133,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/Redo feature
+### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -226,10 +226,10 @@ Certain properties of the application can be controlled (e.g user prefs file loc
 
 ## **Documentation, logging, testing, dev ops**
 
-* [Documentation Guide](Documentation.md)
-* [Testing Guide](Testing.md)
-* [Logging Guide](Logging.md)
-* [Dev Ops Guide](DevOps.md)
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -248,7 +248,7 @@ Certain properties of the application can be controlled (e.g user prefs file loc
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
 
-### User Stories
+### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -263,7 +263,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use Cases
+### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 

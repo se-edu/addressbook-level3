@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DevOps Guide
+title: DevOps guide
 ---
 
 * Table of Contents
