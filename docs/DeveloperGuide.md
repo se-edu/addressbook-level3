@@ -218,17 +218,14 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
-### Configuration
-
-Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, dev ops**
+## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
