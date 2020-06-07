@@ -33,13 +33,13 @@ Jekyll uses [**kramdown**](https://kramdown.gettalong.org/syntax.html) (a supers
 
 </div>
 
-* **Editing diagrams**: See [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUmlTutorial.html) to find out how to create and update the UML diagrams in the developer guide.
+* **Editing diagrams**: See [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to find out how to create and update the UML diagrams in the developer guide.
 * **Previewing changes locally**: There are several ways to preview changes locally.
   * **Option 1 -- Intellij preview**: Intellij supports previewing Markdown files, as explained [here](https://www.jetbrains.com/help/idea/markdown.html). While the preview shown by Intellij is somewhat rudimentary, it is good enough for most cases.
   * **Option 2 -- Run Jekyll locally**: You can [set up Jekyll locally and run it](https://help.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll) to see the exact way the update affects the final outcome.
 * **Previewing changes on GitHub**:
   * **Option 1 -- Github preview**: You can see a basic preview of the page by navigating to the corresponding `.md` source file in GitHub.
-  * **Option 2 -- Use Netlify PR preview**: You can set up Netlify to show previews of PRs (to learn how, read the [_Netlify Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/netlifyTutorial.html). This method shows a preview of the exact way the update affects the final outcome. However, note that Netlify has a limit on monthly build minutes, likely insufficient for an active project.
+  * **Option 2 -- Use Netlify PR preview**: You can set up Netlify to show previews of PRs (to learn how, read the [_Netlify Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/netlify.html). This method shows a preview of the exact way the update affects the final outcome. However, note that Netlify has a limit on monthly build minutes, likely insufficient for an active project.
 
 --------------------------------------------------------------------------------------------------------------------
 
