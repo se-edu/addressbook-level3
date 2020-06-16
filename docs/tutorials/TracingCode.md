@@ -75,9 +75,9 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
    ``` java
    @Override
-   public CommandResult execute(String commandText) 
+   public CommandResult execute(String commandText)
            throws CommandException, ParseException {
-   
+
         //Logging, safe to ignore
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
