@@ -16,7 +16,9 @@ title: Documentation guide
 
 * Also relevant is the [_[se-edu/guides] **Markdown coding standard**_](https://se-education.org/guides/conventions/markdown.html)
 
+**Diagrams:**
 
+* See the [_[se-edu/guides] **Using PlantUML**_](https://se-education.org/guides/tutorials/plantUml.html)
 
 **Converting a document to the PDF format:**
 
