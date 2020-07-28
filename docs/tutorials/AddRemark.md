@@ -56,7 +56,7 @@ keyword. Add the new command to the `switch` block by creating a new
 `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this
-[diff](https://github.com/j-lum/addressbook-level35/commit/72256eacea79dfcf077f5c7cb6f89819c02f090e#diff-5338391f3f6fbb4022c44add6590b74f).
+[diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-34ace715a8a8d2e5a66e71289f017b47).
 
 ## Run the application
 
@@ -154,7 +154,7 @@ public class RemarkCommand extends Command {
 ```
 
 Your code should look something like
-[this](https://github.com/j-lum/addressbook-level35/commit/c0f8419be4fb59bffafcd73026769459e5cf5c5e#diff-34ace715a8a8d2e5a66e71289f017b47)
+[this](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-34ace715a8a8d2e5a66e71289f017b47)
 after you are done.
 
 ## Parse user input
@@ -252,7 +252,7 @@ Don’t forget to update `AddressBookParser` to use our new
 </div>
 
 If you are stuck, check out the sample
-[here](https://github.com/j-lum/addressbook-level35/commit/c0f8419be4fb59bffafcd73026769459e5cf5c5e#diff-fc19ecee89c3732a62fbc8c840250508).
+[here](https://github.com/se-edu/addressbook-level3/commit/dc6d5139d08f6403da0ec624ea32bd79a2ae0cbf#diff-fc19ecee89c3732a62fbc8c840250508).
 
 # Add `Remark` to the model
 
@@ -270,7 +270,7 @@ is a field that is similar to `Address`, we can reuse a significant bit
 of code.
 
 A copy-paste and search-replace later, you should have something like
-[this](https://github.com/j-lum/addressbook-level35/commit/c8e6048f0d81f2b4b7797e838226da823892129b#diff-af2f075d24dfcd333876f0fbce321f25).
+[this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-af2f075d24dfcd333876f0fbce321f25).
 Note how `Remark` has no constrains and thus does not require input
 validation.
 
@@ -295,7 +295,7 @@ private Label remark;
 ```
 
 to
-[`seedu.address.ui.PersonCard`](https://github.com/j-lum/addressbook-level35/commit/06f9897d7088d22689de478c94612f8bcbff2964#diff-0c6b6abcfac8c205e075294f25e851fe).
+[`seedu.address.ui.PersonCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
 `@FXML` is an annotation that marks a private or protected field and
 makes it accessible to FXML. It might sound like Greek to you right now,
 don’t worry — we will get back to it later.
@@ -309,7 +309,7 @@ Then insert
 ```
 
 into
-[`main/resources/view/PersonListCard.fxml`](https://github.com/j-lum/addressbook-level35/commit/06f9897d7088d22689de478c94612f8bcbff2964#diff-12580431f55d7880578aa4c16f249e71).
+[`main/resources/view/PersonListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-12580431f55d7880578aa4c16f249e71).
 
 That’s it\! Fire up the application again and you should see something
 like this:
@@ -340,7 +340,7 @@ find these commands.
 </div>
 
 Refer to [this
-commit](https://github.com/j-lum/addressbook-level3/commit/b03b788d5a462403ea7f4dce9a832b62f729f7c4)
+commit](https://github.com/se-edu/addressbook-level3/commit/ce998c37e65b92d35c91d28c7822cd139c2c0a5c)
 and check that you have got everything in order\!
 
 # Updating Storage
@@ -361,7 +361,7 @@ AddressBook to default to an empty address book\!
 </div>
 
 Check out [this
-commit](https://github.com/j-lum/addressbook-level35/commit/78b2a7438a9f9d828b7f09e190ff6130790966c0)
+commit](https://github.com/se-edu/addressbook-level3/commit/556cbd0e03ff224d7a68afba171ad2eb0ce56bbf)
 to see what the changes entail.
 
 # Finalizing the UI
@@ -370,7 +370,7 @@ Now that we have finalized the `Person` class and its dependencies, we
 can now bind the `Remark` field to the UI.
 
 Just add [this one line of
-code\!](https://github.com/j-lum/addressbook-level35/commit/2edaf1c52e07e28dc7a49742bc63352813a55af9)
+code\!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
 **PersonCard.java.**
 
@@ -472,7 +472,7 @@ output the correct message. In this case,
 that a `RemarkCommand` will successfully add a `Remark`.
 
 You should end up with a test that looks something like
-[this](https://github.com/j-lum/addressbook-level35/commit/1492fb0d4e8a075f2481028377e0d113e7c01b76#diff-d749de38392f7ea504da7824641ba8d9).
+[this](https://github.com/se-edu/addressbook-level3/commit/fac8f3fd855d55831ca0cc73313b5943d49d4d6e#diff-d749de38392f7ea504da7824641ba8d9).
 
 # Conclusion
 
