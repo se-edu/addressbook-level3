@@ -50,5 +50,6 @@ If you plan to use Intellij IDEA (highly recommended):
 1. **Do the tutorials**
    These tutorials will help you get acquainted with the codebase.
 
-   * [Tracing Code](tutorials/TracingCode.md)
-   * [Removing Fields](tutorials/RemovingFields.md)
+   * [Tracing code](tutorials/TracingCode.md)
+   * [Removing fields](tutorials/RemovingFields.md)
+   * [Adding a new command](tutorials/AddRemark.md)
