@@ -24,6 +24,11 @@
             <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
+          {%- if site.repository -%}
+          <a class="page-link no-hover" href="https://github.com/{{site.repository}}">
+            <img src="{{site.github_icon | relative_url}}" class="icon" alt="View on GitHub">
+          </a>
+          {%- endif -%}
         </div>
       </nav>
     {%- endif -%}
