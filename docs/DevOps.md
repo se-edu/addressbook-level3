@@ -61,6 +61,20 @@ Any warnings or errors will be printed out to the console.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Code Coverage
+
+This project uses Codecov for to manage coverage reports. 
+Sign up with Codecov with your GitHub account [here](https://codecov.io/signup).
+![Sign up](images/CodecovSignUp.png)
+
+Add your fork of AddressBook to CodeCov.
+![Add Repo](images/CodecovAddRepo.png)
+
+Replace the Codecov badge in `index.md` with the one provided in `Settings > Badges`.
+![Badge](images/CodecovBadge.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Making a release
 
 Here are the steps to create a new release.
