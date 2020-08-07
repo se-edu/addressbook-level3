@@ -3,6 +3,7 @@ plugins {
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'application'
+    id 'jacoco'
 }
 
 mainClassName = 'seedu.address.Main'
@@ -21,6 +22,22 @@ checkstyle {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+task coverage(type: JacocoReport) {
+    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
+    classDirectories.from files(sourceSets.main.output)
+    executionData.from files(jacocoTestReport.executionData)
+    afterEvaluate {
+        classDirectories.from files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: ['**/*.jar'])
+        })
+    }
+    reports {
+        html.enabled = true
+        xml.enabled = true
+    }
 }
 
 dependencies {
