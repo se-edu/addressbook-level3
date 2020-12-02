@@ -19,7 +19,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
+ * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
