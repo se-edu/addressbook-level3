@@ -56,6 +56,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* Extra parameters will be ignored.
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
 </div>
 
 ### Viewing help : `help`
