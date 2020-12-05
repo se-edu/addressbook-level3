@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -118,6 +121,56 @@ public class EditCommandTest {
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
+
+    @Test
+    public void execute_duplicateNameUnfilteredList_otherIdentityFieldsDifferent() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        // edit second person to first person name with different valid fields -> success
+        EditCommand editPersonNameCommand = new EditCommand(INDEX_SECOND_PERSON,
+                new EditPersonDescriptorBuilder(firstPerson).withPhone(VALID_PHONE_AMY)
+                        .withEmail(VALID_EMAIL_AMY).build());
+        Person editedPerson = new PersonBuilder(firstPerson).withPhone(VALID_PHONE_AMY)
+                .withEmail(VALID_EMAIL_AMY).build();
+        String expectedFirstMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(1), editedPerson);
+
+        assertCommandSuccess(editPersonNameCommand, model, expectedFirstMessage, expectedModel);
+
+        // edit first person to have duplicate phone -> failure
+        EditCommand editPhoneCommand = new EditCommand(INDEX_FIRST_PERSON,
+                new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build());
+        assertCommandFailure(editPhoneCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+
+        // edit first person to have duplicate email -> failure
+        EditCommand editEmailCommand = new EditCommand(INDEX_FIRST_PERSON,
+                new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build());
+        assertCommandFailure(editEmailCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
+    @Test
+    public void execute_duplicateFieldsUnfilteredList_nameMustBeDifferent() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        //edit second person to first person with a different valid name -> success
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON,
+                new EditPersonDescriptorBuilder(firstPerson).withName(VALID_NAME_AMY).build());
+        Person editedPerson = new PersonBuilder(firstPerson).withName(VALID_NAME_AMY).build();
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(1), editedPerson);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        //edit first person to have a duplicate name -> failure
+        EditCommand editNameCommand = new EditCommand(INDEX_FIRST_PERSON,
+                new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build());
+        assertCommandFailure(editNameCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
