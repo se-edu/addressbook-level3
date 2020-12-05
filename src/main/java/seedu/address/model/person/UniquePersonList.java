@@ -3,11 +3,13 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -29,13 +31,22 @@ public class UniquePersonList implements Iterable<Person> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns true if the list, excluding object at index, contains an equivalent person as the given argument.
+     */
+    public boolean contains(Person toCheck, Index index) {
+        requireNonNull(toCheck);
+        List<Person> copyOfInternalList = new ArrayList<>(internalList);
+        copyOfInternalList.remove(index.getZeroBased());
+        return copyOfInternalList.stream().anyMatch(person -> person.isSamePerson(toCheck));
+    }
+
+    /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(person -> person.isSamePerson(toCheck));
     }
-
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.

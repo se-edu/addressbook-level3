@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -59,13 +60,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book (excluding the
+     * person at index.
+     */
+    public boolean hasPerson(Person person, Index index) {
+        requireNonNull(person);
+        return persons.contains(person, index);
+    }
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
     }
-
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.

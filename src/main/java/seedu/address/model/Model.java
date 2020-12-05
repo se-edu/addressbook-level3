@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -53,10 +54,15 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book, excluding person
+     * at index.
+     */
+    boolean hasPerson(Person person, Index index);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
-
     /**
      * Deletes the given person.
      * The person must exist in the address book.
