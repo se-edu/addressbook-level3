@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -54,7 +54,8 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Creates an AddCommand to add the specified {@code Person} and store the names of parameters with multiple entries.
+     * Creates an AddCommand to add the specified {@code Person}
+     * and store the names of parameters with multiple entries.
      */
     public AddCommand(Person person, List<String> parametersWithMultipleEntries) {
         requireNonNull(person);
@@ -74,8 +75,8 @@ public class AddCommand extends Command {
 
         String feedBackToUser = String.format(MESSAGE_SUCCESS, toAdd);
         if (parametersWithMultipleEntries.size() != 0) {
-            String parameters = String.join( ", ",parametersWithMultipleEntries);
-            feedBackToUser += ('\n' + String.format(MESSAGE_MULTIPLE_PARAMETER_REMINDER,parameters));
+            String parameters = String.join(", ", parametersWithMultipleEntries);
+            feedBackToUser += ('\n' + String.format(MESSAGE_MULTIPLE_PARAMETER_REMINDER, parameters));
         }
         return new CommandResult(feedBackToUser);
     }

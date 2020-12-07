@@ -71,7 +71,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getAllValues(PREFIX_ADDRESS).size() > 1) {
             parametersWithMultipleEntries.add("ADDRESS");
         }
-        if (parametersWithMultipleEntries.size() != 0 ) {
+        if (parametersWithMultipleEntries.size() != 0) {
             return new EditCommand(index, editPersonDescriptor, parametersWithMultipleEntries);
         }
 

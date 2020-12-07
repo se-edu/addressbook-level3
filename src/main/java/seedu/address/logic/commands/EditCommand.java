@@ -8,7 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -70,7 +75,8 @@ public class EditCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor,List<String> parametersWithMultipleEntries) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor,
+                       List<String> parametersWithMultipleEntries) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -100,8 +106,8 @@ public class EditCommand extends Command {
 
         String feedBackToUser = String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
         if (parametersWithMultipleEntries.size() != 0) {
-            String parameters = String.join( ", ",parametersWithMultipleEntries);
-            feedBackToUser += ('\n' + String.format(MESSAGE_MULTIPLE_PARAMETER_REMINDER,parameters));
+            String parameters = String.join(", ", parametersWithMultipleEntries);
+            feedBackToUser += ('\n' + String.format(MESSAGE_MULTIPLE_PARAMETER_REMINDER, parameters));
         }
         return new CommandResult(feedBackToUser);
     }
