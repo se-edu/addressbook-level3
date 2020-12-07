@@ -23,7 +23,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   * Open a command window in that folder
   * Run the command java -jar {filename}.jar <br>e.g., java -jar AddressBook3.jar (i.e., run the command in the same folder as the jar file)
 
-
 The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -59,8 +58,12 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+* For items without `…`​ after them, if the same item appears multiple times in a single command, e.g. `edit 1 p/90001111 p/90001112 p/90001113` etc., the last value will be taken. 
+  This is designed for users to rectify erroneous parameter values on the fly, without having to backspace.
+  
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+ 
 
 </div>
 
