@@ -20,7 +20,6 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Double-click the file to start the app. <br>
   Please take note that double-clicking the jar file might not work in Mac computers. Alternative way to run the jar file: <br>
-  * Copy the jar file into an empty folder
   * Open a command window in that folder
   * Run the command java -jar {filename}.jar <br>e.g., java -jar AddressBook3.jar (i.e., run the command in the same folder as the jar file)
 
