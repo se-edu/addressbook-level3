@@ -40,6 +40,21 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns an array containing the last value of {@code prefix} and a boolean describing if
+     * there are multiple entries for {@code prefix}.
+     */
+    public List<Object> getValueAndBoolean(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        int numberOfEntries = values.size();
+        boolean hasMultipleEntry = numberOfEntries > 1;
+        Optional<String> value = values.isEmpty() ? Optional.empty() : Optional.of(values.get(numberOfEntries - 1));
+        List<Object> valueAndBoolean = new ArrayList<Object>();
+        valueAndBoolean.add(value);
+        valueAndBoolean.add(hasMultipleEntry);
+        return valueAndBoolean;
+    }
+
+    /**
      * Returns all values of {@code prefix}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.

@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import java.util.ArrayList;
+import java.util.List;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -45,6 +47,23 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, address, tagList);
+
+        List<String> parametersWithMultipleEntries = new ArrayList<>();
+        if (argMultimap.getAllValues(PREFIX_NAME).size() > 1) {
+            parametersWithMultipleEntries.add("NAME");
+        }
+        if (argMultimap.getAllValues(PREFIX_PHONE).size() > 1) {
+            parametersWithMultipleEntries.add("PHONE_NUMBER");
+        }
+        if (argMultimap.getAllValues(PREFIX_EMAIL).size() > 1) {
+            parametersWithMultipleEntries.add("EMAIL");
+        }
+        if (argMultimap.getAllValues(PREFIX_ADDRESS).size() > 1) {
+            parametersWithMultipleEntries.add("ADDRESS");
+        }
+        if (parametersWithMultipleEntries.size() != 0 ) {
+            return new AddCommand(person, parametersWithMultipleEntries);
+        }
 
         return new AddCommand(person);
     }

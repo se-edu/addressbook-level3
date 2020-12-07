@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -34,9 +37,13 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_MULTIPLE_PARAMETER_REMINDER =
+            "Please note that multiple entries for parameter(s) %1$s are detected."
+            + " Only the last entry is taken.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
+    private List<String> parametersWithMultipleEntries = new ArrayList<>();
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -44,6 +51,15 @@ public class AddCommand extends Command {
     public AddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
+    }
+
+    /**
+     * Creates an AddCommand to add the specified {@code Person} and store the names of parameters with multiple entries.
+     */
+    public AddCommand(Person person,List<String> parametersWithMultipleEntries) {
+        requireNonNull(person);
+        toAdd = person;
+        this.parametersWithMultipleEntries = parametersWithMultipleEntries;
     }
 
     @Override
@@ -55,7 +71,12 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        String feedBackToUser = String.format(MESSAGE_SUCCESS, toAdd);
+        if (parametersWithMultipleEntries.size() != 0) {
+            String parameters = String.join( ", ",parametersWithMultipleEntries);
+            feedBackToUser += ('\n' + String.format(MESSAGE_MULTIPLE_PARAMETER_REMINDER,parameters));
+        }
+        return new CommandResult(feedBackToUser);
     }
 
     @Override
