@@ -8,10 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -59,6 +56,23 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        List<String> parametersWithMultipleEntries = new ArrayList<>();
+        if (argMultimap.getAllValues(PREFIX_NAME).size() > 1) {
+            parametersWithMultipleEntries.add("NAME");
+        }
+        if (argMultimap.getAllValues(PREFIX_PHONE).size() > 1) {
+            parametersWithMultipleEntries.add("PHONE_NUMBER");
+        }
+        if (argMultimap.getAllValues(PREFIX_EMAIL).size() > 1) {
+            parametersWithMultipleEntries.add("EMAIL");
+        }
+        if (argMultimap.getAllValues(PREFIX_ADDRESS).size() > 1) {
+            parametersWithMultipleEntries.add("ADDRESS");
+        }
+        if (parametersWithMultipleEntries.size() != 0 ) {
+            return new EditCommand(index, editPersonDescriptor, parametersWithMultipleEntries);
         }
 
         return new EditCommand(index, editPersonDescriptor);

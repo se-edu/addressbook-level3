@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_MULTIPLE_PARAMETER_REMINDER =
             "Please note that multiple entries for parameter(s) %1$s are detected."
-            + " Only the last entry is taken.";
+            + "\n Only the last entry is taken for each parameter.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
@@ -56,7 +56,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person} and store the names of parameters with multiple entries.
      */
-    public AddCommand(Person person,List<String> parametersWithMultipleEntries) {
+    public AddCommand(Person person, List<String> parametersWithMultipleEntries) {
         requireNonNull(person);
         toAdd = person;
         this.parametersWithMultipleEntries = parametersWithMultipleEntries;
@@ -71,6 +71,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+
         String feedBackToUser = String.format(MESSAGE_SUCCESS, toAdd);
         if (parametersWithMultipleEntries.size() != 0) {
             String parameters = String.join( ", ",parametersWithMultipleEntries);

@@ -8,11 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -49,9 +45,14 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_MULTIPLE_PARAMETER_REMINDER =
+            "Please note that multiple entries for parameter(s) %1$s are detected."
+                    + "\n Only the last entry is taken for each parameter.";
+
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private List<String> parametersWithMultipleEntries = new ArrayList<>();
 
     /**
      * @param index of the person in the filtered person list to edit
@@ -63,6 +64,19 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+    }
+
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param editPersonDescriptor details to edit the person with
+     */
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor,List<String> parametersWithMultipleEntries) {
+        requireNonNull(index);
+        requireNonNull(editPersonDescriptor);
+
+        this.index = index;
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.parametersWithMultipleEntries = parametersWithMultipleEntries;
     }
 
     @Override
@@ -83,7 +97,13 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+
+        String feedBackToUser = String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        if (parametersWithMultipleEntries.size() != 0) {
+            String parameters = String.join( ", ",parametersWithMultipleEntries);
+            feedBackToUser += ('\n' + String.format(MESSAGE_MULTIPLE_PARAMETER_REMINDER,parameters));
+        }
+        return new CommandResult(feedBackToUser);
     }
 
     /**
