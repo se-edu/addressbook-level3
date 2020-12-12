@@ -55,7 +55,7 @@ Run `Main#main` and try out your new `RemarkCommand`. If everything went well, y
 
 ## Change `RemarkCommand` to throw an exception
 
-While we have successfully printed a message to `ResultDisplay`, the command does not do what it is supposed to do. Let’s change the command to throw an `CommandException` to accurately reflect that our command is still a work in progress.
+While we have successfully printed a message to `ResultDisplay`, the command does not do what it is supposed to do. Let’s change the command to throw a `CommandException` to accurately reflect that our command is still a work in progress.
 
 ![The relationship between RemarkCommand and Command](../images/add-remark/CommandInterface.png)
 
