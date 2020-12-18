@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -118,27 +117,6 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
-    public void execute_duplicateFieldsUnfilteredList_nameMustBeDifferent() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-
-        //edit second person to first person with a different valid name -> success
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON,
-                new EditPersonDescriptorBuilder(firstPerson).withName(VALID_NAME_AMY).build());
-        Person editedPerson = new PersonBuilder(firstPerson).withName(VALID_NAME_AMY).build();
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(1), editedPerson);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-
-        //edit first person to have a duplicate name -> failure
-        EditCommand editNameCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build());
-        assertCommandFailure(editNameCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
