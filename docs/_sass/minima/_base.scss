@@ -271,6 +271,9 @@ table {
   }
 }
 
+/**
+ * Prevents page break to cut through content when converting to pdf
+ */
 @media print {
   body {
     display: block;
