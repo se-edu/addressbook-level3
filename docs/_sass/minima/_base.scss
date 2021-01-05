@@ -270,3 +270,9 @@ table {
             -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 }
+
+@media print {
+  body {
+    display: block;
+  }
+}
