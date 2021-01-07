@@ -28,7 +28,7 @@ body {
        -o-font-feature-settings: "kern" 1;
           font-feature-settings: "kern" 1;
   font-kerning: normal;
-  display: block;
+  display: flex;
   min-height: 100vh;
   flex-direction: column;
   overflow-wrap: break-word;
@@ -273,6 +273,6 @@ table {
 
 @media print {
   body {
-    break-inside: avoid;
+    display: block;
   }
 }
