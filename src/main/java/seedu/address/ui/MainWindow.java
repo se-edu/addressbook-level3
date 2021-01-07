@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.nio.file.AccessDeniedException;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -156,6 +159,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        logger.info("Calling exit");
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
@@ -188,9 +192,37 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            if (e.getCause() instanceof AccessDeniedException) {
+                handleAccessDeniedException(e);
+            } else {
+                resultDisplay.setFeedbackToUser(e.getMessage());
+                logger.info("Invalid command: " + commandText);
+            }
+
             throw e;
         }
+    }
+
+    private void handleAccessDeniedException(Exception e) {
+        logger.info("Insufficient Permissions for file");
+        resultDisplay.setFeedbackToUser(e.getMessage());
+
+        // Create task to run sleep on another thread, to prevent UI from freezing
+        Task<Void> accessDeniedTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    logger.info("Exception occurred while waiting for thread");
+                } finally {
+                    // Execute handleExit on the JavaFx Thread
+                    Platform.runLater(() -> handleExit());
+                }
+                return null;
+            }
+        };
+
+        new Thread(accessDeniedTask).start();
     }
 }
