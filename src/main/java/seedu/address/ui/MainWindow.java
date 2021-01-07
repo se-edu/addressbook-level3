@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.nio.file.AccessDeniedException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -156,6 +157,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        logger.info("Calling exit");
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
@@ -188,9 +190,19 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            if (e.getCause() instanceof AccessDeniedException) {
+                handleAccessDeniedException(e);
+            } else {
+                resultDisplay.setFeedbackToUser(e.getMessage());
+                logger.info("Invalid command: " + commandText);
+            }
+
             throw e;
         }
+    }
+
+    private void handleAccessDeniedException(Exception e) {
+        logger.info("Insufficient Permissions for file");
+        resultDisplay.setFeedbackToUser(e.getMessage());
     }
 }
