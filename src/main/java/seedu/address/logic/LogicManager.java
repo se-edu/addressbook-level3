@@ -21,7 +21,7 @@ import seedu.address.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: Insufficient permissions for %s";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -48,7 +48,8 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            String message = ioe.getMessage();
+            throw new CommandException(String.format(FILE_OPS_ERROR_MESSAGE, message), ioe);
         }
 
         return commandResult;
