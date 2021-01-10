@@ -270,3 +270,12 @@ table {
             -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 }
+
+/**
+ * Hides the navigation bar when converting to pdf
+ */
+@media print {
+   .site-header {
+     display: none;
+   }
+ }
