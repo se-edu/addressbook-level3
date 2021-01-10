@@ -272,10 +272,10 @@ table {
 }
 
 /**
- * Prevents page break to cut through content when converting to pdf
+ * Hides the navigation bar when converting to pdf
  */
 @media print {
-  body {
-    display: block;
-  }
-}
+   .site-header {
+     display: none;
+   }
+ }
