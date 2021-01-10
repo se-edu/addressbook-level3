@@ -271,6 +271,9 @@ table {
   }
 }
 
+/**
+ * Hides the navigation bar when converting to pdf
+ */
 @media print {
    .site-header {
      display: none;
