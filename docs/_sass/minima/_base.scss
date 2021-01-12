@@ -273,13 +273,13 @@ table {
 
 @media print {
   /**
-  * Prevents page break from cutting through content when converting to PDF
+  * Prevents page break from cutting through content when printing
   */
   body {
     display: block;
   }
   /**
-  * Replaces the top navigation menu with the project name when converting to PDF
+  * Replaces the top navigation menu with the project name when printing
   */
   .site-header .wrapper {
     display: none;
