@@ -271,11 +271,24 @@ table {
   }
 }
 
-/**
- * Prevents page break to cut through content when converting to pdf
- */
 @media print {
+  /**
+  * Prevents page break to cut through content when converting to pdf
+  */
   body {
     display: block;
+  }
+  /**
+  * Replaces default site header (with navigation) with a generic header name (AB-3) when converting to pdf.
+  */
+  .site-header .wrapper {
+    display: none;
+  }
+  .site-header {
+    text-align: center;
+  }
+  .site-header:before {
+    content: "AB-3";
+    font-size: 32px;
   }
 }
