@@ -271,11 +271,25 @@ table {
   }
 }
 
-/**
- * Prevents page break to cut through content when converting to pdf
- */
 @media print {
+  /**
+  * Prevents page break from cutting through content when converting to PDF
+  */
   body {
     display: block;
   }
+  /**
+  * Replaces the top navigation menu with the project name when converting to PDF
+  */
+  .site-header .wrapper {
+    display: none;
+  }
+  .site-header {
+    text-align: center;
+  }
+  .site-header:before {
+    content: "AB-3";
+    font-size: 32px;
+  }
 }
+
