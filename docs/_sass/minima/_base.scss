@@ -273,13 +273,13 @@ table {
 
 @media print {
   /**
-  * Prevents page break to cut through content when converting to pdf
+  * Prevents page break from cutting through content when converting to PDF
   */
   body {
     display: block;
   }
   /**
-  * Replaces default site header (with navigation) with a generic header name (AB-3) when converting to pdf.
+  * Replaces the top navigation menu with the project name when converting to PDF
   */
   .site-header .wrapper {
     display: none;
@@ -292,3 +292,4 @@ table {
     font-size: 32px;
   }
 }
+
