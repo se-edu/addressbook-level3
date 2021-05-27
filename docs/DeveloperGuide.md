@@ -122,6 +122,8 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* depends on some classes in the `Model` component
+(because the `Storage` component's job is to save/retrieve objects belongs to the `Model`)
 
 ### Common classes
 
