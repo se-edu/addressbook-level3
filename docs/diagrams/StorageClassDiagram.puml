@@ -4,24 +4,40 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-Interface Storage <<Interface>>
+package Storage{
+
+package "UserPrefs Storage" #F4F6F6{
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
-
-Class StorageManager
 Class JsonUserPrefsStorage
+}
+
+Interface Storage <<Interface>>
+Class StorageManager
+
+package "AddressBook Storage" #F4F6F6{
+Interface AddressBookStorage <<Interface>>
 Class JsonAddressBookStorage
+Class JsonSerializableAddressBook
+Class JsonAdaptedPerson
+Class JsonAdaptedTag
+}
 
-StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+}
 
-Storage -|> UserPrefsStorage
-Storage -|> AddressBookStorage
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Storage
 
-JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBook
-JsonSerializableAddressBook -right-> "*" JsonAdaptedPerson
-JsonAdaptedPerson -right-> "*" JsonAdaptedTag
+StorageManager .up.|> Storage
+StorageManager -up-> "1" UserPrefsStorage
+StorageManager -up-> "1" AddressBookStorage
+
+Storage -left-|> UserPrefsStorage
+Storage -right-|> AddressBookStorage
+
+JsonUserPrefsStorage .up.|> UserPrefsStorage
+JsonAddressBookStorage .up.|> AddressBookStorage
+JsonAddressBookStorage ..> JsonSerializableAddressBook
+JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonAdaptedPerson --> "*" JsonAdaptedTag
+
 @enduml
