@@ -7,20 +7,29 @@ title: "Tutorial: Removing Fields"
 >
 > —  Antoine de Saint-Exupery
 
-When working on AddressBook, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Person` model to suit your use case.
+When working on an existing code base, you will most likely find that some features that are no longer necessary.
+This tutorial aims to give you some practice on such a code 'removal' activity by removing the `address` field from `Person` class.
 
-In this tutorial, we’ll do exactly just that and remove the `address` field from `Person`.
+<div markdown="span" class="alert alert-success">
+
+**If you have done the [Add `remark` command tutorial](AddRemark.html)  already**, you should know where the code had to be updated to add the field `remark`. From that experience, you can deduce where the code needs to be changed to _remove_ that field too. The removing of the `address` field can be done similarly.
+<br>
+<br>
+However, if you have no such prior knowledge, removing a field can take a quite a bit of detective work. This tutorial takes you through that process. **At least have a read even if you don't actually do the steps yourself.**
+</div>
+
 
 * Table of Contents
 {:toc}
 
 ## Safely deleting `Address`
 
-Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify *most* usages. Let’s try to use it as much as we can.
+IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a removal easily. Let’s try to use it as much as we can.
 
 ### Assisted refactoring
 
 The `address` field in `Person` is actually an instance of the `seedu.address.model.person.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+* :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
 
@@ -28,7 +37,7 @@ Choose to `View Usages` and you should be presented with a list of `Safe Delete 
 
 ![List of conflicts](../images/remove/SafeDeleteConflicts.png)
 
-Remove usages of `Address` by performing `Safe Delete`s on each entry. You will need to exercise discretion when removing usages of `Address`. Functions like `ParserUtil#parseAddress()` can be safely removed but its usages must be removed as well. Other usages like in `EditPersonDescriptor` may require more careful inspection.
+Remove usages of `Address` by performing `Safe Delete`s on each entry i.e., double-click on the entry (which takes you to the code in concern, right-click on that entity, and choose `Refactor` -> `Safe delete` as before). You will need to exercise discretion when removing usages of `Address`. Functions like `ParserUtil#parseAddress()` can be safely removed but its usages must be removed as well. Other usages like in `EditPersonDescriptor` may require more careful inspection.
 
 Let’s try removing references to `Address` in `EditPersonDescriptor`.
 
