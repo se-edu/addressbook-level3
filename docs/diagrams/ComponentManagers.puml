@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+Interface Logic <<Interface>>
+Class LogicManager
+}
+
+package Model{
+Interface Model <<Interface>>
+Class ModelManager
+}
+
+package Storage{
+Interface Storage <<Interface>>
+Class StorageManager
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .up.|> Logic
+ModelManager .up.|> Model
+StorageManager .up.|> Storage
+
+LogicManager --> Model
+LogicManager --> Storage
+@enduml
