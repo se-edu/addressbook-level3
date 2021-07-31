@@ -64,7 +64,8 @@ Following the convention in other commands, we add relevant messages as constant
 **`RemarkCommand.java`:**
 
 ``` java
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -72,7 +73,8 @@ Following the convention in other commands, we add relevant messages as constant
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/ Likes to swim.";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
+    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
+            "Remark command not implemented yet";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -110,7 +112,8 @@ public class RemarkCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), remark));
+        throw new CommandException(
+                String.format(MESSAGE_ARGUMENTS, index.getOneBased(), remark));
     }
 
     @Override
@@ -341,7 +344,8 @@ save it with `Model#setPerson()`.
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        Person editedPerson = new Person(
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), remark, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
@@ -351,7 +355,8 @@ save it with `Model#setPerson()`.
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
+     * Generates a command execution success message based on whether
+     * the remark is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
@@ -367,6 +372,8 @@ save it with `Model#setPerson()`.
 Tests are crucial to ensuring that bugs don’t slip into the codebase unnoticed. This is especially true for large code bases where a change might lead to unintended behavior.
 
 Let’s verify the correctness of our code by writing some tests!
+
+Of course you can simply add the test cases manually, like you've been doing all along this tutorial. The result would be like the test cases in [here](https://github.com/se-edu/addressbook-level3/commit/fac8f3fd855d55831ca0cc73313b5943d49d4d6e#diff-d749de38392f7ea504da7824641ba8d9). Alternatively, you can get the help of IntelliJ to generate the skeletons of the test cases, as explained in the next section.
 
 ### Automatically generating tests
 
