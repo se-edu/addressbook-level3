@@ -8,7 +8,6 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyAddressBook <<Interface>>
 Interface ReadOnlyUserPrefs <<Interface>>
 Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
 Class AddressBook
 Class ReadOnlyAddressBook
 Class Model
@@ -16,18 +15,15 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
+
+Class UniquePersonList
 Class Person
 Class Address
 Class Email
 Class Name
 Class Phone
-Class UniquePersonList
-}
-
-Package Tag {
 Class Tag
-}
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,13 +32,14 @@ HiddenOutside ..> Model
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyAddressBook
+ModelManager -left-> "1" AddressBook
+ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
+UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
@@ -53,5 +50,5 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager -->"~* filtered" Person
 @enduml
