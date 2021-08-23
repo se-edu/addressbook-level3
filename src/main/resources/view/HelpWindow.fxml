@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
@@ -14,6 +15,10 @@
   </icons>
   <scene>
     <Scene>
+        <stylesheets>
+            <URL value="@Fonts.css"/>
+            <URL value="@HelpWindow.css"/>
+         </stylesheets>
          <HBox alignment="CENTER">
             <children>
                <Label fx:id="helpMessage" text="Label">
