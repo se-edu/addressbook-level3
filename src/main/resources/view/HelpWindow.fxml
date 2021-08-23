@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
@@ -14,26 +15,31 @@
   </icons>
   <scene>
     <Scene>
-         <HBox alignment="CENTER">
-            <children>
-               <Label fx:id="helpMessage" text="Label">
-                  <HBox.margin>
-                     <Insets right="5.0" />
-                  </HBox.margin>
-               </Label>
-               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-                  <HBox.margin>
-                     <Insets left="5.0" />
-                  </HBox.margin>
-               </Button>
-            </children>
-            <opaqueInsets>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </opaqueInsets>
-            <padding>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </padding>
-         </HBox>
+      <stylesheets>
+        <URL value="@Fonts.css" />
+        <URL value="@HelpWindow.css" />
+      </stylesheets>
+
+      <HBox alignment="CENTER">
+        <children>
+          <Label fx:id="helpMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+            <HBox.margin>
+              <Insets left="5.0" />
+            </HBox.margin>
+          </Button>
+        </children>
+        <opaqueInsets>
+          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+        </opaqueInsets>
+        <padding>
+          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+        </padding>
+      </HBox>
     </Scene>
   </scene>
 </fx:root>
