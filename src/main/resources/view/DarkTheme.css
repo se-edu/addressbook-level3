@@ -218,7 +218,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Open Sans Regular", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Open Sans Regular";
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;

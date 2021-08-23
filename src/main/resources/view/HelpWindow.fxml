@@ -19,7 +19,7 @@
         <URL value="@Fonts.css" />
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      
+
       <HBox alignment="CENTER">
         <children>
           <Label fx:id="helpMessage" text="Label">
