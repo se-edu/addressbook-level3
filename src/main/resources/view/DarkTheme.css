@@ -1,18 +1,3 @@
-@font-face {
-    font-family: "Open Sans";
-    src: url("/fonts/OpenSans-Regular.ttf");
-}
-
-@font-face {
-    font-family: "Open Sans SemiBold";
-    src: url("/fonts/OpenSans-SemiBold.ttf");
-}
-
-@font-face {
-    font-family: "Open Sans Light";
-    src: url("/fonts/OpenSans-Light.ttf");
-}
-
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
