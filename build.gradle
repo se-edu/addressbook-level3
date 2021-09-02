@@ -42,7 +42,7 @@ task coverage(type: JacocoReport) {
 
 dependencies {
     String jUnitVersion = '5.4.0'
-    String javaFxVersion = '11'
+    String javaFxVersion = '16'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
