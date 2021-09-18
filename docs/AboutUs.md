@@ -38,11 +38,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Pranav Ganesh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/My_Image.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/pranav-ganesh)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
