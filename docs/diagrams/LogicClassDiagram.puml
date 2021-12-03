@@ -12,7 +12,7 @@ Class CommandResult
 Class "{abstract}\nCommand" as Command
 
 
-Interface Logic <<Interface>>
+Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
