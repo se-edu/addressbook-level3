@@ -5,27 +5,27 @@ skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
-Interface Logic <<Interface>>
+Class "<<Interface>>\nLogic"
 Class LogicManager
 }
 
 package Model{
-Interface Model <<Interface>>
+Class "<<Interface>>\nModel"
 Class ModelManager
 }
 
 package Storage{
-Interface Storage <<Interface>>
+Class "<<Interface>>\nStorage"
 Class StorageManager
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> "<<Interface>>\nLogic"
 
-LogicManager .up.|> Logic
-ModelManager .up.|> Model
-StorageManager .up.|> Storage
+LogicManager .up.|> "<<Interface>>\nLogic"
+ModelManager .up.|> "<<Interface>>\nModel"
+StorageManager .up.|> "<<Interface>>\nStorage"
 
-LogicManager --> Model
-LogicManager --> Storage
+LogicManager --> "<<Interface>>\nModel"
+LogicManager --> "<<Interface>>\nStorage"
 @enduml

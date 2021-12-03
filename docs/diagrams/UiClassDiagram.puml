@@ -5,7 +5,7 @@ skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
-Interface Ui <<Interface>>
+Class "<<Interface>>\nUi"
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
@@ -26,9 +26,9 @@ Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
+HiddenOutside ..> "<<Interface>>\nUi"
 
-UiManager .left.|> Ui
+UiManager .left.|> "<<Interface>>\nUi"
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
