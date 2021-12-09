@@ -373,7 +373,7 @@ Tests are crucial to ensuring that bugs don’t slip into the codebase unnoticed
 
 Let’s verify the correctness of our code by writing some tests!
 
-Of course you can simply add the test cases manually, like you've been doing all along this tutorial. The result would be like the test cases in [here](https://github.com/se-edu/addressbook-level3/commit/fac8f3fd855d55831ca0cc73313b5943d49d4d6e#diff-d749de38392f7ea504da7824641ba8d9). Alternatively, you can get the help of IntelliJ to generate the skeletons of the test cases, as explained in the next section.
+Of course you can simply add the test cases manually, like you've been doing all along this tutorial. The result would be like the test cases in [here](https://github.com/se-edu/addressbook-level3/commit/fac8f3fd855d55831ca0cc73313b5943d49d4d6e#diff-ff58f7c10338b34f76645df49b71ecb2bafaf7611b20e7ff59ebc98475538a01). Alternatively, you can get the help of IntelliJ to generate the skeletons of the test cases, as explained in the next section.
 
 ### Automatically generating tests
 
@@ -394,7 +394,7 @@ Following convention, let’s change the name of the generated method to `execut
 
 Let’s use the utility functions provided in `CommandTestUtil`. The functions ensure that commands produce the expected `CommandResult` and output the correct message. In this case, `CommandTestUtil#assertCommandSuccess` is the best fit as we are testing that a `RemarkCommand` will successfully add a `Remark`.
 
-You should end up with a test that looks something like [this](https://github.com/se-edu/addressbook-level3/commit/fac8f3fd855d55831ca0cc73313b5943d49d4d6e#diff-d749de38392f7ea504da7824641ba8d9).
+You should end up with a test that looks something like [this](https://github.com/se-edu/addressbook-level3/commit/fac8f3fd855d55831ca0cc73313b5943d49d4d6e#diff-ff58f7c10338b34f76645df49b71ecb2bafaf7611b20e7ff59ebc98475538a01).
 
 ## Conclusion
 
