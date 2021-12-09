@@ -136,7 +136,7 @@ public class RemarkCommand extends Command {
 }
 ```
 
-Your code should look something like [this](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-34ace715a8a8d2e5a66e71289f017b47) after you are done.
+Your code should look something like [this](https://github.com/se-edu/addressbook-level3/commit/dc6d5139d08f6403da0ec624ea32bd79a2ae0cbf) after you are done.
 
 ### Parse user input
 
