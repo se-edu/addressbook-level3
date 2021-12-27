@@ -29,7 +29,6 @@ public class UiManager implements Ui {
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
     public UiManager(Logic logic) {
-        super();
         this.logic = logic;
     }
 
