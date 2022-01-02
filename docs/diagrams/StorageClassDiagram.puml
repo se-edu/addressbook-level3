@@ -7,15 +7,15 @@ skinparam classBackgroundColor STORAGE_COLOR
 package Storage{
 
 package "UserPrefs Storage" #F4F6F6{
-Interface UserPrefsStorage <<Interface>>
+Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Interface Storage <<Interface>>
+Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
 package "AddressBook Storage" #F4F6F6{
-Interface AddressBookStorage <<Interface>>
+Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
 Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson

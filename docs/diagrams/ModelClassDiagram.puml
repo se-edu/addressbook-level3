@@ -5,16 +5,12 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
-Interface ReadOnlyUserPrefs <<Interface>>
-Interface Model <<Interface>>
+Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
 Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
-
 
 Class UniquePersonList
 Class Person
