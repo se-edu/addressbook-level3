@@ -16,7 +16,6 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@Fonts.css" />
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
