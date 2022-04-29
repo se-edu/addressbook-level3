@@ -245,6 +245,9 @@
     -->
     <module name ="DeclarationOrder"/>
 
+    <!-- Checks that default is after all cases in a switch statement -->
+    <module name="DefaultComesLast"/>
+
     <module name="ModifierOrder">
       <!-- Warn if modifier order is inconsistent with JLS3 8.1.1, 8.3.1, and
            8.4.3.  The prescribed order is:
@@ -340,6 +343,7 @@
 
     <module name="Indentation">
       <property name="caseIndent" value="0" />
+      <property name="throwsIndent" value="8" />
     </module>
 
     <module name="NoWhitespaceBefore">
@@ -347,6 +351,11 @@
       <property name="tokens" value="SEMI, DOT, POST_DEC, POST_INC"/>
       <property name="allowLineBreaks" value="true"/>
     </module>
+
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+
+    <!-- Checks that there is no whitespace between method/constructor name and open parenthesis. -->
+    <module name="MethodParamPad"/>
 
     <module name="ParenPad">
       <!-- Checks that there is no whitespace before close parenthesis or after open parenthesis. -->
@@ -376,6 +385,24 @@
     JAVADOC CHECKS
     -->
 
+    <!-- Checks that all block-tags are ordered correctly. -->
+    <module name="AtclauseOrder"/>
+
+    <!-- Checks that Javadoc block tags appear only at the beginning of the line. -->
+    <module name="JavadocBlockTagLocation"/>
+
+    <!-- Checks that all Javadoc comments start from the second line. -->
+    <module name="JavadocContentLocationCheck" />
+
+    <!-- Checks that each line in Javadoc has leading asterisks. -->
+    <module name="JavadocMissingLeadingAsterisk"/>
+
+    <!-- Checks that each non-empty line in Javadoc has whitespace after leading asterisk. -->
+    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+
+    <!-- Checks that for block tags, indentation of continuation lines is at least 4 spaces. -->
+    <module name="JavadocTagContinuationIndentation"/>
+
     <!-- Checks the Javadoc's format for every class, enumeration and interface. -->
     <module name="JavadocType">
       <property name="allowMissingParamTags" value="true"/>
@@ -399,6 +426,9 @@
       <property name="allowMissingPropertyJavadoc" value="true"/>
       <property name="ignoreMethodNamesRegex" value="(set.*|get.*)"/>
     </module>
+
+    <!-- Checks that every public class, enumeration and interface has a header comment. -->
+    <module name="MissingJavadocType"/>
 
   </module>
 </module>
