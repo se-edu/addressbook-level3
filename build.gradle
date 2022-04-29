@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '4.0.4'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
 }
@@ -35,8 +35,8 @@ task coverage(type: JacocoReport) {
         })
     }
     reports {
-        html.enabled = true
-        xml.enabled = true
+        html.required = true
+        xml.required = true
     }
 }
 
@@ -66,7 +66,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveFileName = 'addressbook.jar'
 }
 
 defaultTasks 'clean', 'test'
