@@ -427,5 +427,8 @@
       <property name="ignoreMethodNamesRegex" value="(set.*|get.*)"/>
     </module>
 
+    <!-- Checks that every public class, enumeration and interface has a header comment. -->
+    <module name="MissingJavadocType"/>
+
   </module>
 </module>
