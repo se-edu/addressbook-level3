@@ -400,18 +400,15 @@
     <!-- Checks that each non-empty line in Javadoc has whitespace after leading asterisk. -->
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
 
-    <!-- Checks that each non-empty line in Javadoc has whitespace after leading asterisk. -->
-    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
-
     <!-- Checks that for block tags, indentation of continuation lines is at least 4 spaces. -->
     <module name="JavadocTagContinuationIndentation"/>
 
-    <!-- Checks that every class, enumeration and interface have a header comment. -->
+    <!-- Checks the Javadoc's format for every class, enumeration and interface. -->
     <module name="JavadocType">
       <property name="allowMissingParamTags" value="true"/>
     </module>
 
-    <!-- Checks that every public method (excluding getters, setters and constructors) has a header comment. -->
+    <!-- Checks the Javadoc's format for every public method (excluding getters, setters and constructors). -->
     <module name="JavadocMethod">
       <property name="allowedAnnotations" value="Override, Test, BeforeAll, BeforeEach, AfterAll, AfterEach, Subscribe"/>
       <property name="accessModifiers" value="public"/>
@@ -423,6 +420,7 @@
 
     <module name="InvalidJavadocPosition"/>
 
+    <!-- Checks that every public method (excluding getters, setters and constructors) has a header comment. -->
     <module name="MissingJavadocMethodCheck">
       <property name="minLineCount" value="1"/>
       <property name="allowMissingPropertyJavadoc" value="true"/>
