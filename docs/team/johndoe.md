@@ -1,7 +1,7 @@
----
-layout: page
-title: John Doe's Project Portfolio Page
----
+<frontmatter>
+  layout: default.md
+  title: "John Doe's Project Portfolio Page"
+</frontmatter>
 
 ### Project: AddressBook Level 3
 

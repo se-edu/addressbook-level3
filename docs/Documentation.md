@@ -1,7 +1,9 @@
----
-layout: page
-title: Documentation guide
----
+<frontmatter>
+  layout: default.md
+  title: "Documentation guide"
+  pageNav: 3
+  pageNavTitle: "Table Of Content"
+</frontmatter>
 
 **Setting up and maintaining the project website:**
 

@@ -1,10 +1,12 @@
----
-layout: page
-title: Setting up and getting started
----
+<frontmatter>
+  layout: default.md
+  title: "Setting up and getting started"
+  pageNav: 3
+  pageNavTitle: "Table Of Content"
+</frontmatter>
 
 * Table of Contents
-{:toc}
+<!-- {:toc} -->
 
 
 --------------------------------------------------------------------------------------------------------------------

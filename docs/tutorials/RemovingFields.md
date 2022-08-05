@@ -1,7 +1,9 @@
----
-layout: page
-title: "Tutorial: Removing Fields"
----
+<frontmatter>
+  layout: default.md
+  title: "Tutorial: Removing Fields"
+  pageNav: 3
+  pageNavTitle: "Table Of Content"
+</frontmatter>
 
 > Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
 >
@@ -20,7 +22,7 @@ However, if you have no such prior knowledge, removing a field can take a quite 
 
 
 * Table of Contents
-{:toc}
+<!-- {:toc} -->
 
 ## Safely deleting `Address`
 

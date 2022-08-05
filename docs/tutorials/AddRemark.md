@@ -1,7 +1,9 @@
----
-layout: page
-title: "Tutorial: Adding a command"
----
+<frontmatter>
+  layout: default.md
+  title: "Tutorial: Adding a command"
+  pageNav: 3
+  pageNavTitle: "Table Of Content"
+</frontmatter>
 
 Let's walk you through the implementation of a new command — `remark`.
 

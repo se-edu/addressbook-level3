@@ -1,10 +1,10 @@
----
-layout: page
-title: DevOps guide
----
+<frontmatter>
+  layout: default.md
+  title: "DevOps guide"
+</frontmatter>
 
 * Table of Contents
-{:toc}
+<!-- {:toc} -->
 
 --------------------------------------------------------------------------------------------------------------------
 

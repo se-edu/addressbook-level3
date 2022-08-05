@@ -1,7 +1,7 @@
----
-layout: page
-title: About Us
----
+<frontmatter>
+  layout: default.md
+  title: "About Us"
+</frontmatter>
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 

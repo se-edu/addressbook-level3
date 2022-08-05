@@ -1,7 +1,9 @@
----
-layout: page
-title: "Tutorial: Tracing code"
----
+<frontmatter>
+  layout: default.md
+  title: "Tutorial: Tracing code"
+  pageNav: 3
+  pageNavTitle: "Table Of Content"
+</frontmatter>
 
 > Indeed, the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code. …​\[Therefore,\] making it easy to read makes it easier to write.
 >
@@ -10,7 +12,7 @@ title: "Tutorial: Tracing code"
 When trying to understand an unfamiliar code base, one common strategy used is to trace some representative execution path through the code base. One easy way to trace an execution path is to use a debugger to step through the code. In this tutorial, you will be using the IntelliJ IDEA’s debugger to trace the execution path of a specific user command.
 
 * Table of Contents
-{:toc}
+<!-- {:toc} -->
 
 ## Before we start
 

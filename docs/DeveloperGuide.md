@@ -1,9 +1,13 @@
----
-layout: page
-title: Developer Guide
----
+<frontmatter>
+  layout: default.md
+  title: "Developer Guide"
+  pageNav: 3
+  pageNavTitle: "Table Of Content"
+</frontmatter>
+
+
 * Table of Contents
-{:toc}
+<!-- {:toc} -->
 
 --------------------------------------------------------------------------------------------------------------------
 

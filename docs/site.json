@@ -1,0 +1,31 @@
+{
+  "baseUrl": "",
+  "titlePrefix": "",
+  "titleSuffix": "AddressBook Level-3",
+  "style": {
+    "codeTheme": "light"
+  },
+  "ignore": [
+    "_markbind/layouts/*",
+    "_markbind/logs/*",
+    "_site/*",
+    "site.json",
+    "*.md",
+    "*.njk",
+    ".git/*",
+    "node_modules/*"
+  ],
+  "pagesExclude": ["node_modules/*"],
+  "pages": [
+    {
+      "src": "index.md",
+      "title": "Landing Page"
+    },
+    {
+      "glob": ["**/index.md", "**/*.md"]
+    }
+  ],
+  "deploy": {
+    "message": "Site Update."
+  }
+}
