@@ -10,7 +10,7 @@ h2, h3, h4, h5, h6 {
   padding: $alert-padding-y $alert-padding-x;
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
-  order-radius : $alert-border-radius;
+  border-radius : $alert-border-radius;
 }
 
 // Headings for larger alerts
