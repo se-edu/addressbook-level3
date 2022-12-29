@@ -40,7 +40,7 @@ This project uses GitHub Actions for CI. The project comes with the necessary Gi
 
 ### Code coverage
 
-As part of CI, this project uses Codecov to generate coverage reports. When CI runs, it will generate code coverage data (based on the tests run by CI) and upload that data to the CodeCov website, which in turn can provide you more info about the coverage of your testes. Here are the steps to set up CodeCov for a fork of this repository.
+As part of CI, this project uses Codecov to generate coverage reports. When CI runs, it will generate code coverage data (based on the tests run by CI) and upload that data to the CodeCov website, which in turn can provide you more info about the coverage of your tests. Here are the steps to set up CodeCov for a fork of this repository.
 
 1. Sign up with Codecov using your GitHub account [here](https://codecov.io/signup).
 1. Once you are inside Codecov web app, add your org (that contains the fork) to CodeCov.
