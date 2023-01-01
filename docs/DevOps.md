@@ -28,7 +28,7 @@ Given below are how to use Gradle for some important project tasks.
 * **`checkstyleMain`**: Runs the code style check for the main code base.<br>
   **`checkstyleTest`**: Runs the code style check for the test code base.
 
-* **`test`**: Runs all tests.<
+* **`test`**: Runs all tests.
   * `./gradlew test` — Runs all tests
   * `./gradlew clean test` — Cleans the project and runs tests
 
