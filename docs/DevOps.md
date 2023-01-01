@@ -47,6 +47,11 @@ As part of CI, this project uses Codecov to generate coverage reports. When CI r
 1. Wait for the next run of CI in your fork (or push a dummy commit to it to trigger CI) to confirm CI is able to upload generated coverage data to CodeCov. If CodeCov is not set up correctly, the CI run will fail with an error message that mentions CodeCov.
 1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3) in that page reflects the coverage of your project.
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Note that Codecov is known to run into intermittent problems (e.g., report upload fails) due to issues on the Codecov service side. If that happens, you can temporarily or permanently configure CI to pass even if Codecov task fails by updating the relevant line<br> `fail_ci_if_error: true` to `fail_ci_if_error: false` in `.github/workflows/gradle.yml`.
+</div>
+
 ### Repository-wide checks
 
 In addition to running Gradle checks, CI includes some repository-wide checks. Unlike the Gradle checks which only cover files used in the build process, these repository-wide checks cover all files in the repository. They check for repository rules which are hard to enforce on development machines such as line ending requirements.
