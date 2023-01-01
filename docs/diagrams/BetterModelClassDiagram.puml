@@ -9,7 +9,7 @@ AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
-UniqueTagList *-right-> "*" Tag
+UniqueTagList -right-> "*" Tag
 UniquePersonList -right-> Person
 
 Person -up-> "*" Tag
