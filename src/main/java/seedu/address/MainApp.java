@@ -117,6 +117,9 @@ public class MainApp extends Application {
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
+            if (!configOptional.isPresent()) {
+                logger.info("Config file not found. Will be starting with a new default config file.");
+            }
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
@@ -145,6 +148,9 @@ public class MainApp extends Application {
         UserPrefs initializedPrefs;
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
+            if (!prefsOptional.isPresent()) {
+                logger.info("Prefs file not found. Will be starting with a new default prefs file.");
+            }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
