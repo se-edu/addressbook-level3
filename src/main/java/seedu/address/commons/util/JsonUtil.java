@@ -60,9 +60,9 @@ public class JsonUtil {
         requireNonNull(filePath);
 
         if (!Files.exists(filePath)) {
-            logger.info("Json file " + filePath + " not found");
             return Optional.empty();
         }
+        logger.info("Json file " + filePath + " found");
 
         T jsonFile;
 
