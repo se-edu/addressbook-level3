@@ -40,17 +40,11 @@ This project uses GitHub Actions for CI. The project comes with the necessary Gi
 
 ### Code coverage
 
-As part of CI, this project uses Codecov to generate coverage reports. When CI runs, it will generate code coverage data (based on the tests run by CI) and upload that data to the CodeCov website, which in turn can provide you more info about the coverage of your tests. Here are the steps to set up CodeCov for a fork of this repository.
+As part of CI, this project uses Codecov to generate coverage reports. When CI runs, it will generate code coverage data (based on the tests run by CI) and upload that data to the CodeCov website, which in turn can provide you more info about the coverage of your tests.
 
-1. Sign up with Codecov using your GitHub account [here](https://codecov.io/signup).
-1. Once you are inside Codecov web app, add your org (that contains the fork) to CodeCov.
-1. Wait for the next run of CI in your fork (or push a dummy commit to it to trigger CI) to confirm CI is able to upload generated coverage data to CodeCov. If CodeCov is not set up correctly, the CI run will fail with an error message that mentions CodeCov.
-1. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3) in that page reflects the coverage of your project.
+However, because Codecov is known to run into intermittent problems (e.g., report upload fails) due to issues on the Codecov service side, the CI is configured to pass even if the Codecov task failed. Therefore, developers are advised to check the code coverage levels periodically and take corrective actions if the coverage level falls below desired levels.
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** Note that Codecov is known to run into intermittent problems (e.g., report upload fails) due to issues on the Codecov service side. If that happens, you can temporarily or permanently configure CI to pass even if Codecov task fails by updating the relevant line<br> `fail_ci_if_error: true` to `fail_ci_if_error: false` in `.github/workflows/gradle.yml`.
-</div>
+To enable Codecov for forks of this project, follow the steps given in [this se-edu guide](https://se-education.org/guides/tutorials/codecov.html).
 
 ### Repository-wide checks
 
