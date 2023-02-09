@@ -5,6 +5,8 @@
   pageNavTitle: "Table Of Content"
 </frontmatter>
 
+# Tutorial: Removing Fields
+
 > Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
 >
 > —  Antoine de Saint-Exupery
@@ -21,7 +23,7 @@ However, if you have no such prior knowledge, removing a field can take a quite 
 </div>
 
 
-* Table of Contents
+<!-- * Table of Contents -->
 <!-- {:toc} -->
 
 ## Safely deleting `Address`

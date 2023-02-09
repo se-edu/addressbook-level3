@@ -5,6 +5,8 @@
   pageNavTitle: "Table Of Content"
 </frontmatter>
 
+# Tutorial: Adding a command
+
 Let's walk you through the implementation of a new command — `remark`.
 
 This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:

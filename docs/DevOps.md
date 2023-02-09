@@ -1,12 +1,16 @@
 <frontmatter>
   layout: default.md
   title: "DevOps guide"
+  pageNav: 3
+  pageNavTitle: "Table Of Content"
 </frontmatter>
 
-* Table of Contents
-<!-- {:toc} -->
+## DevOps guide
 
---------------------------------------------------------------------------------------------------------------------
+<!-- * Table of Contents -->
+<page-nav-print />
+
+<!-- -------------------------------------------------------------------------------------------------------------------- -->
 
 ## Build automation
 

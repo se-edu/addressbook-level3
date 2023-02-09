@@ -5,16 +5,18 @@
   pageNavTitle: "Table Of Content"
 </frontmatter>
 
-* Table of Contents
-<!-- {:toc} -->
+# Setting up and getting started
 
+<!-- * Table of Contents -->
+<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Setting up the project in your computer
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
 
+:exclamation: **Caution:**
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
 
@@ -36,8 +38,9 @@ If you plan to use Intellij IDEA (highly recommended):
 
    If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
 
-   <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-
+   <div markdown="span" class="alert alert-primary">
+   
+   :bulb: **Tip:**
    Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
    </div>
 

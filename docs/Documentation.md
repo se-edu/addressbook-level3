@@ -5,6 +5,8 @@
   pageNavTitle: "Table Of Content"
 </frontmatter>
 
+# Documentation guide
+
 **Setting up and maintaining the project website:**
 
 * We use [**Jekyll**](https://jekyllrb.com/) to manage documentation.
