@@ -26,7 +26,7 @@ For now, let’s keep `RemarkCommand` as simple as possible and print some outpu
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
@@ -67,7 +67,7 @@ Following the convention in other commands, we add relevant messages as constant
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
@@ -94,7 +94,7 @@ Let’s change `RemarkCommand` to parse input from the user.
 
 We start by modifying the constructor of `RemarkCommand` to accept an `Index` and a `String`. While we are at it, let’s change the error message to echo the values. While this is not a replacement for tests, it is an obvious way to tell if our code is functioning as intended.
 
-``` java
+```java
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 //...
 public class RemarkCommand extends Command {
@@ -154,7 +154,7 @@ Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input.
 
 **`ArgumentTokenizer.java`:**
 
-``` java
+```java
 /**
  * Tokenizes an arguments string and returns an {@code ArgumentMultimap}
  * object that maps prefixes to their respective argument values. Only the
@@ -172,7 +172,7 @@ We can tell `ArgumentTokenizer#tokenize()` to look out for our new prefix `r/` a
 
 **`ArgumentMultimap.java`:**
 
-``` java
+```java
 /**
  * Returns the last value of {@code prefix}.
  */
@@ -187,7 +187,7 @@ This appears to be what we need to get a String of the remark. But what about th
 
 **`DeleteCommandParser.java`:**
 
-``` java
+```java
 Index index = ParserUtil.parseIndex(args);
 return new DeleteCommand(index);
 ```
@@ -198,7 +198,7 @@ Now that we have the know-how to extract the data that we need from the user’s
 
 **`RemarkCommandParser.java`:**
 
-``` java
+```java
 public RemarkCommand parse(String args) throws ParseException {
     requireNonNull(args);
     ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
@@ -250,7 +250,7 @@ Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/s
 
 **`PersonCard.java`:**
 
-``` java
+```java
 @FXML
 private Label remark;
 ```
@@ -314,7 +314,7 @@ Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/c
 
 **`PersonCard.java`:**
 
-``` java
+```java
 public PersonCard(Person person, int displayedIndex) {
     //...
     remark.setText(person.getRemark().value);
@@ -334,7 +334,7 @@ save it with `Model#setPerson()`.
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
 //...
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";

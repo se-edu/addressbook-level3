@@ -115,7 +115,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
    **LogicManager\#execute().**
 
-   ``` java
+   ```java
    @Override
    public CommandResult execute(String commandText)
            throws CommandException, ParseException {
@@ -147,7 +147,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    ![StepOver](../images/tracing/StepOver.png)
 
 1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `AddressBookParser#parseCommand()` method (partial code given below):
-   ``` java
+   ```java
    public Command parseCommand(String userInput) throws ParseException {
        ...
        final String commandWord = matcher.group("commandWord");
@@ -162,7 +162,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Stepping through the `switch` block, we end up at a call to `EditCommandParser().parse()` as expected (because the command we typed is an edit command).
 
-    ``` java
+    ```java
     ...
     case EditCommand.COMMAND_WORD:
         return new EditCommandParser().parse(arguments);
@@ -190,7 +190,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. Now, step over until you read the statement that calls the `execute()` method of the `EditCommand` object received, and step into that `execute()` method (partial code given below):
 
    **`EditCommand#execute()`:**
-   ``` java
+   ```java
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
@@ -228,7 +228,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonAddressBook#saveAddressBook()` method which calls the `JsonSerializableAddressBook` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
 
     **`JsonSerializableAddressBook` constructor:**
-    ``` java
+    ```java
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
@@ -256,7 +256,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. Stepping into `resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());`, we end up in:
 
     **`ResultDisplay#setFeedbackToUser()`**
-    ``` java
+    ```java
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);

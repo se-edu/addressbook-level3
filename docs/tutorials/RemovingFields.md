@@ -75,7 +75,7 @@ A quick look at the `PersonCard` class and its `fxml` file quickly reveals why i
 
 **`PersonCard.java`**
 
-``` java
+```java
 ...
 @FXML
 private Label address;
