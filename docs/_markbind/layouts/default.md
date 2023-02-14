@@ -30,7 +30,7 @@
 * [Developer Guide]({{ baseUrl }}/DeveloperGuide.html) :expanded:
   * [About Us]({{ baseUrl }}/AboutUs.html)
   * [Setting Up]({{ baseUrl }}/SettingUp.html)
-  * Tutorials :expanded:
+  * Tutorials
     * [Tracing code]({{ baseUrl }}/tutorials/TracingCode.html)
     * [Adding a command]({{ baseUrl }}/tutorials/AddRemark.html)
     * [Removing Fields]({{ baseUrl }}/tutorials/RemovingFields.html)

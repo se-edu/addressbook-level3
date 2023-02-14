@@ -24,5 +24,6 @@
   ],
   "deploy": {
     "message": "Site Update."
-  }
+  },
+  "timeZone": "Asia/Singapore"
 }
