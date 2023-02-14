@@ -218,11 +218,11 @@ public RemarkCommand parse(String args) throws ParseException {
 }
 ```
 
-<div markdown="span" class="alert alert-primary">
+<box type="info">
 
 :information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
 
-</div>
+</box>
 
 If you are stuck, check out the sample
 [here](https://github.com/se-edu/addressbook-level3/commit/dc6d5139d08f6403da0ec624ea32bd79a2ae0cbf#diff-8bf239e8e9529369b577701303ddd96af93178b4ed6735f91c2d8488b20c6b4a).
@@ -282,11 +282,11 @@ We change the constructor of `Person` to take a `Remark`. We will also need to d
 
 Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
 
-<div markdown="span" class="alert alert-primary">
+<box type="tip">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
 
-</div>
+</box>
 
 Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998c37e65b92d35c91d28c7822cd139c2c0a5c) and check that you have got everything in order!
 
@@ -297,11 +297,11 @@ AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the 
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
-<div markdown="span" class="alert alert-warning">
+<box type="warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
 
-</div>
+</box>
 
 Check out [this commit](https://github.com/se-edu/addressbook-level3/commit/556cbd0e03ff224d7a68afba171ad2eb0ce56bbf)
 to see what the changes entail.

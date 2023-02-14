@@ -5,7 +5,7 @@
   pageNavTitle: "Table Of Content"
 </frontmatter>
 
-# User Guide
+# AB-3 User Guide
 
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
@@ -84,10 +84,10 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<box type="tip">
 
-:bulb: **Tip:** A person can have any number of tags (including 0)
-</div>
+**Tip:** A person can have any number of tags (including 0)
+</box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -168,11 +168,11 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">
+<box type="warning">
 
-:exclamation: **Caution:**
+**Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+</box>
 
 ### Archiving data files `[coming in v2.0]`
 

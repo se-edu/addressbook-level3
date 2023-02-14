@@ -14,13 +14,13 @@
 When working on an existing code base, you will most likely find that some features that are no longer necessary.
 This tutorial aims to give you some practice on such a code 'removal' activity by removing the `address` field from `Person` class.
 
-<div markdown="span" class="alert alert-success">
+<box type="success">
 
 **If you have done the [Add `remark` command tutorial](AddRemark.html)  already**, you should know where the code had to be updated to add the field `remark`. From that experience, you can deduce where the code needs to be changed to _remove_ that field too. The removing of the `address` field can be done similarly.
 <br>
 <br>
 However, if you have no such prior knowledge, removing a field can take a quite a bit of detective work. This tutorial takes you through that process. **At least have a read even if you don't actually do the steps yourself.**
-</div>
+</box>
 
 
 <!-- * Table of Contents -->
@@ -54,10 +54,10 @@ Let’s try removing references to `Address` in `EditPersonDescriptor`.
 
 1. Remove the usages of `address` and select `Do refactor` when you are done.
 
-   <div markdown="span" class="alert alert-primary">
+   <box type="tip">
 
-   :bulb: **Tip:** Removing usages may result in errors. Exercise discretion and fix them. For example, removing the `address` field from the `Person` class will require you to modify its constructor.
-   </div>
+   **Tip:** Removing usages may result in errors. Exercise discretion and fix them. For example, removing the `address` field from the `Person` class will require you to modify its constructor.
+   </box>
 
 1. Repeat the steps for the remaining usages of `Address`
 
