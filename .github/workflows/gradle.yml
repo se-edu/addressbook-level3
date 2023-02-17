@@ -22,7 +22,7 @@ jobs:
 
       - name: Merge to master
         run: git checkout --progress --force ${{ github.sha }}
-      
+
       - name: Give execute permissions to Gradle wrapper
         run: chmod +x ./gradlew
 
@@ -30,7 +30,7 @@ jobs:
         if: runner.os == 'Linux'
         working-directory: ${{ github.workspace }}/.github
         run: ./run-checks.sh
-        
+
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
 
