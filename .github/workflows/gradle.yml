@@ -1,6 +1,8 @@
 name: Java CI
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
 
 jobs:
   build:
@@ -21,9 +23,12 @@ jobs:
       - name: Merge to master
         run: git checkout --progress --force ${{ github.sha }}
 
+      - name: Give execute permissions to Gradle wrapper
+        run: chmod +x ./gradlew
+
       - name: Run repository-wide tests
         if: runner.os == 'Linux'
-        working-directory:  ${{ github.workspace }}/.github
+        working-directory: ${{ github.workspace }}/.github
         run: ./run-checks.sh
 
       - name: Validate Gradle Wrapper
