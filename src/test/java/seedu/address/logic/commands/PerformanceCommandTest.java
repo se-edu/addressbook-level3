@@ -28,14 +28,14 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class PerformanceCommandTest {
 
-    private static final String REMARK_STUB = "Some remark";
+    private static final String PERFORMANCE_STUB = "1";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_addRemarkUnfilteredList_success() {
+    public void execute_addPerformanceUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withRemark(REMARK_STUB).build();
+        Person editedPerson = new PersonBuilder(firstPerson).withPerformance(PERFORMANCE_STUB).build();
 
         PerformanceCommand performanceCommand = new PerformanceCommand(INDEX_FIRST_PERSON,
                 new Performance(editedPerson.getPerformance().value));
@@ -49,9 +49,9 @@ public class PerformanceCommandTest {
     }
 
     @Test
-    public void execute_deleteRemarkUnfilteredList_success() {
+    public void execute_deletePerformanceUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withRemark("").build();
+        Person editedPerson = new PersonBuilder(firstPerson).withPerformance("").build();
 
         PerformanceCommand performanceCommand = new PerformanceCommand(INDEX_FIRST_PERSON,
                 new Performance(editedPerson.getPerformance().toString()));
@@ -70,7 +70,7 @@ public class PerformanceCommandTest {
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withRemark(REMARK_STUB).build();
+                .withPerformance(PERFORMANCE_STUB).build();
 
         PerformanceCommand performanceCommand = new PerformanceCommand(INDEX_FIRST_PERSON,
                 new Performance(editedPerson.getPerformance().value));

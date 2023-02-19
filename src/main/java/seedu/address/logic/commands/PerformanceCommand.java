@@ -12,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Performance;
 import seedu.address.model.person.Person;
 
-
 /**
  * Changes the remark of an existing person in the address book.
  */
@@ -27,7 +26,7 @@ public class PerformanceCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "per/ [PERFORMANCE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "per/ 5";
+            + "per/5";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Performance command not implemented yet";
@@ -76,7 +75,7 @@ public class PerformanceCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = performance.value != null ? MESSAGE_ADD_PERFORMANCE_SUCCESS
+        String message = !performance.value.isEmpty() ? MESSAGE_ADD_PERFORMANCE_SUCCESS
                 : MESSAGE_DELETE_PERFORMANCE_SUCCESS;
         return String.format(message, personToEdit);
     }
@@ -89,7 +88,7 @@ public class PerformanceCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemarkCommand)) {
+        if (!(other instanceof PerformanceCommand)) {
             return false;
         }
 

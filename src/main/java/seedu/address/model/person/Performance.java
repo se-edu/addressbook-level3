@@ -19,13 +19,9 @@ public class Performance {
         value = performance;
     }
 
-    public String convertValue() {
-        return "" + value;
-    }
-
     @Override
     public String toString() {
-        return convertValue();
+        return value;
     }
 
     @Override
@@ -35,10 +31,8 @@ public class Performance {
                 && value == ((Performance) other).value); // state check
     }
 
-    /*
     @Override
     public int hashCode() {
         return value.hashCode();
     }
-     */
 }
