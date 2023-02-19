@@ -103,7 +103,7 @@ public class PerformanceCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        PerformanceCommand performanceCommand = new PerformanceCommand(outOfBoundIndex, 
+        PerformanceCommand performanceCommand = new PerformanceCommand(outOfBoundIndex,
                 new Performance(VALID_PERFORMANCE_BOB));
 
         assertCommandFailure(performanceCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
