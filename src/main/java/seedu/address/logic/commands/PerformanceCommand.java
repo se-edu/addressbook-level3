@@ -25,17 +25,17 @@ public class PerformanceCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing performance will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [PERFORMANCE]\n"
+            + "per/ [PERFORMANCE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ 5";
+            + "per/ 5";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "Performance command not implemented yet";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Performance: %1$d";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Performance: %2$s";
 
-    public static final String MESSAGE_ADD_PERFORMANCE_SUCCESS = "Added performance to Person: %1$d";
-    public static final String MESSAGE_DELETE_PERFORMANCE_SUCCESS = "Removed performance from Person: %1$d";
+    public static final String MESSAGE_ADD_PERFORMANCE_SUCCESS = "Added performance to Person: %1$s";
+    public static final String MESSAGE_DELETE_PERFORMANCE_SUCCESS = "Removed performance from Person: %1$s";
 
     private final Index index;
     private final Performance performance;
