@@ -21,7 +21,8 @@ public class PerformanceCommandParserTest {
         // have remark
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_REMARK + nonEmptyPerformance;
-        PerformanceCommand expectedCommand = new PerformanceCommand(INDEX_FIRST_PERSON, new Performance(nonEmptyPerformance));
+        PerformanceCommand expectedCommand = new PerformanceCommand(INDEX_FIRST_PERSON,
+                new Performance(nonEmptyPerformance));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no remark
