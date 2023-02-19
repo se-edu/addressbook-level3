@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
 * Table of Contents
 {:toc}
 
@@ -39,148 +37,1074 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+User Guide
 
-<div markdown="block" class="alert alert-info">
+TrAcker is a **desktop app for CS2040 Teaching Assistants to centralise the CS2040 tasks involving them. It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI). If you can type fast, TrAcker will display all the tutorials, labs and consultations in a specific time frame. You will also be able to visualise your schedule in a calendar format. Students involved in an event will be displayed based on preference.
 
-**:information_source: Notes about the command format:**<br>
+**Features **
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+### Adding a recurring event: `add recur`
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Adds a recurring task to the TA’s schedule. Recurring task defaults to once a week, but can be specified as a period if needs to be changed (Period = 2 means twice a week). Duration is in hours.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+**Name must be unique. There cannot be clashes in the time as well. If there is, then show a confirmation message to overwrite an old recurring task with the same name or same time.**
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `touch recur [name] [type] [day] [time] [duration] [period]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
 
-Format: `list`
+* `touch recur fornightLabs Labs Friday 10:00 2 0.5`
+* `touch recur biWeeklyConsults Consultations Thursday 16:00 1 2`
+* `touch recur weeklyTutorials Tutorials Wednesday 14:00 1 1`
 
-### Editing a person : `edit`
 
-Edits an existing person in the address book.
+### List all recurring event: `list recur`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Lists all recurring tasks in the TA’s schedule. Can be filtered to have particular recurring events only.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `ls recur [task]`
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+* `ls recur`
+* `ls recur labs`
+* `ls recur consultations`
+* `ls recur tutorials`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Find specific recurring event: `find recur`
+
+Find a specific recurring task during a timeframe
+
+Format: `/ recur [timeframe] [startTime] [endTime]`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+* `/ recur Wednesday`
+* `/ recur Wednesday 8:00 10:00`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Deleting recurring event: `delete recur`
+
+Delete recurring tasks based on index from list of **all **recurring tasks
+
+Format: `:[start],[end]d`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
 
-Clears all entries from the address book.
 
-Format: `clear`
+* `:5d`
+* `:5,10d`
+* `:%d`
+* `:.,10d`
+* `:1d,$`
 
-### Exiting the program : `exit`
+Edit recurring event: `edit recur`
 
-Exits the program.
+Edit recurring tasks based on index from list of **all **recurring tasks or unique name
 
-Format: `exit`
+Format:
 
-### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+* `:/%s/[name] or [index]/[new recurring task details]/g`
+* `:/%s/[name] or [index]/[new recurring task details]/gc`
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Examples:
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
 
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+* `:/%s/weeklyTutorials/weeklyTutorials Tutorials Wednesday 18:00 1 1/g`
+* `:/%s/1/weeklyTutorials Tutorials Wednesday 18:00 1 1/g`
 
---------------------------------------------------------------------------------------------------------------------
+Show recurring event in calendar: `show recur calendar`
 
-## FAQ
+Show specific recurring task based on index from list of **all **recurring tasks or based on name
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Format:
+
+
+
+* `cd [name] or [index] calendar`
+
+Examples:
+
+
+
+* `:cd 1`
+* `:cd weeklyTutorials`
+
+Navigate to students in recurring event: `show recur students`
+
+Show specific recurring task students based on index from list of **all **recurring tasks or based on name.
+
+Once entered, use the students command features to add, delete, edit students.
+
+Format:
+
+
+
+* `:cd [name] or [index] students`
+
+Examples:
+
+
+
+* `:cd 1 students`
+* `:cd weeklyTutorials students`
+
+Move recurring event to normal event: `mv recur`
+
+Move specific recurring tasks based on index from list of **all **recurring tasks or based on name to a normal event.
+
+Only applicable for the next immediate recurring task
+
+Format:
+
+
+
+* `:mv [name] or [index]`
+
+Examples:
+
+
+
+* `:mv 1`
+* `:mv weeklyTutorials`
+
+Stop recurring event to normal event: `stop recur`
+
+Removing a recurring task will remove all data related to it. If the user wants to visually see the past recurring task but wants to stop the recurring task in the future, the user should use this.
+
+This has the same functionality as move, but it just does not move the next immediate recurring task to a normal task.
+
+Format:
+
+
+
+* `stop [name] or [index]  `
+
+Examples:
+
+
+
+* `:stop 1`
+* `:stop weeklyTutorials`
+
+
+### Sort recurring events: `sort recur`
+
+Sorts the recurring events available in the order specified by the TA. The sorting method can either be alphabetical, date or duration. With each sorting method, the TA can also choose top down or bottom up order as well.
+
+The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
+
+Format: `sort [type] [sorting method] [sorting order]`
+
+Examples:
+
+
+
+* `sort lab alphabetical reverse`
+* `sort tutorial duration nonreverse`
+* `sort consultation date nonreverse`
+
+
+### Help tutorial for recurring events: `help recur`
+
+Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
+
+This should help new TAs understand the syntax better and also reduces the need to memorise the syntax or refer to any external documentations.
+
+Format: `help [type]`
+
+Examples:
+
+
+
+* `help lab`
+* `help tutorial`
+* `help consultation`
+
+
+### Sort students in recurring events: `sort student`
+
+Sorts the students in recurring events available in the order specified by the TA. The sorting method can either be alphabetical, participation level or urgency level. With each sorting method, the TA can also choose top down or bottom up order as well. If the TA wishes to sort all students under his supervision (regardless of type), he can specify type to be “all”.
+
+The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
+
+Format: `sort student [type] [sorting method] [sorting order]`
+
+Examples:
+
+
+
+* `sort student lab alphabetical reverse`
+* `sort student tutorial participation nonreverse`
+* `sort student consultation urgency nonreverse`
+* `sort student all urgency nonreverse`
+
+
+### Filter students in recurring events: `filter student`
+
+Filters the students in recurring events depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100). If the TA wishes to filter all students under his supervision (regardless of type), he can specify type to be “all”.
+
+The filtered list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
+
+Format: `filter student [type] [metric] [threshold]`
+
+Examples:
+
+
+
+* `filter student lab urgency 60 `
+* `filter student tutorial participation 50`
+* `filter student consultation urgency 20`
+* `filter student all participation 90`
+
+
+### Filter students in recurring events: `alert student`
+
+Provides a list of students who are suddenly performing poorly based on a certain metric, such as a sudden drop in participation level or a sudden increase in urgency level.
+
+The filtered list should be a secondary list and does not replace the existing, non-sorted one. As of now, this can be subjective and we will increase ways to customise this so that the TA can specify what he defines as a “sudden change”.
+
+Format: `alert student [type] [metric] `
+
+Examples:
+
+
+
+* `alert student lab urgency `
+* `alert student tutorial participation`
+* `alert student consultation urgency`
+* `alert student all participation`
+
+
+### Adding a normal (non-recurring) event: `add recur`
+
+Adds an event to the TA’s schedule. Duration is in hours.
+
+**Name must be unique. There cannot be clashes in the time as well. If there is, then show a confirmation message to overwrite an old recurring task with the same name or same time.**
+
+Format: `touch event [name] [type] [date] [time] [duration]`
+
+
+```
+date format: YYYY-MM-DD
+```
+
+
+Examples:
+
+
+
+* `touch event Make-up-Lab Labs 2023-01-14 10:00 2`
+* `touch event Consultation Consultations 2023-04-14 16:00 1`
+* `touch event Extra-tutorial Tutorials 2023-04-14 14:00 1`
+
+
+### List all non-recurring events: `list event`
+
+Lists all non-recurring tasks in the TA’s schedule. Can be filtered to have particular events only.
+
+Format: `ls event [task]`
+
+Examples:
+
+
+
+* `ls event`
+* `ls event labs`
+* `ls event consultations`
+* `ls event tutorials`
+
+Find specific non-recurring event: `find event`
+
+Find a specific task on a particular date and (optional) time
+
+Format: `/ event [date] [startTime] [endTime]`
+
+Examples:
+
+
+
+* `/ event 2023-04-01`
+* `/ event 2023-03-12 8:00 10:00`
+
+Deleting non-recurring event: `delete event`
+
+Delete tasks based on index from list of **all **non-recurring tasks
+
+Format: `:delete event [start],[end]d`
+
+Examples:
+
+
+
+* `:delete event 5d`
+* `:delete event 5,10d`
+* `:delete event %d`
+* `:delete event .,10d`
+* `:delete event 1d,$`
+
+Edit non-recurring event: `edit event`
+
+Edit tasks based on index from list of **all **non-recurring tasks or unique name
+
+Format:
+
+
+
+* `:/%s/nr/[name] or [index]/[new task details]/g`
+* `:/%s/nr/[name] or [index]/[new task details]/gc`
+
+
+```
+nr stands for non-recurring
+```
+
+
+Examples:
+
+
+
+* `:/%s/nr/make-up-Tutorial/Extra-tutorial Tutorials 2023-04-14 14:00 1/g`
+* `:/%s/nr/1/Consultation Consultations 2023-04-14 16:00 1/g`
+
+Show non-recurring event in calendar: `show event calendar`
+
+Show specific task based on index from list of **all **non-recurring tasks or based on name
+
+Format:
+
+
+
+* `cd nr [name] or [index] calendar`
+
+Examples:
+
+
+
+* `:cd nr 1`
+* `:cd nr Make-up-Tutorial`
+
+
+```
+nr stands for non-recurring
+```
+
+
+Navigate to students in recurring event: `show event students`
+
+Show specific task’s students based on index from list of **all **non-recurring tasks or based on name.
+
+Once entered, use the students command features to add, delete, edit students.
+
+Format:
+
+
+
+* `:cd nr [name] or [index] students`
+
+Examples:
+
+
+
+* `:cd nr 1 students`
+* `:cd nr consultation students`
+
+
+### Adding a student: `add student`
+
+Adds a student to the student list.
+
+Format: `add student n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TUTORIAL_GROUP] [l/LAB_GROUP]`
+
+
+```
+Fields with brackets [] are optional. If they are empty, corresponding fields in the student's records will also be empty
+```
+
+
+Examples:
+
+
+
+* `add student n/Dijkstra`
+* `add student n/Tony Hoare p/97482842 t/T03 l/B09`
+
+
+### List all students: `list student`
+
+Lists all students of the TA user. Can be filtered according to events.
+
+Format: `ls student [task]`
+
+Examples:
+
+
+
+* `ls student`
+* `ls student Tutorials`
+* `ls student Labs`
+
+Deleting student: `delete student`
+
+Delete students based on index from list of students corresponding to an event
+
+Format:
+
+
+
+1. `:cd EVENT students`
+2. `:delete student INDEX`
+
+Examples:
+
+
+
+* `example 1`
+    * `:cd weeklyTutorials students`
+    * `:delete student 5`
+* `example 2`
+    * `:cd weeklyLabs students`
+    * `:delete student 1`
+
+Edit student: `edit student`
+
+Edit student details from list of all students
+
+Format: `edit INDEX n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TUTORIAL_GROUP] [l/LAB_GROUP]`
+
+Edits the student at the specified INDEX within the student list.
+
+Existing values will be updated to the input values.
+
+Examples:
+
+
+
+* `edit 1 n/Dijkstra`
+* `edit 2 n/Tony Hoare p/97482842 t/T03 l/B09`
+
+
+### Add note for event: `touch note`
+
+Add notes for events that are both normal and recurring, or for students in the classes this TA is in charge of. Mainly serves to help TAs take down notes and todos from meeting and student queries from classes.
+
+Note that there can be an unlimited amount of notes to be created for each event or student.
+
+Each addition increases node index by one.
+
+Format: `touch note [type] [name or index] [content]`
+
+Examples:
+
+
+
+* `touch note recur weeklyTutorials "rmb to bring along apple pencil\n"`
+* `touch note recur 2 "grade student labs timely\n"`
+* `touch note student Eldon "solve this student's query via email\n"`
+
+
+### Delete note for event: `delete note`
+
+Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
+
+Format: `delete note [type] [name or index] [note-index]`
+
+Examples:
+
+
+
+* `delete note recur weeklyTutorials 3`
+* `delete note recur 2 0`
+* `delete note student Eldon 0`
+
+
+### Edit note for event: `edit note`
+
+Update notes with the new note for events that are both normal and recurring, or for students in the classes this TA is in charge of.
+
+Note that when a particular note index does not exist, it does nothing.
+
+Format:
+
+
+
+* `edit note [type] [name or index] [note-index] [newcontent]`
+
+Examples:
+
+
+
+* `edit note recur weeklyTutorials 0 "no new tasks lol\n"`
+* `edit note recur 2 0 "bring my lab cheat-sheet\n"`
+* `edit note student Eldon 1 ""`
+
+
+### List all notes: `ls note`
+
+List all notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
+
+Format: `ls note [type] [name or index]`
+
+Examples:
+
+
+
+* `ls note recur weeklyTutorials`
+
+Sort student: `sort student`
+
+Sort students by attributes such as their attendance rate for labs or tutorials (later by their exam grades)
+
+Format: `sort student [type] [sorting order]`
+
+This method is designed for ease of grading students based on their attendance to tutorials and labs.
+
+Examples:
+
+
+
+* `sort students labs reverse`
+* `sort students tutorials nonreverse`
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
+<table>
+  <tr>
+   <td>Action
+   </td>
+   <td>Format
+   </td>
+   <td>Examples
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Add recur</strong>
+   </td>
+   <td><code>touch recur [name] [type] [day] [time] [duration] [period]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>touch recur fornightLabs Labs Friday 10:00 2 0.5</code> 
+
+<li><code>touch recur biWeeklyConsults Consultations Thursday 16:00 1 2</code>
+
+<li><code>touch recur weeklyTutorials Tutorials Wednesday 14:00 1 1</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Add student</strong>
+   </td>
+   <td><code>add student n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TUTORIAL_GROUP] [l/LAB_GROUP]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>add student n/Dijkstra</code>
+
+<li><code>add student n/Tony Hoare p/97482842 e/e0271183@u.nus.edu t/T03 l/B09</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Add normal event</strong>
+   </td>
+   <td><code>touch event [name] [type] [date] [time] [duration]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>touch event Make-up-Lab Labs 2023-01-14 10:00 2</code>
+
+<li><code>touch event Consultation Consultations 2023-04-14 16:00 1</code>
+
+<li><code>touch event Extra-tutorial Tutorials 2023-04-14 14:00 1</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>List recur</strong>
+   </td>
+   <td><code>ls recur [task]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>ls recur</code>
+
+<li><code>ls recur labs</code>
+
+<li><code>ls recur consultations</code>
+
+<li><code>ls recur tutorials</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>List non-recurring event</strong>
+   </td>
+   <td><code>ls event [task]</code> 
+   </td>
+   <td>
+<ul>
+
+<li><code>ls event</code>
+
+<li><code>ls event labs</code>
+
+<li><code>ls event consultations</code>
+
+<li><code>ls event tutorials</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>List students</strong>
+   </td>
+   <td><code>ls student [task] </code>
+   </td>
+   <td>
+<ul>
+
+<li><code>ls student</code>
+
+<li><code>ls student Tutorials</code>
+
+<li><code>ls student Labs</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Delete recur</strong>
+   </td>
+   <td><code>:[start],[end]d</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>:5d</code>
+
+<li><code>:5,10d</code>
+
+<li><code>:%d</code> 
+
+<li><code>:.,10d</code>
+
+<li><code>:1d,$</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Delete non-recurring event</strong>
+   </td>
+   <td><code>:delete event [start],[end]d</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>:delete event 5d</code>
+
+<li><code>:delete event 5,10d</code>
+
+<li><code>:delete event %d</code> 
+
+<li><code>:delete event .,10d</code>
+
+<li><code>:delete event 1d,$</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Delete student</strong>
+   </td>
+   <td>
+<ol>
+
+<li><code>:cd EVENT students</code>
+
+<li><code>:delete student INDEX</code>
+</li>
+</ol>
+   </td>
+   <td>
+<ul>
+
+<li><code>example 1</code> 
+<ul>
+
+<li><code>:cd weeklyTutorials students</code>
+
+<li><code>:delete student 5</code>
+</li> 
+</ul>
+
+<li><code>example 2</code> 
+<ul>
+
+<li><code>:cd weeklyLabs students</code>
+
+<li><code>:delete student 1</code>
+</li> 
+</ul>
+</li> 
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Edit recur</strong>
+   </td>
+   <td>
+<ul>
+
+<li><code>:/%s/[name] or [index]/[new recurring task details]/g</code>
+
+<li><code>:/%s/[name] or [index]/[new recurring task details]/gc</code>
+</li>
+</ul>
+   </td>
+   <td>
+<ul>
+
+<li><code>:/%s/weeklyTutorials/weeklyTutorials Tutorials Wednesday 18:00 1 1/g</code>
+
+<li><code>:/%s/1/weeklyTutorials Tutorials Wednesday 18:00 1 1/g</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Edit non-recurring event</strong>
+   </td>
+   <td>
+<ul>
+
+<li><code>:/%s/nr/[name] or [index]/[new task details]/g</code>
+
+<li><code>:/%s/nr/[name] or [index]/[new task details]/gc</code>
+</li>
+</ul>
+   </td>
+   <td>
+<ul>
+
+<li><code>:/%s/nr/make-up-Tutorial/Extra-tutorial Tutorials 2023-04-14 14:00 1/g</code>
+
+<li><code>:/%s/nr/1/Consultation Consultations 2023-04-14 16:00 1/g</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Edit student</strong>
+   </td>
+   <td><code>edit INDEX n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TUTORIAL_GROUP] [l/LAB_GROUP]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>edit 1 n/Dijkstra</code>
+
+<li><code>edit 2 n/Tony Hoare p/97482842 t/T03 l/B09</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Find recur</strong>
+   </td>
+   <td><code>/ recur [timeframe] [startTime] [endTime]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>/ recur Wednesday</code>
+
+<li><code>/ recur Wednesday 8:00 10:00</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Find non-recurring event</strong>
+   </td>
+   <td><code>/ event [date] [startTime] [endTime]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>/ event 2023-04-01</code>
+
+<li><code>/ event 2023-03-12 8:00 10:00</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Show recur</strong>
+   </td>
+   <td>
+<ul>
+
+<li><code>:cd [name] or [index] calendar</code>
+
+<li><code>:cd [name] or [index] students</code>
+</li>
+</ul>
+   </td>
+   <td>
+<ul>
+
+<li><code>:cd 1</code>
+
+<li><code>:cd weeklyTutorials</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Show non-recurring event</strong>
+   </td>
+   <td>
+<ul>
+
+<li><code>cd nr [name] or [index] calendar</code>
+</li>
+</ul>
+   </td>
+   <td>
+<ul>
+
+<li><code>:cd nr 1</code>
+
+<li><code>:cd nr Make-up-Tutorial</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Sort student </strong>
+   </td>
+   <td><code>sort student [type] [sorting order]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>sort students labs reverse</code>
+
+<li><code>sort students tutorials nonreverse</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Move recur</strong>
+   </td>
+   <td><code>:mv [name] or [index]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>:mv 1</code>
+
+<li><code>:mv weeklyTutorials</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Stop recur</strong>
+   </td>
+   <td><code>stop [name] or [index]  </code>
+   </td>
+   <td>
+<ul>
+
+<li><code>:stop 1</code>
+
+<li><code>:stop weeklyTutorials</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Sort recur</strong>
+   </td>
+   <td><code>sort [type] [sorting method]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>sort labs alphabetical</code>
+
+<li><code>sort consultation date</code>
+
+<li><code>sort tutorial duration</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Help recur</strong>
+   </td>
+   <td><code>help [type]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>help labs</code>
+
+<li><code>help tutorial</code>
+
+<li><code>help consultation</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Sort student</strong>
+   </td>
+   <td><code>sort student [type] [sorting method] [sorting order]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>sort student lab alphabetical reverse</code> 
+
+<li><code>sort student tutorial participation nonreverse</code>
+
+<li><code>sort student consultation urgency nonreverse</code>
+
+<li><code>sort student all urgency nonreverse</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Filter student</strong>
+   </td>
+   <td><code>filter student [type] [metric] [threshold]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>filter student lab urgency 60 </code>
+
+<li><code>filter student tutorial participation 50</code>
+
+<li><code>filter student consultation urgency 20</code>
+
+<li><code>filter student all participation 90</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Alert student</strong>
+   </td>
+   <td><code>alert student [type] [metric]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>alert student lab urgency </code>
+
+<li><code>alert student tutorial participation</code>
+
+<li><code>alert student consultation urgency</code>
+
+<li><code>alert student all participation</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Add note</strong>
+   </td>
+   <td><code>touch note [type] [name or index] [content]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>touch note recur weeklyTutorials "rmb to bring along apple pencil\n"</code>
+
+<li><code>touch note recur 2 "grade student labs timely\n"</code>
+
+<li><code>touch note student Eldon "solve this student's query via email\n"</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Edit note</strong>
+   </td>
+   <td><code>edit note [type] [name or index] [note-index] [newcontent]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>edit note recur weeklyTutorials 0 "no new tasks lol\n"</code>
+
+<li><code>edit note recur 2 0 "bring my lab cheat-sheet\n"</code>
+
+<li><code>edit note student Eldon 1 ""</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Delete note</strong>
+   </td>
+   <td><code>delete note [type] [name or index] [note-index]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>delete note recur weeklyTutorials 3</code>
+
+<li><code>delete note recur 2 0</code>
+
+<li><code>delete note student Eldon 0</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>List note</strong>
+   </td>
+   <td><code>ls note [type] [name or index]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>ls note recur weeklyTutorials</code>
+</li>
+</ul>
+   </td>
+  </tr>
+</table>
+
+
 
 Action | Format, Examples
 --------|------------------
