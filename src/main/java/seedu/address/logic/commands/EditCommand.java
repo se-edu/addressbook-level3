@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Performance;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -99,9 +100,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
+        Performance updatedPerformance = editPersonDescriptor.getPerformance().orElse(personToEdit.getPerformance());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedRemark, updatedPerformance, updatedTags);
     }
 
     @Override
@@ -131,6 +133,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Performance performance;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -144,6 +147,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setPerformance(toCopy.performance);
             setTags(toCopy.tags);
         }
 
@@ -186,6 +190,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setPerformance(Performance performance) {
+            this.performance = performance;
+        }
+
+        public Optional<Performance> getPerformance() {
+            return Optional.ofNullable(performance);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -222,6 +234,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getPerformance().equals(e.getPerformance())
                     && getTags().equals(e.getTags());
         }
     }
