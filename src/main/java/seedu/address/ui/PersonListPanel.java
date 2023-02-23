@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,41 +29,36 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListViewRightCol;
 
+    List<ListView<Person>> listOfPersonListView;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        //Split into different group later
+        listOfPersonListView = Arrays.asList(personListViewLeftCol, personListViewMidCol, personListViewRightCol);
+        for (int i = 0; i < 3; i++) {
+            ObservableList<Person> filteredPersonList = filterPersonList(personList, i);
+            populatePersonListView(listOfPersonListView.get(i), filteredPersonList);
+        }
+    }
+
+    ObservableList<Person> filterPersonList(ObservableList<Person> personList, int index) {
         int skip = 3;
         int size = personList.size();
-// Limit to carefully avoid IndexOutOfBoundsException
         int limit = size / skip + Math.min(size % skip, 1);
 
-        ObservableList<Person> filteredPersonList = Stream.iterate(0, i -> i + skip)
+        ObservableList<Person> filteredPersonList = Stream.iterate(index, i -> i + skip)
                 .limit(limit)
                 .map(personList::get)
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
-        //Ensure no duplicate when skip especially if only have less than 6 etc
-        personListViewLeftCol.setItems(filteredPersonList);
-        personListViewLeftCol.setCellFactory(listView -> new PersonListViewCell());
+        return filteredPersonList;
+    }
 
-        filteredPersonList = Stream.iterate(1, i -> i + skip)
-                .limit(limit)
-                .map(personList::get)
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
-
-        personListViewMidCol.setItems(filteredPersonList);
-        personListViewMidCol.setCellFactory(listView -> new PersonListViewCell());
-
-        filteredPersonList = Stream.iterate(2, i -> i + skip)
-                .limit(limit)
-                .map(personList::get)
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
-
-        personListViewRightCol.setItems(filteredPersonList);
-        personListViewRightCol.setCellFactory(listView -> new PersonListViewCell());
+    void populatePersonListView(ListView<Person> personListView, ObservableList<Person> filteredPersonList) {
+        personListView.setItems(filteredPersonList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
