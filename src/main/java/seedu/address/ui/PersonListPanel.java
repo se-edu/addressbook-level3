@@ -35,20 +35,19 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         //Split into different group later
         int skip = 3;
-        //int size = personList.size();
+        int size = personList.size();
 // Limit to carefully avoid IndexOutOfBoundsException
-        //int limit = size / skip + Math.min(size % skip, 1);
+        int limit = size / skip + Math.min(size % skip, 1);
 
-//        ObservableList<Person> filteredPersonList = Stream.iterate(0, i -> i + skip)
-//                .limit(limit)
-//                .map(personList::get)
-//                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        ObservableList<Person> filteredPersonList = Stream.iterate(0, i -> i + skip)
+                .limit(limit)
+                .map(personList::get)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
         //Ensure no duplicate when skip especially if only have less than 6 etc
-        personListViewLeftCol.setItems(personList);
+        personListViewLeftCol.setItems(filteredPersonList);
         personListViewLeftCol.setCellFactory(listView -> new PersonListViewCell());
 
-        /*
         filteredPersonList = Stream.iterate(1, i -> i + skip)
                 .limit(limit)
                 .map(personList::get)
@@ -64,7 +63,6 @@ public class PersonListPanel extends UiPart<Region> {
 
         personListViewRightCol.setItems(filteredPersonList);
         personListViewRightCol.setCellFactory(listView -> new PersonListViewCell());
-        */
     }
 
     /**

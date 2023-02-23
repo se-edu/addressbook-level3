@@ -10,9 +10,9 @@
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <HBox prefWidth="210.0" VBox.vgrow="ALWAYS">
       <children>
-         <ListView fx:id="personListViewLeft" prefHeight="100.0" prefWidth="70.0" />
-         <ListView fx:id="personListViewMiddle" prefHeight="100.0" prefWidth="70.0" />
-         <ListView fx:id="personListViewRight" prefHeight="100.0" prefWidth="70.0" />
+         <ListView fx:id="personListViewLeftCol" prefHeight="100.0" prefWidth="70.0" />
+         <ListView fx:id="personListViewMidCol" prefHeight="100.0" prefWidth="70.0" />
+         <ListView fx:id="personListViewRightCol" prefHeight="100.0" prefWidth="70.0" />
       </children>
    </HBox>
 </VBox>
