@@ -1,12 +1,21 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
@@ -29,6 +38,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private ImageView header;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -49,6 +60,14 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+
+
+        Image studentImage =
+                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/student.png")));
+        //header.setClip(new Circle(170, 20, 15));
+        header.setImage(studentImage);
+
+
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
