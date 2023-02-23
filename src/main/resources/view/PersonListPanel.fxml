@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <HBox prefWidth="210.0" VBox.vgrow="ALWAYS">
+      <children>
+         <ListView fx:id="personListViewLeft" prefHeight="100.0" prefWidth="70.0" />
+         <ListView fx:id="personListViewMiddle" prefHeight="100.0" prefWidth="70.0" />
+         <ListView fx:id="personListViewRight" prefHeight="100.0" prefWidth="70.0" />
+      </children>
+   </HBox>
 </VBox>
