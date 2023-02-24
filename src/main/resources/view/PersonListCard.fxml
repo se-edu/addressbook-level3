@@ -20,8 +20,8 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-     <HBox prefHeight="17.0" prefWidth="130.0">
-       <ImageView fx:id="header" fitHeight="16.0" fitWidth="11.0" translateX="100.0" />
+     <HBox alignment="CENTER">
+       <ImageView fx:id="header" fitHeight="26.0" fitWidth="27.0" translateX="100.0" />
      </HBox>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
