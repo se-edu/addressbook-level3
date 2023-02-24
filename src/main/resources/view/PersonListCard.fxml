@@ -42,6 +42,7 @@
                <Label text="Label" />
             </children>
          </HBox>
+      <Label fx:id="performance" styleClass="cell_small_label" text="\$performance" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
