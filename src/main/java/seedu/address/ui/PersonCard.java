@@ -35,10 +35,22 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
+    //Change to actual number when merge
+    private final int numberOfStudents = 5;
+    //private ImageView profile = new ImageView();
+
     @FXML
     private HBox cardPane;
     @FXML
+    private HBox studentProfiles;
+    @FXML
     private ImageView header;
+    @FXML
+    private ImageView header1;
+    @FXML
+    private ImageView header2;
+    @FXML
+    private ImageView header3;
     @FXML
     private Label name;
     @FXML
@@ -63,12 +75,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-
-        Image studentImage =
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/student.png")));
-        //header.setClip(new Circle(170, 20, 15));
-        header.setImage(studentImage);
-
+        setStudentProfiles();
 
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
@@ -80,6 +87,29 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    //Dummy temporary student profile and number of students
+    void setStudentProfiles() {
+        int shift = 100;
+        int multiply = 10;
+        int height = 65;
+        int width = 70;
+        int circleX = 40;
+        int circleY = 20;
+        int radius = 20;
+        Image studentImage =
+                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/student.png")));
+        for (int i=1; i<numberOfStudents;i++) {
+            ImageView profile = new ImageView();
+            profile.setImage(studentImage);
+            profile.setFitHeight(height);
+            profile.setFitWidth(width);
+            profile.setX(profile.getX() + (i));
+            circleX = circleX + (i);
+            profile.setClip(new Circle(circleX, circleY, radius));
+            studentProfiles.getChildren().addAll(profile);
+        }
     }
 
     @Override
