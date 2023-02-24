@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <HBox prefWidth="210.0" VBox.vgrow="ALWAYS">
+   <HBox prefWidth="400.0" VBox.vgrow="ALWAYS">
       <children>
-         <ListView HBox.hgrow="ALWAYS" fx:id="personListViewLeftCol" prefHeight="100.0" prefWidth="70.0" />
-         <ListView HBox.hgrow="ALWAYS" fx:id="personListViewMidCol" prefHeight="100.0" prefWidth="70.0" />
-         <ListView HBox.hgrow="ALWAYS" fx:id="personListViewRightCol" prefHeight="100.0" prefWidth="70.0" />
+         <ListView fx:id="personListViewLeftCol" prefHeight="100.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </HBox.margin>
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding></ListView>
+         <ListView fx:id="personListViewMidCol" prefHeight="100.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <HBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </HBox.margin></ListView>
+         <ListView fx:id="personListViewRightCol" prefHeight="100.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </HBox.margin>
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding></ListView>
       </children>
    </HBox>
 </VBox>
