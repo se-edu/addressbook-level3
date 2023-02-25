@@ -45,7 +45,7 @@ public class PersonListPanel extends UiPart<Region> {
 
     ObservableList<Person> filterPersonList(ObservableList<Person> personList, int index) {
         int skip = 3;
-        int size = personList.size();
+        int size = personList.size() - index;
         int limit = size / skip + Math.min(size % skip, 1);
 
         ObservableList<Person> filteredPersonList = Stream.iterate(index, i -> i + skip)

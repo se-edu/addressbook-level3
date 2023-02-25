@@ -94,8 +94,8 @@ public class PersonCard extends UiPart<Region> {
         int shift = 100;
         int multiply = 10;
         int height = 65;
-        int width = 70;
-        int circleX = 40;
+        int width = 40;
+        int circleX = 20;
         int circleY = 20;
         int radius = 20;
         Image studentImage =
