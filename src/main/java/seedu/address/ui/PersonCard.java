@@ -37,7 +37,6 @@ public class PersonCard extends UiPart<Region> {
 
     //Change to actual number when merge
     private final int numberOfStudents = 5;
-    //private ImageView profile = new ImageView();
 
     @FXML
     private HBox cardPane;
@@ -89,15 +88,16 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
-    //Dummy temporary student profile and number of students
+    /**
+     * Populates dummy temporary student profile and number of students.
+     * Abstract out to a list of ObservableStudents through Logic once student class is implemented
+     */
     void setStudentProfiles() {
-        int shift = 100;
-        int multiply = 10;
-        int height = 65;
+        int height = 35;
         int width = 40;
-        int circleX = 20;
-        int circleY = 20;
-        int radius = 20;
+        int circleX = 17;
+        int circleY = 17;
+        int radius = 17;
         Image studentImage =
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/student.png")));
         for (int i=1; i<numberOfStudents;i++) {
@@ -105,8 +105,6 @@ public class PersonCard extends UiPart<Region> {
             profile.setImage(studentImage);
             profile.setFitHeight(height);
             profile.setFitWidth(width);
-            profile.setX(profile.getX() + (i));
-            circleX = circleX + (i);
             profile.setClip(new Circle(circleX, circleY, radius));
             studentProfiles.getChildren().addAll(profile);
         }
