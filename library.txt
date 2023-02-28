@@ -1,0 +1,120 @@
+Title: Clean Code
+Author: Robert C. Martin
+Edition: 2nd edition
+Published: 2012
+Category: Software Engineering, Programming, Coding
+On-shelf: true
+Borrower: []
+
+Title: The Pragmatic Programmer
+Author: Andrew Hunt, David Thomas
+Edition: 2nd edition
+Published: 2019
+Category: Software Engineering, Programming, Coding
+On-shelf: true
+Borrower: []
+
+Title: Design Patterns
+Author: Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides
+Edition: 1st edition
+Published: 1994
+Category: Software Engineering, Programming, Coding
+On-shelf: true
+Borrower: []
+
+Title: Refactoring
+Author: Martin Fowler
+Edition: 2nd edition
+Published: 2018
+Category: Software Engineering, Programming
+On-shelf: true
+Borrower: []
+
+Title: Programming Ruby 1.9 & 2.0
+Author: David Thomas, Andy Hunt, Chad Fowler
+Edition: 4th edition
+Published: 2013
+Category: Software Engineering, Programming, Coding
+On-shelf: true
+Borrower: []
+
+Title: Steel Structures
+Author: Salmon, Charles; Johnson, John; Malhas, Faris
+Edition: 5th edition
+Published: 2008
+Category: Civil Engineering
+On-shelf: true
+Borrower: []
+
+Title: Introduction to the Finite Element Method
+Author: J.N. Reddy
+Edition: 4th edition
+Published: 2018
+Category: Civil Engineering, Mechanical Engineering
+On-shelf: false
+Borrower: [Benjamin]
+
+Title: Mechanics of Solids and Structures
+Author: J.N. Reddy
+Edition: 2nd edition
+Published: 2012
+Category: Civil Engineering, Mechanical Engineering
+On-shelf: false
+Borrower: [Benjamin]
+
+Title: Dynamics of Structures
+Author: Anil Chopra
+Edition: 5th edition
+Published: 2019
+Category: Civil Engineering
+On-shelf: true
+Borrower: []
+
+Title: Principles of Foundation Engineering
+Author: Rey Hendricks
+Edition: 1st edition
+Published: 2019
+Category: Civil Engineering
+On-shelf: true
+Borrower: []
+
+Title: Matrix Structural Analysis
+Author: Richard H Gallagher, Ronald D Ziemian, William McGuire
+Edition: 2nd edition
+Published: 2015
+Category: Civil Engineering
+On-shelf: true
+Borrower: []
+
+Title: Structural Analysis
+Author: Amin Ghali, A. M. Neville, T. G. Brown
+Edition: 7th edition
+Published: 2017
+Category: Civil Engineering
+On-shelf: true
+Borrower: []
+
+Title: The 4 Hour Work Week
+Author: Timothy Ferriss
+Edition: 2nd edition
+Published: 2015
+Category: Business, Investment, Management, Self-help, Personal Development
+On-shelf: true
+Borrower: []
+
+Title: Rich Dad, Poor Dad
+Author: Robert T. Kiyosaki
+Edition: 1st edition
+Published: 2022
+Category: Business, Investment, Management, Self-help, Personal Development
+On-shelf: true
+Borrower: []
+
+Title: Know Your Worth
+Author: Elizabeth Rosario
+Edition: 1st edition
+Published: 2022
+Category: Business, Investment, Management, Self-help, Personal Development
+On-shelf: false
+Borrower: [Benjamin, Janice, Daphne, Brent]
+
