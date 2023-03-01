@@ -9,8 +9,10 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -36,11 +38,13 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
+
         listOfPersonListView = Arrays.asList(personListViewLeftCol, personListViewMidCol, personListViewRightCol);
         for (int i = 0; i < 3; i++) {
             ObservableList<Person> filteredPersonList = filterPersonList(personList, i);
             populatePersonListView(listOfPersonListView.get(i), filteredPersonList);
         }
+        //bindListViewsScroll();
     }
 
     ObservableList<Person> filterPersonList(ObservableList<Person> personList, int index) {
@@ -61,6 +65,42 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
+    //To add in next push
+    void bindListViewsScroll() {
+
+        Node n1 = personListViewLeftCol;
+        //Node n2 = personListViewMidCol.lookup(".scroll-bar");
+        //Node n3 = personListViewRightCol.lookup(".scroll-bar");
+
+        ScrollBar bar1 = (ScrollBar) personListViewLeftCol.lookup(".scroll-bar:vertical");
+        ScrollBar bar2 = (ScrollBar) personListViewMidCol.lookup(".scroll-bar:vertical");
+        ScrollBar bar3 = (ScrollBar) personListViewRightCol.lookup(".scroll-bar:vertical");
+
+        bar1.valueProperty().bindBidirectional(bar2.valueProperty());
+        bar1.valueProperty().bindBidirectional(bar3.valueProperty());
+
+        bar2.valueProperty().bindBidirectional(bar1.valueProperty());
+        bar2.valueProperty().bindBidirectional(bar3.valueProperty());
+
+        bar3.valueProperty().bindBidirectional(bar1.valueProperty());
+        bar3.valueProperty().bindBidirectional(bar2.valueProperty());
+
+        /*
+        if (n1 instanceof ScrollBar) {
+            final ScrollBar bar1 = (ScrollBar) n1;
+            Node n2 = personListViewMidCol.lookup(".scroll-bar");
+            if (n2 instanceof ScrollBar) {
+                final ScrollBar bar2 = (ScrollBar) n2;
+                Node n3 = personListViewRightCol.lookup(".scroll-bar");
+                if (n3 instanceof ScrollBar) {
+                    final ScrollBar bar3 = (ScrollBar) n3;
+                }
+                bar1.valueProperty().bindBidirectional(bar2.valueProperty());
+            }
+        }
+        */
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
@@ -77,5 +117,4 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

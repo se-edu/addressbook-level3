@@ -43,14 +43,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox studentProfiles;
     @FXML
-    private ImageView header;
-    @FXML
-    private ImageView header1;
-    @FXML
-    private ImageView header2;
-    @FXML
-    private ImageView header3;
-    @FXML
     private Label name;
     @FXML
     private Label id;
