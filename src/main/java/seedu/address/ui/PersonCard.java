@@ -32,6 +32,11 @@ public class PersonCard extends UiPart<Region> {
 
     //Change to actual number when merge
     private final int numberOfStudents = 5;
+    private final int height = 35;
+    private final int width = 40;
+    private final int circleX = 17;
+    private final int circleY = 17;
+    private final int radius = 17;
 
     @FXML
     private HBox cardPane;
@@ -61,7 +66,19 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-        setStudentProfiles();
+
+        //Populates dummy temporary student profile and number of students.
+        //Abstract out to a list of ObservableStudents through Logic once student class is implemented
+        Image studentImage =
+                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/student.png")));
+        for (int i = 1; i < numberOfStudents; i++) {
+            ImageView profile = new ImageView();
+            profile.setImage(studentImage);
+            profile.setFitHeight(height);
+            profile.setFitWidth(width);
+            profile.setClip(new Circle(circleX, circleY, radius));
+            studentProfiles.getChildren().addAll(profile);
+        }
 
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
@@ -73,36 +90,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    int getNumberOfStudents() {
-        return this.numberOfStudents;
-    }
-
-    HBox getStudentProfiles() {
-        return this.studentProfiles;
-    }
-
-    /**
-     * Populates dummy temporary student profile and number of students.
-     * Abstract out to a list of ObservableStudents through Logic once student class is implemented
-     */
-    void setStudentProfiles() {
-        int height = 35;
-        int width = 40;
-        int circleX = 17;
-        int circleY = 17;
-        int radius = 17;
-        Image studentImage =
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/student.png")));
-        for (int i = 1; i < numberOfStudents; i++) {
-            ImageView profile = new ImageView();
-            profile.setImage(studentImage);
-            profile.setFitHeight(height);
-            profile.setFitWidth(width);
-            profile.setClip(new Circle(circleX, circleY, radius));
-            studentProfiles.getChildren().addAll(profile);
-        }
     }
 
     @Override

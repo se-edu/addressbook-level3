@@ -3,16 +3,11 @@ package seedu.address.ui;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -36,39 +31,20 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(List<ObservableList<Person>> personList) {
         super(FXML);
 
         listOfPersonListView = Arrays.asList(personListViewLeftCol, personListViewMidCol, personListViewRightCol);
         for (int i = 0; i < 3; i++) {
-            ObservableList<Person> filteredPersonList = filterPersonList(personList, i);
-            populatePersonListView(listOfPersonListView.get(i), filteredPersonList);
+            ObservableList<Person> filteredPersonList = personList.get(i);
+            listOfPersonListView.get(i).setItems(filteredPersonList);
+            listOfPersonListView.get(i).setCellFactory(listView -> new PersonListViewCell());
         }
         //bindListViewsScroll();
     }
 
-    ObservableList<Person> filterPersonList(ObservableList<Person> personList, int index) {
-        if (personList.size() == 0) {
-            return personList;
-        }
-        int skip = 3;
-        int size = personList.size() - index;
-        int limit = size / skip + Math.min(size % skip, 1);
-
-        ObservableList<Person> filteredPersonList = Stream.iterate(index, i -> i + skip)
-                .limit(limit)
-                .map(personList::get)
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
-
-        return filteredPersonList;
-    }
-
-    void populatePersonListView(ListView<Person> personListView, ObservableList<Person> filteredPersonList) {
-        personListView.setItems(filteredPersonList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
-    }
-
     //To add in next push
+    /*
     void bindListViewsScroll() {
 
         Node n1 = personListViewLeftCol;
@@ -102,7 +78,8 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
         */
-    }
+    //}
+
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.

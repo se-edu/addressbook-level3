@@ -1,7 +1,13 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +22,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -119,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         greetingBar = new GreetingBar(logic.getFilteredPersonList());
         greetingBarPlaceholder.getChildren().add(greetingBar.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(filterPersonList(logic.getFilteredPersonList()));
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -130,6 +137,28 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    List<ObservableList<Person>> filterPersonList(ObservableList<Person> personList) {
+        int skip = 3;
+        List<ObservableList<Person>> filteredList = new ArrayList<>();
+
+        if (personList.size() == 0) {
+            return filteredList;
+        }
+
+        for (int j = 0; j < 3; j++) {
+            int size = personList.size() - j;
+            int limit = size / skip + Math.min(size % skip, 1);
+
+            ObservableList<Person> filteredPersonList = Stream.iterate(j, i -> i + skip)
+                    .limit(limit)
+                    .map(personList::get)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+            filteredList.add(filteredPersonList);
+        }
+        return filteredList;
     }
 
     /**
