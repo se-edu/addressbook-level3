@@ -75,6 +75,14 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    int getNumberOfStudents() {
+        return this.numberOfStudents;
+    }
+
+    HBox getStudentProfiles() {
+        return this.studentProfiles;
+    }
+
     /**
      * Populates dummy temporary student profile and number of students.
      * Abstract out to a list of ObservableStudents through Logic once student class is implemented

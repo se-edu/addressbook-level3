@@ -19,6 +19,8 @@ public class GreetingBar extends UiPart<Region> {
     @FXML
     private Label greetings;
 
+    private int size;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -27,8 +29,20 @@ public class GreetingBar extends UiPart<Region> {
         setGreetingCounter(personList);
     }
 
+    int getSize() {
+        return size;
+    }
+
+    Label getGreetings() {
+        return greetings;
+    }
+
     void setGreetingCounter(ObservableList<Person> personList) {
-        int size = personList.size();
+        if (personList == null) {
+            size = 0;
+        } else {
+            size = personList.size();
+        }
         String greetingText = "Hello, you have " + size + " tasks undone";
         greetings.setText(greetingText);
     }

@@ -48,6 +48,9 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     ObservableList<Person> filterPersonList(ObservableList<Person> personList, int index) {
+        if (personList.size() == 0) {
+            return personList;
+        }
         int skip = 3;
         int size = personList.size() - index;
         int limit = size / skip + Math.min(size % skip, 1);
