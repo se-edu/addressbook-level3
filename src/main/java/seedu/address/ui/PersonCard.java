@@ -5,15 +5,10 @@ import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
@@ -92,7 +87,7 @@ public class PersonCard extends UiPart<Region> {
         int radius = 17;
         Image studentImage =
                 new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/student.png")));
-        for (int i=1; i<numberOfStudents;i++) {
+        for (int i = 1; i < numberOfStudents; i++) {
             ImageView profile = new ImageView();
             profile.setImage(studentImage);
             profile.setFitHeight(height);

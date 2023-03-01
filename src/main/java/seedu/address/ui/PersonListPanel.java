@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.List;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,7 +32,7 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<Person> personListViewRightCol;
 
-    List<ListView<Person>> listOfPersonListView;
+    private List<ListView<Person>> listOfPersonListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
