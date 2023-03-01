@@ -8,48 +8,48 @@ import org.junit.jupiter.api.Test;
 public class GuiSettingsTest {
 
     @Test
-    public void windowWidth_defaultObject_widthReturned() {
+    public void toString_defaultObject_stringReturned() {
         int defaultWidth = 800;
         assertEquals(defaultWidth, new GuiSettings().getWindowWidth());
     }
 
     @Test
-    public void windowHeight_defaultObject_HeightReturned() {
+    public void toString_defaultObject_stringReturned() {
         int defaultHeight = 900;
         assertEquals(defaultHeight, new GuiSettings().getWindowHeight());
     }
 
     @Test
-    public void windowCoordinates_defaultObject_NullReturned() {
+    public void toString_defaultObject_stringReturned() {
         assertNull(new GuiSettings().getWindowCoordinates());
     }
 
     @Test
-    public void imageViewHeight_defaultObject_HeightReturned() {
+    public void toString_defaultObject_stringReturned() {
         int defaultImageViewHeight = 35;
         assertEquals(defaultImageViewHeight, new GuiSettings().getImageViewHeight());
     }
 
     @Test
-    public void imageViewWidth_defaultObject_WidthReturned() {
+    public void toString_defaultObject_stringReturned() {
         int defaultImageViewWidth = 40;
         assertEquals(defaultImageViewWidth, new GuiSettings().getImageViewWidth());
     }
 
     @Test
-    public void circleXCoordinates_defaultObject_XCoordinatesReturned() {
+    public void toString_defaultObject_stringReturned() {
         int defaultCircleXCoordinates = 17;
         assertEquals(defaultCircleXCoordinates, new GuiSettings().getCircleX());
     }
 
     @Test
-    public void circleYCoordinates_defaultObject_YCoordinatesReturned() {
+    public void toString_defaultObject_stringReturned() {
         int defaultCircleYCoordinates = 17;
         assertEquals(defaultCircleYCoordinates, new GuiSettings().getCircleY());
     }
 
     @Test
-    public void circleRadius_defaultObject_RadiusReturned() {
+    public void toString_defaultObject_stringReturned() {
         int defaultCircleRadius = 17;
         assertEquals(defaultCircleRadius, new GuiSettings().getCircleRadius());
     }
