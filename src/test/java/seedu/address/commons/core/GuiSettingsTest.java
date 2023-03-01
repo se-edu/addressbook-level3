@@ -9,13 +9,13 @@ public class GuiSettingsTest {
 
     @Test
     public void windowScene_defaultObject_widthReturned() {
-        int defaultWidth = 800;
+        int defaultWidth = 900;
         assertEquals(defaultWidth, new GuiSettings().getWindowWidth());
     }
 
     @Test
     public void windowScene_defaultObject_heightReturned() {
-        int defaultHeight = 900;
+        int defaultHeight = 800;
         assertEquals(defaultHeight, new GuiSettings().getWindowHeight());
     }
 
