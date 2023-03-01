@@ -1,16 +1,27 @@
 package seedu.address.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import seedu.address.MainApp;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class GreetingBarTest {
+
+    @BeforeEach
+    public void start(Stage stage) {
+        MainApp main = new MainApp();
+        main.start(stage);
+        assertNotNull(main);
+    }
 
     @Test
     public void greetingBar_nullPersonList_zeroReturned() {
