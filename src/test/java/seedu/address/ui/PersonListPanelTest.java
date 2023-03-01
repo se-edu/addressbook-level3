@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class PersonListPanelTest {
 

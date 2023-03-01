@@ -12,17 +12,17 @@ public class PersonCardTest {
     @Test
     public void numberOfStudents_defaultStudentsSize_sizeReturned() {
         int size = 5;
-        assertEquals(size, new PersonCard(new PersonBuilder().build(),0).getNumberOfStudents());
+        assertEquals(size, new PersonCard(new PersonBuilder().build(), 0).getNumberOfStudents());
     }
 
     @Test
     public void getStudentProfiles_defaultStudentsSize_notNullReturned() {
-        assertNotNull(new PersonCard(new PersonBuilder().build(),0).getStudentProfiles());
+        assertNotNull(new PersonCard(new PersonBuilder().build(), 0).getStudentProfiles());
     }
 
     @Test
     public void setStudentProfiles_defaultStudentsSize_notNullReturned() {
-        PersonCard personCard = new PersonCard(new PersonBuilder().build(),0);
+        PersonCard personCard = new PersonCard(new PersonBuilder().build(), 0);
         personCard.setStudentProfiles();
         assertNotNull(personCard.getStudentProfiles());
     }
