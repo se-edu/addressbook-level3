@@ -14,42 +14,42 @@ public class GuiSettingsTest {
     }
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toStrin_defaultObject_stringReturned() {
         int defaultHeight = 900;
         assertEquals(defaultHeight, new GuiSettings().getWindowHeight());
     }
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toStri_defaultObject_stringReturned() {
         assertNull(new GuiSettings().getWindowCoordinates());
     }
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toStr_defaultObject_stringReturned() {
         int defaultImageViewHeight = 35;
         assertEquals(defaultImageViewHeight, new GuiSettings().getImageViewHeight());
     }
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toStrings_defaultObject_stringReturned() {
         int defaultImageViewWidth = 40;
         assertEquals(defaultImageViewWidth, new GuiSettings().getImageViewWidth());
     }
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toStrinssg_defaultObject_stringReturned() {
         int defaultCircleXCoordinates = 17;
         assertEquals(defaultCircleXCoordinates, new GuiSettings().getCircleX());
     }
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toStrinsssg_defaultObject_stringReturned() {
         int defaultCircleYCoordinates = 17;
         assertEquals(defaultCircleYCoordinates, new GuiSettings().getCircleY());
     }
 
     @Test
-    public void toString_defaultObject_stringReturned() {
+    public void toStrigs_defaultObject_stringReturned() {
         int defaultCircleRadius = 17;
         assertEquals(defaultCircleRadius, new GuiSettings().getCircleRadius());
     }
