@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
+/**
+ * Informs the user on the number of undone tasks
+ */
 public class GreetingBar extends UiPart<Region> {
     private static final String FXML = "GreetingBar.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
@@ -18,6 +21,10 @@ public class GreetingBar extends UiPart<Region> {
 
     private int size;
 
+    /**
+     * Displays the number of students / tasks
+     * @param personList
+     */
     public GreetingBar(ObservableList<Person> personList) {
         super(FXML);
 
