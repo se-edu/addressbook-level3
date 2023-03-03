@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -30,13 +29,8 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
-    //Change to actual number when merge
+    //Change to actual number in next iteration
     private final int numberOfStudents = 5;
-    private final int height = 35;
-    private final int width = 40;
-    private final int circleX = 17;
-    private final int circleY = 17;
-    private final int radius = 17;
 
     @FXML
     private HBox cardPane;
@@ -68,17 +62,27 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-
-        //Populates dummy temporary student profile and number of students.
-        //Abstract out to a list of ObservableStudents through Logic once student class is implemented
+        //Retrieve the image url from the person object
         Image studentImage =
                 new Image(person.getPhoto().photoFilePath);
+
         for (int i = 1; i < numberOfStudents; i++) {
+            //Set the retrieved image url height and width
             ImageView profile = new ImageView();
             profile.setImage(studentImage);
-            profile.setFitHeight(height);
-            profile.setFitWidth(width);
-            profile.setClip(new Circle(circleX, circleY, radius));
+            profile.setFitHeight(person.getPhoto().getHeight());
+            profile.setFitWidth(person.getPhoto().getWidth());
+
+            //Set the image circle crop dimensions
+            Circle circleCrop = new Circle();
+            circleCrop.setCenterX(person.getPhoto().getCircleX());
+            circleCrop.setCenterY(person.getPhoto().getCircleY());
+            circleCrop.setRadius(person.getPhoto().getCircleRadius());
+
+            //Crop the image into a circle
+            profile.setClip(circleCrop);
+
+            //Add the cropped circle image into the dummy list
             studentProfiles.getChildren().addAll(profile);
         }
 
