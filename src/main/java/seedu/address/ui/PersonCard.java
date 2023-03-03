@@ -72,10 +72,10 @@ public class PersonCard extends UiPart<Region> {
         //Populates dummy temporary student profile and number of students.
         //Abstract out to a list of ObservableStudents through Logic once student class is implemented
         Image studentImage =
-                new Image("https://picsum.photos/id/64/200/300");
+                new Image(person.getPhoto().photoFilePath);
         for (int i = 1; i < numberOfStudents; i++) {
-            ImageView profile = new ImageView(studentImage);
-            //profile.setImage(studentImage);
+            ImageView profile = new ImageView();
+            profile.setImage(studentImage);
             profile.setFitHeight(height);
             profile.setFitWidth(width);
             profile.setClip(new Circle(circleX, circleY, radius));
