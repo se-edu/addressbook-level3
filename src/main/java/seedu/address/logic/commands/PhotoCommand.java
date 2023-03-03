@@ -88,7 +88,7 @@ public class PhotoCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof RemarkCommand)) {
+        if (!(other instanceof PhotoCommand)) {
             return false;
         }
 

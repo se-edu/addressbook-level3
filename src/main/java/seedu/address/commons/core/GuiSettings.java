@@ -20,6 +20,8 @@ public class GuiSettings implements Serializable {
     private static final int DEFAULT_CIRCLE_Y = 17;
     private static final int DEFAULT_CIRCLE_RADIUS = 17;
 
+    private static final Point NULL_COORDINATE = new Point();
+
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
@@ -35,7 +37,7 @@ public class GuiSettings implements Serializable {
     public GuiSettings() {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
-        windowCoordinates = null; // null represent no coordinates
+        windowCoordinates = NULL_COORDINATE;
         imageViewHeight = DEFAULT_IMAGEVIEW_HEIGHT;
         imageViewWidth = DEFAULT_IMAGEVIEW_WIDTH;
         circleX = DEFAULT_CIRCLE_X;
