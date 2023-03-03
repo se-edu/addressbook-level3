@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.GuiSettings;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Person's photo in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Photo {
@@ -26,6 +26,9 @@ public class Photo {
         setDimensions();
     }
 
+    /**
+     * Sets the necessary dimensions of the Image and the circle that crops that image
+     */
     void setDimensions() {
         GuiSettings guiSettings = new GuiSettings();
         this.height = guiSettings.getImageViewHeight();
@@ -36,22 +39,43 @@ public class Photo {
     }
 
     //No setters to customise profile picture dimensions in this iteration
+
+    /**
+     * Gets the height of the Image
+     * @return height
+     */
     public int getHeight() {
         return this.height;
     }
 
+    /**
+     * Gets the width of the Image
+     * @return width
+     */
     public int getWidth() {
         return this.width;
     }
 
+    /**
+     * Gets the X coordinate of the circle that crops the image
+     * @return circleX
+     */
     public int getCircleX() {
         return this.circleX;
     }
 
+    /**
+     * Gets the Y coordinate of the circle that crops the image
+     * @return circleY
+     */
     public int getCircleY() {
         return this.circleY;
     }
 
+    /**
+     * Gets the radius of the circle that crops the image
+     * @return radius
+     */
     public int getCircleRadius() {
         return this.radius;
     }

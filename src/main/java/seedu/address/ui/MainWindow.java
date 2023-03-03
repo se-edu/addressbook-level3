@@ -139,24 +139,34 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    /**
+     * Filters the observable list into three columns.The first element goes to the left list,
+     * the second element goes to the middle list, the third element goes to the right list,
+     * the fourth element then goes back to the left list and so on.
+     * @param personList
+     * @return List of ObservableList
+     */
     List<ObservableList<Person>> filterPersonList(ObservableList<Person> personList) {
         int skip = 3;
+        //Store all the filtered lists into a single list
         List<ObservableList<Person>> filteredList = new ArrayList<>();
 
+        //If nothing to filter, return empty list
         if (personList.size() == 0) {
             return filteredList;
         }
 
+        //Filter according to which list it belongs
         for (int j = 0; j < 3; j++) {
             int size = personList.size() - j;
             int limit = size / skip + Math.min(size % skip, 1);
 
-            ObservableList<Person> filteredPersonList = Stream.iterate(j, i -> i + skip)
+            ObservableList<Person> subList = Stream.iterate(j, i -> i + skip)
                     .limit(limit)
                     .map(personList::get)
                     .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
-            filteredList.add(filteredPersonList);
+            filteredList.add(subList);
         }
         return filteredList;
     }
