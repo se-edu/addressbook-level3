@@ -19,6 +19,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Photo photo;
 
     // Data fields
     private final Address address;
@@ -29,12 +30,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
+    public Person(Name name, Phone phone, Email email, Photo photo, Address address,
                   Remark remark, Performance performance, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags, photo);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.photo = photo;
         this.address = address;
         this.performance = performance;
         this.remark = remark;
@@ -51,6 +53,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Photo getPhoto() {
+        return photo;
     }
 
     public Address getAddress() {
@@ -104,6 +110,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getPhoto().equals(getPhoto())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -111,7 +118,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, photo, address, tags);
     }
 
     @Override
@@ -122,6 +129,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Photo: ")
+                .append(getPhoto())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Performance: ")

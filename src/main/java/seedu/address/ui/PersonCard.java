@@ -49,6 +49,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private Label photo;
+    @FXML
     private Label address;
     @FXML
     private Label email;
@@ -70,10 +72,10 @@ public class PersonCard extends UiPart<Region> {
         //Populates dummy temporary student profile and number of students.
         //Abstract out to a list of ObservableStudents through Logic once student class is implemented
         Image studentImage =
-                new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/student.png")));
+                new Image("https://picsum.photos/id/64/200/300");
         for (int i = 1; i < numberOfStudents; i++) {
-            ImageView profile = new ImageView();
-            profile.setImage(studentImage);
+            ImageView profile = new ImageView(studentImage);
+            //profile.setImage(studentImage);
             profile.setFitHeight(height);
             profile.setFitWidth(width);
             profile.setClip(new Circle(circleX, circleY, radius));
@@ -85,6 +87,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        photo.setText(person.getPhoto().photoFilePath);
         remark.setText(person.getRemark().value);
         performance.setText(person.getPerformance().value);
         person.getTags().stream()
