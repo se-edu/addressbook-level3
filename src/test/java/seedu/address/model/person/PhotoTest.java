@@ -79,4 +79,10 @@ public class PhotoTest {
         Photo photo = new Photo("https://picsum.photos/id/349/200/300");
         assertEquals(17, photo.getCircleRadius());
     }
+
+    @Test
+    public void getHash_hasCode_success() {
+        Photo photo = new Photo("https://picsum.photos/id/349/200/300");
+        photo.hashCode();
+    }
 }
