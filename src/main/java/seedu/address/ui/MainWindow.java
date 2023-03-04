@@ -1,7 +1,13 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +22,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private GreetingBar greetingBar;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -42,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private StackPane greetingBarPlaceholder;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
@@ -49,6 +60,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,7 +123,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        greetingBar = new GreetingBar(logic.getFilteredPersonList());
+        greetingBarPlaceholder.getChildren().add(greetingBar.getRoot());
+
+        personListPanel = new PersonListPanel(filterPersonList(logic.getFilteredPersonList()));
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -121,6 +137,38 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Filters the observable list into three columns.The first element goes to the left list,
+     * the second element goes to the middle list, the third element goes to the right list,
+     * the fourth element then goes back to the left list and so on.
+     * @param personList
+     * @return List of ObservableList
+     */
+    List<ObservableList<Person>> filterPersonList(ObservableList<Person> personList) {
+        int skip = 3;
+        //Store all the filtered lists into a single list
+        List<ObservableList<Person>> filteredList = new ArrayList<>();
+
+        //If nothing to filter, return empty list
+        if (personList.size() == 0) {
+            return filteredList;
+        }
+
+        //Filter according to which list it belongs
+        for (int j = 0; j < 3; j++) {
+            int size = personList.size() - j;
+            int limit = size / skip + Math.min(size % skip, 1);
+
+            ObservableList<Person> subList = Stream.iterate(j, i -> i + skip)
+                    .limit(limit)
+                    .map(personList::get)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+            filteredList.add(subList);
+        }
+        return filteredList;
     }
 
     /**

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox alignment="CENTER" prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: #1d1d1d;">
+        <children>
+            <Label fx:id="greetings" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="353.0" style="-fx-background-color: #1d1d1d;" text="Hello, you have tasks today" textAlignment="CENTER">
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin>
+            </Label>
+        </children>
+    </HBox>
+</VBox>

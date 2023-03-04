@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -18,15 +20,27 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Person> personListViewLeftCol;
+    @FXML
+    private ListView<Person> personListViewMidCol;
+    @FXML
+    private ListView<Person> personListViewRightCol;
+
+    private List<ListView<Person>> listOfPersonListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(List<ObservableList<Person>> personList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        listOfPersonListView = Arrays.asList(personListViewLeftCol, personListViewMidCol, personListViewRightCol);
+        for (int i = 0; i < personList.size(); i++) {
+            ObservableList<Person> filteredPersonList = personList.get(i);
+            listOfPersonListView.get(i).setItems(filteredPersonList);
+            listOfPersonListView.get(i).setCellFactory(listView -> new PersonListViewCell());
+        }
+        //bindListViewsScroll();
     }
 
     /**
@@ -45,5 +59,4 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
