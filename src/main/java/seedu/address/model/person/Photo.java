@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.net.URL;
+import javax.imageio.ImageIO;
+
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -9,7 +12,15 @@ import seedu.address.commons.core.GuiSettings;
  * Guarantees: immutable; is always valid
  */
 public class Photo {
+
+    public static final String MESSAGE_CONSTRAINTS = "Photo should be of the format https://valid_path "
+            + "and adhere to the following constraints:\n"
+            + "1. The url is a valid url \n"
+            + "2. The url leads to a valid image";
+
+    //Make it final to prevent unnecessary mutations
     public final String photoFilePath;
+
     private int height;
     private int width;
     private int circleX;
@@ -22,20 +33,42 @@ public class Photo {
      */
     public Photo(String photoFilePath) {
         requireNonNull(photoFilePath);
-        this.photoFilePath = photoFilePath;
-        setDimensions();
+        GuiSettings guiSettings = new GuiSettings();
+
+        //If the url is not a valid image, set it to the default image found in GuiSettings
+        if (!isValidPhoto(photoFilePath)) {
+            this.photoFilePath = guiSettings.getPhoto();
+        } else {
+            this.photoFilePath = photoFilePath;
+        }
+
+        setDefaultDimensions(guiSettings);
     }
 
     /**
      * Sets the necessary dimensions of the Image and the circle that crops that image
      */
-    void setDimensions() {
-        GuiSettings guiSettings = new GuiSettings();
+    void setDefaultDimensions(GuiSettings guiSettings) {
         this.height = guiSettings.getImageViewHeight();
         this.width = guiSettings.getImageViewWidth();
         this.circleX = guiSettings.getCircleX();
         this.circleY = guiSettings.getCircleY();
         this.radius = guiSettings.getCircleRadius();
+    }
+
+    /**
+     * Checks if the url provided is a valid image.
+     * @param photoFilePath
+     * @return boolean value if whether url is valid
+     */
+    public static boolean isValidPhoto(String photoFilePath) {
+        try {
+            ImageIO.read(new URL(photoFilePath));
+        } catch (Exception e) {
+            //If URL is not valid, set it to a default image icon
+            return false;
+        }
+        return true;
     }
 
     //No setters to customise profile picture dimensions in this iteration

@@ -107,7 +107,6 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        //To be confirmed
         if (photo == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Photo.class.getSimpleName()));
         }

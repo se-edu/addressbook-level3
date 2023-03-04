@@ -35,51 +35,13 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
 
         listOfPersonListView = Arrays.asList(personListViewLeftCol, personListViewMidCol, personListViewRightCol);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < personList.size(); i++) {
             ObservableList<Person> filteredPersonList = personList.get(i);
             listOfPersonListView.get(i).setItems(filteredPersonList);
             listOfPersonListView.get(i).setCellFactory(listView -> new PersonListViewCell());
         }
         //bindListViewsScroll();
     }
-
-    //To add in next push
-    /*
-    void bindListViewsScroll() {
-
-        Node n1 = personListViewLeftCol;
-        //Node n2 = personListViewMidCol.lookup(".scroll-bar");
-        //Node n3 = personListViewRightCol.lookup(".scroll-bar");
-
-        ScrollBar bar1 = (ScrollBar) personListViewLeftCol.lookup(".scroll-bar:vertical");
-        ScrollBar bar2 = (ScrollBar) personListViewMidCol.lookup(".scroll-bar:vertical");
-        ScrollBar bar3 = (ScrollBar) personListViewRightCol.lookup(".scroll-bar:vertical");
-
-        bar1.valueProperty().bindBidirectional(bar2.valueProperty());
-        bar1.valueProperty().bindBidirectional(bar3.valueProperty());
-
-        bar2.valueProperty().bindBidirectional(bar1.valueProperty());
-        bar2.valueProperty().bindBidirectional(bar3.valueProperty());
-
-        bar3.valueProperty().bindBidirectional(bar1.valueProperty());
-        bar3.valueProperty().bindBidirectional(bar2.valueProperty());
-
-        /*
-        if (n1 instanceof ScrollBar) {
-            final ScrollBar bar1 = (ScrollBar) n1;
-            Node n2 = personListViewMidCol.lookup(".scroll-bar");
-            if (n2 instanceof ScrollBar) {
-                final ScrollBar bar2 = (ScrollBar) n2;
-                Node n3 = personListViewRightCol.lookup(".scroll-bar");
-                if (n3 instanceof ScrollBar) {
-                    final ScrollBar bar3 = (ScrollBar) n3;
-                }
-                bar1.valueProperty().bindBidirectional(bar2.valueProperty());
-            }
-        }
-        */
-    //}
-
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.

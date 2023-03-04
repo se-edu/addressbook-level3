@@ -20,7 +20,9 @@ public class GuiSettings implements Serializable {
     private static final int DEFAULT_CIRCLE_Y = 17;
     private static final int DEFAULT_CIRCLE_RADIUS = 17;
 
-    private static final Point NULL_COORDINATE = new Point();
+    private static final String DEFAULT_PHOTO_URL = "https://picsum.photos/id/443/200/300";
+
+    private static final Point NULL_COORDINATE = null;
 
     private final double windowWidth;
     private final double windowHeight;
@@ -30,6 +32,7 @@ public class GuiSettings implements Serializable {
     private final int circleX;
     private final int circleY;
     private final int circleRadius;
+    private final String photo;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -43,6 +46,7 @@ public class GuiSettings implements Serializable {
         circleX = DEFAULT_CIRCLE_X;
         circleY = DEFAULT_CIRCLE_Y;
         circleRadius = DEFAULT_CIRCLE_RADIUS;
+        photo = DEFAULT_PHOTO_URL;
     }
 
     //Allow user to modify student profile size in next iteration
@@ -58,6 +62,7 @@ public class GuiSettings implements Serializable {
         circleX = DEFAULT_CIRCLE_X;
         circleY = DEFAULT_CIRCLE_Y;
         circleRadius = DEFAULT_CIRCLE_RADIUS;
+        photo = DEFAULT_PHOTO_URL;
     }
 
     public double getWindowWidth() {
@@ -90,6 +95,10 @@ public class GuiSettings implements Serializable {
 
     public int getCircleRadius() {
         return circleRadius;
+    }
+
+    public String getPhoto() {
+        return photo;
     }
 
     @Override
