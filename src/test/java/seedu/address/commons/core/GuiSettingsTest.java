@@ -1,6 +1,7 @@
 package seedu.address.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
@@ -52,5 +53,17 @@ public class GuiSettingsTest {
     public void circleShape_defaultObject_radiusReturned() {
         int defaultCircleRadius = 17;
         assertEquals(defaultCircleRadius, new GuiSettings().getCircleRadius());
+    }
+
+    @Test
+    public void equalsMethod() {
+        Object anotherObject = new Object();
+        assertEquals(false, new GuiSettings().equals(anotherObject));
+    }
+
+    @Test
+    public void hashMethod() {
+        GuiSettings guiSettings = new GuiSettings();
+        assertNotNull(guiSettings.hashCode());
     }
 }
