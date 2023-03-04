@@ -4,9 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,14 +29,21 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
+    //Change to actual number in next iteration
+    private final int numberOfStudents = 5;
+
     @FXML
     private HBox cardPane;
+    @FXML
+    private HBox studentProfiles;
     @FXML
     private Label name;
     @FXML
     private Label id;
     @FXML
     private Label phone;
+    @FXML
+    private Label photo;
     @FXML
     private Label address;
     @FXML
@@ -51,11 +61,37 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+
+        //Retrieve the image url from the person object
+        Image studentImage =
+                new Image(person.getPhoto().photoFilePath);
+
+        for (int i = 1; i < numberOfStudents; i++) {
+            //Set the retrieved image url height and width
+            ImageView profile = new ImageView();
+            profile.setImage(studentImage);
+            profile.setFitHeight(person.getPhoto().getHeight());
+            profile.setFitWidth(person.getPhoto().getWidth());
+
+            //Set the image circle crop dimensions
+            Circle circleCrop = new Circle();
+            circleCrop.setCenterX(person.getPhoto().getCircleX());
+            circleCrop.setCenterY(person.getPhoto().getCircleY());
+            circleCrop.setRadius(person.getPhoto().getCircleRadius());
+
+            //Crop the image into a circle
+            profile.setClip(circleCrop);
+
+            //Add the cropped circle image into the dummy list
+            studentProfiles.getChildren().addAll(profile);
+        }
+
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        photo.setText(person.getPhoto().photoFilePath);
         remark.setText(person.getRemark().value);
         performance.setText(person.getPerformance().value);
         person.getTags().stream()

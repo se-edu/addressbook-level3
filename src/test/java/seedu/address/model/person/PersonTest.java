@@ -88,4 +88,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void testHashCode() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        aliceCopy.hashCode();
+    }
 }
