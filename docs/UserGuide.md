@@ -267,7 +267,7 @@ Examples:
 * `filter student all participation 90`
 
 
-### Filter students in recurring events: `alert student`
+### Alert students in recurring events: `alert student`
 
 Provides a list of students who are suddenly performing poorly based on a certain metric, such as a sudden drop in participation level or a sudden increase in urgency level.
 
