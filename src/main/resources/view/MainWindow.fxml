@@ -3,16 +3,17 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="800" minWidth="900" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -32,25 +33,44 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+            <HBox prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: transparent;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="101.0" style="-fx-background-color: #1d1d1d;" text="TrAcker">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                    <StackPane fx:id="commandBoxPlaceholder" prefHeight="12.0" prefWidth="341.0" style="-fx-border-color: #64CFD8; -fx-border-radius: 16px;" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
+               </children>
+            </HBox>
+
+<!--          <HBox alignment="CENTER" prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: #1d1d1d;">-->
+<!--              <children>-->
+<!--                  <Label fx:id="greetings" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="101.0" style="-fx-background-color: #1d1d1d;" text="Hello, you have tasks today" textAlignment="CENTER">-->
+<!--                      <HBox.margin>-->
+<!--                          <Insets />-->
+<!--                      </HBox.margin>-->
+<!--                  </Label>-->
+<!--              </children>-->
+<!--          </HBox>-->
+          <StackPane fx:id="greetingBarPlaceholder" VBox.vgrow="NEVER" />
+
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
