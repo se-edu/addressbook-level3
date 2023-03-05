@@ -214,6 +214,24 @@ Examples:
 * `sort consultation date nonreverse`
 
 
+### Replace existing list with sorted list: `replace sort recur`
+
+Similar to the sorting command, except with a "replace" keyword in front. This function overwrites the recurring event list with a sorted one with the sorting parameters specified.
+
+There should be a prompt to ask if the TA wants to proceed with overwriting as the process is irreversible.
+
+Format: `replace sort [type] [sorting method] [sorting order]`
+
+Examples:
+
+
+
+* `replace sort lab alphabetical reverse`
+* `replace sort tutorial duration nonreverse`
+* `replace sort consultation date nonreverse`
+
+
+
 ### Help tutorial for recurring events: `help recur`
 
 Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
@@ -955,11 +973,28 @@ Examples:
    <td>
 <ul>
 
-<li><code>sort labs alphabetical</code>
+<li><code>sort labs alphabetical reverse</code>
 
-<li><code>sort consultation date</code>
+<li><code>sort consultation date nonreverse</code>
 
-<li><code>sort tutorial duration</code>
+<li><code>sort tutorial duration nonreverse</code>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Replace sort recur</strong>
+   </td>
+   <td><code>replace sort [type] [sorting method]</code>
+   </td>
+   <td>
+<ul>
+
+<li><code>replace sort labs alphabetical reverse</code>
+
+<li><code>replace sort consultation date nonreverse</code>
+
+<li><code>replace sort tutorial duration nonreverse</code>
 </li>
 </ul>
    </td>
