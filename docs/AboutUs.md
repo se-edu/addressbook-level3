@@ -18,6 +18,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Deliverables and deadlines
 
+### Shi Jiaao
+
+<img src="docs/images/shijiaao.png" width="200px">
+
+[[github](https://github.com/ShiJiaAo)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Deliverables and deadlines
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
