@@ -14,7 +14,7 @@
 
 ## Setting up the project in your computer
 
-<box type="warning">
+<box type="warning" light>
 
 **Caution:**
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
@@ -38,7 +38,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
    If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
 
-   <box type="tip">
+   <box type="tip" light>
    
    **Tip:**
    Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.

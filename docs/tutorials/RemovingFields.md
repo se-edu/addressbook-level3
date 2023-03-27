@@ -54,7 +54,7 @@ Let’s try removing references to `Address` in `EditPersonDescriptor`.
 
 1. Remove the usages of `address` and select `Do refactor` when you are done.
 
-   <box type="tip">
+   <box type="tip" light>
 
    **Tip:** Removing usages may result in errors. Exercise discretion and fix them. For example, removing the `address` field from the `Person` class will require you to modify its constructor.
    </box>

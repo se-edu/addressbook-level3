@@ -218,7 +218,7 @@ public RemarkCommand parse(String args) throws ParseException {
 }
 ```
 
-<box type="info">
+<box type="info" light>
 
 :information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
 
@@ -282,7 +282,7 @@ We change the constructor of `Person` to take a `Remark`. We will also need to d
 
 Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
 
-<box type="tip">
+<box type="tip" light>
 
 Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
 
@@ -297,7 +297,7 @@ AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the 
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
-<box type="warning">
+<box type="warning" light>
 
 You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
 
