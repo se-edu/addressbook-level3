@@ -91,7 +91,8 @@ public class MainApp extends Application {
                     + " is not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file " + storage.getAddressBookFilePath()
+                    + ". Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
 
@@ -166,7 +167,8 @@ public class MainApp extends Application {
                             + "Using default user preferences");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file " + prefsFilePath
+                    + ". Will be starting with an empty AddressBook");
             initializedPrefs = new UserPrefs();
         }
 
