@@ -24,7 +24,8 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: %s\n"
             + "Please exit the application immediately via the exit button";
-    public static final String FILE_OPS_PERM_ERROR_MESSAGE = "Could not save data to file: Insufficient Permissions for %s\n"
+    public static final String FILE_OPS_PERM_ERROR_MESSAGE = "Could not save data to file:"
+            + "Insufficient Permissions for %s\n"
             + "Please exit the application immediately via the exit button";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
@@ -33,8 +34,7 @@ public class LogicManager implements Logic {
     private final AddressBookParser addressBookParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and
-     * {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
