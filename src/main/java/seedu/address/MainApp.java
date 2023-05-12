@@ -121,11 +121,12 @@ public class MainApp extends Application {
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
             if (!configOptional.isPresent()) {
-                logger.info("Config file not found. Will be starting with a new default config file.");
+                logger.info("Config file " + configFilePathUsed
+                        + " not found. Will be starting with a new default config file.");
             }
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed
+            logger.warning("Config file " + configFilePathUsed
                     + " is not in the correct format. Using default config properties");
             initializedConfig = new Config();
         }
