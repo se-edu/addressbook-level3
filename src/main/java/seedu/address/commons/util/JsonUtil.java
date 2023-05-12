@@ -62,7 +62,7 @@ public class JsonUtil {
         if (!Files.exists(filePath)) {
             return Optional.empty();
         }
-        logger.info("Json file " + filePath + " found");
+        logger.info("JSON file " + filePath + " found");
 
         T jsonFile;
 
