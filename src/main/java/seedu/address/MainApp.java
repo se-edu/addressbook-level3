@@ -80,16 +80,16 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook");
+                        + " populated with a sample AddressBook.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath()
-                    + " might be corrupted or not in the correct format. Will be starting with an empty AddressBook");
+                    + " might be corrupted or not in the correct format. Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file " + storage.getAddressBookFilePath()
-                    + ". Will be starting with an empty AddressBook");
+                    + ". Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
         }
 
@@ -126,7 +126,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file " + configFilePathUsed
-                    + " is not in the correct format. Using default config properties");
+                    + " is not in the correct format. Using default config properties.");
             initializedConfig = new Config();
         }
 
@@ -156,13 +156,12 @@ public class MainApp extends Application {
             }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
-            logger.warning(
-                    "Preference file at " + prefsFilePath
-                            + " might be missing or corrupted. Using default preferences");
+            logger.warning("Preference file at " + prefsFilePath
+                    + " might be missing or corrupted. Using default preferences.");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from preference file " + prefsFilePath
-                    + ". Will be starting with an empty AddressBook");
+                    + ". Will be starting with an empty AddressBook.");
             initializedPrefs = new UserPrefs();
         }
 
@@ -188,7 +187,7 @@ public class MainApp extends Application {
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            logger.severe("Failed to save preferences : " + StringUtil.getDetails(e));
         }
     }
 }
