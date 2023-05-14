@@ -1,6 +1,7 @@
 # Gradle build files
 /.gradle/
 /build/
+/bin/
 src/main/resources/docs/
 
 # IDEA files
