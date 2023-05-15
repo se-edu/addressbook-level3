@@ -84,8 +84,8 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath()
-                    + " is not in the correct format. Will be starting with an empty AddressBook.");
+            logger.warning("Data file at " + storage.getAddressBookFilePath() + " is not in the correct format."
+                    + " Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file " + storage.getAddressBookFilePath()
@@ -125,8 +125,8 @@ public class MainApp extends Application {
             }
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed
-                    + " is not in the correct format. Using default config properties.");
+            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format."
+                    + " Using default config properties.");
             initializedConfig = new Config();
         }
 
@@ -156,8 +156,8 @@ public class MainApp extends Application {
             }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
-            logger.warning("Preference file at " + prefsFilePath
-                    + " is not in the correct format. Using default preferences.");
+            logger.warning("Preference file at " + prefsFilePath + " is not in the correct format."
+                    + " Using default preferences.");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from preference file " + prefsFilePath
