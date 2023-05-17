@@ -49,6 +49,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_FIELD = "Detected multiple modification to a same parameter, "
+            + "applying the latest change.\n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -83,7 +85,13 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+
+        String msg = String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+
+        if (editPersonDescriptor.getDuplicateParameter()) {
+            return new CommandResult(MESSAGE_DUPLICATE_FIELD + msg);
+        }
+        return new CommandResult(String.format(msg, editedPerson));
     }
 
     /**
@@ -130,6 +138,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private boolean isDuplicateParameter = false;
 
         public EditPersonDescriptor() {}
 
@@ -143,6 +152,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setDuplicateParameter(toCopy.isDuplicateParameter);
         }
 
         /**
@@ -201,6 +211,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setDuplicateParameter(boolean isDuplicateParameter) {
+            this.isDuplicateParameter = isDuplicateParameter;
+        }
+
+        public boolean getDuplicateParameter() {
+            return isDuplicateParameter;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -220,7 +238,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getDuplicateParameter() == e.getDuplicateParameter();
         }
     }
 }

@@ -35,6 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
+        boolean duplicatedParameter = false;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -44,18 +45,24 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            duplicatedParameter = duplicatedParameter || (argMultimap.getAllValues(PREFIX_NAME).size() > 1);
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            duplicatedParameter = duplicatedParameter || (argMultimap.getAllValues(PREFIX_PHONE).size() > 1);
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            duplicatedParameter = duplicatedParameter || (argMultimap.getAllValues(PREFIX_EMAIL).size() > 1);
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            duplicatedParameter = duplicatedParameter || (argMultimap.getAllValues(PREFIX_ADDRESS).size() > 1);
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+        editPersonDescriptor.setDuplicateParameter(duplicatedParameter);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

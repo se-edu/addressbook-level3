@@ -81,6 +81,15 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isDuplicateParameter} of the {@code EditPersonDescriptor}
+     * that we are building to true.
+     */
+    public EditPersonDescriptorBuilder withDuplicateParameter() {
+        descriptor.setDuplicateParameter(true);
+        return this;
+    }
+
     public EditPersonDescriptor build() {
         return descriptor;
     }
