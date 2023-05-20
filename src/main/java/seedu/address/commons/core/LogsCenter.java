@@ -1,5 +1,7 @@
 package seedu.address.commons.core;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.ConsoleHandler;
@@ -53,9 +55,7 @@ public class LogsCenter {
      * Creates a Logger for the given class name.
      */
     public static <T> Logger getLogger(Class<T> clazz) {
-        if (clazz == null) {
-            return Logger.getLogger("");
-        }
+        requireNonNull(clazz);
         return getLogger(clazz.getSimpleName());
     }
 
