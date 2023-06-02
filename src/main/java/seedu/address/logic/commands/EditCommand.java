@@ -49,8 +49,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_DUPLICATE_FIELDS = "Detected multiple modifications for the following field%s: "
-            + "%s.\nOnly the last change will be applied.\n";
+    public static final String MESSAGE_DUPLICATE_FIELDS = "Detected multiple values for the following field%s: "
+            + "%s.\nOnly the last value will be applied.\n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

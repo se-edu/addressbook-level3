@@ -43,28 +43,16 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            if (argMultimap.getAllValues(PREFIX_NAME).size() > 1) {
-                editPersonDescriptor.addDuplicateField(PREFIX_NAME.getPrefix());
-            }
+        if (ifPresentHandleDuplicate(editPersonDescriptor, argMultimap, PREFIX_NAME)) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            if (argMultimap.getAllValues(PREFIX_PHONE).size() > 1) {
-                editPersonDescriptor.addDuplicateField(PREFIX_PHONE.getPrefix());
-            }
+        if (ifPresentHandleDuplicate(editPersonDescriptor, argMultimap, PREFIX_PHONE)) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            if (argMultimap.getAllValues(PREFIX_EMAIL).size() > 1) {
-                editPersonDescriptor.addDuplicateField(PREFIX_EMAIL.getPrefix());
-            }
+        if (ifPresentHandleDuplicate(editPersonDescriptor, argMultimap, PREFIX_EMAIL)) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            if (argMultimap.getAllValues(PREFIX_ADDRESS).size() > 1) {
-                editPersonDescriptor.addDuplicateField(PREFIX_ADDRESS.getPrefix());
-            }
+        if (ifPresentHandleDuplicate(editPersonDescriptor, argMultimap, PREFIX_ADDRESS)) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
@@ -91,4 +79,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Checks if the prefix is present in the argument multimap, if the multiple prefixes are found, add them to the
+     * duplicate fields list in the descriptor.
+     */
+    private boolean ifPresentHandleDuplicate(EditPersonDescriptor descriptor, ArgumentMultimap argMap, Prefix prefix) {
+        if (argMap.getAllValues(prefix).size() > 1) {
+            descriptor.addDuplicateField(prefix.getPrefix());
+        }
+        return argMap.getValue(prefix).isPresent();
+    }
 }

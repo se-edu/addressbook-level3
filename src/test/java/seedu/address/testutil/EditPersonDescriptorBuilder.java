@@ -46,65 +46,41 @@ public class EditPersonDescriptorBuilder {
 
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * If the name is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withName(String name) {
+        descriptor.getEmail().ifPresent(x -> descriptor.addDuplicateField(PREFIX_NAME.getPrefix()));
         descriptor.setName(new Name(name));
         return this;
     }
 
     /**
-     * Add a duplicate name field to the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withDuplicateName() {
-        descriptor.addDuplicateField(PREFIX_NAME.getPrefix());
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * If the phone is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
+        descriptor.getPhone().ifPresent(x -> descriptor.addDuplicateField(PREFIX_PHONE.getPrefix()));
         descriptor.setPhone(new Phone(phone));
         return this;
     }
 
     /**
-     * Add a duplicate phone field to the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withDuplicatePhone() {
-        descriptor.addDuplicateField(PREFIX_PHONE.getPrefix());
-        return this;
-    }
-
-    /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * If the email is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
+        descriptor.getEmail().ifPresent(x -> descriptor.addDuplicateField(PREFIX_EMAIL.getPrefix()));
         descriptor.setEmail(new Email(email));
         return this;
     }
 
     /**
-     * Add a duplicate email field to the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withDuplicateEmail() {
-        descriptor.addDuplicateField(PREFIX_EMAIL.getPrefix());
-        return this;
-    }
-
-    /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * If the address is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
+        descriptor.getAddress().ifPresent(x -> descriptor.addDuplicateField(PREFIX_ADDRESS.getPrefix()));
         descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Add a duplicate address field to the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withDuplicateAddress() {
-        descriptor.addDuplicateField(PREFIX_ADDRESS.getPrefix());
         return this;
     }
 
