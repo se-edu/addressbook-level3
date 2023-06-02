@@ -23,10 +23,12 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: %s\n"
-            + "Please exit the application immediately via the exit button";
-    public static final String FILE_OPS_PERM_ERROR_MESSAGE = "Could not save data to file:"
-            + "Insufficient Permissions for %s\n"
-            + "Please exit the application immediately via the exit button";
+            + "Please exit the application immediately via the exit button.";
+    public static final String FILE_OPS_PERM_ERROR_MESSAGE = "Could not save data to file: "
+            + "Insufficient Permissions for %s.\n\n"
+            + "Please exit the application immediately via the exit button (i.e., the button marked with an 'X' icon)\n"
+            + "Before running it again, ensure the application .jar file has write permissions to the folder it is in.";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -53,11 +55,9 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (AccessDeniedException e) {
-            String message = e.getMessage();
-            throw new CommandException(String.format(FILE_OPS_PERM_ERROR_MESSAGE, message), e);
+            throw new CommandException(String.format(FILE_OPS_PERM_ERROR_MESSAGE, e.getMessage()), e);
         } catch (IOException ioe) {
-            String message = ioe.getMessage();
-            throw new CommandException(String.format(FILE_OPS_ERROR_MESSAGE, message), ioe);
+            throw new CommandException(String.format(FILE_OPS_ERROR_MESSAGE, ioe.getMessage()), ioe);
         }
 
         return commandResult;
