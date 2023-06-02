@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -48,10 +53,26 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Add a duplicate name field to the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDuplicateName() {
+        descriptor.addDuplicateField(PREFIX_NAME.getPrefix());
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
+        return this;
+    }
+
+    /**
+     * Add a duplicate phone field to the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDuplicatePhone() {
+        descriptor.addDuplicateField(PREFIX_PHONE.getPrefix());
         return this;
     }
 
@@ -64,10 +85,26 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Add a duplicate email field to the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDuplicateEmail() {
+        descriptor.addDuplicateField(PREFIX_EMAIL.getPrefix());
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Add a duplicate address field to the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDuplicateAddress() {
+        descriptor.addDuplicateField(PREFIX_ADDRESS.getPrefix());
         return this;
     }
 
