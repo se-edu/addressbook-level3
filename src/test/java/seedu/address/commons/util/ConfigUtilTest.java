@@ -29,7 +29,7 @@ public class ConfigUtilTest {
     }
 
     @Test
-    public void read_missingFile_emptyResult() throws DataConversionException {
+    public void read_missingFile_emptyResult() throws DataConversionException, IOException {
         assertFalse(read("NonExistentFile.json").isPresent());
     }
 
@@ -39,7 +39,7 @@ public class ConfigUtilTest {
     }
 
     @Test
-    public void read_fileInOrder_successfullyRead() throws DataConversionException {
+    public void read_fileInOrder_successfullyRead() throws DataConversionException, IOException {
 
         Config expected = getTypicalConfig();
 
@@ -48,13 +48,13 @@ public class ConfigUtilTest {
     }
 
     @Test
-    public void read_valuesMissingFromFile_defaultValuesUsed() throws DataConversionException {
+    public void read_valuesMissingFromFile_defaultValuesUsed() throws DataConversionException, IOException {
         Config actual = read("EmptyConfig.json").get();
         assertEquals(new Config(), actual);
     }
 
     @Test
-    public void read_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
+    public void read_extraValuesInFile_extraValuesIgnored() throws DataConversionException, IOException {
         Config expected = getTypicalConfig();
         Config actual = read("ExtraValuesConfig.json").get();
 
@@ -68,7 +68,7 @@ public class ConfigUtilTest {
         return config;
     }
 
-    private Optional<Config> read(String configFileInTestDataFolder) throws DataConversionException {
+    private Optional<Config> read(String configFileInTestDataFolder) throws DataConversionException, IOException {
         Path configFilePath = addToTestDataPathIfNotNull(configFileInTestDataFolder);
         return ConfigUtil.readConfig(configFilePath);
     }

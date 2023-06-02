@@ -128,6 +128,10 @@ public class MainApp extends Application {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format."
                     + " Using default config properties.");
             initializedConfig = new Config();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file " + configFilePathUsed
+                    + ". Will be starting with default configuration");
+            initializedConfig = new Config();
         }
 
         //Update config file in case it was missing to begin with or there are new/unused fields
