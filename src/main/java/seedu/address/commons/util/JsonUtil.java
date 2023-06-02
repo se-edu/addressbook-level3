@@ -55,8 +55,8 @@ public class JsonUtil {
      * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class given here.
      * @throws DataConversionException if the file format is not as expected.
      */
-    public static <T> Optional<T> readJsonFile(
-            Path filePath, Class<T> classOfObjectToDeserialize) throws DataConversionException {
+    public static <T> Optional<T> readJsonFile(Path filePath, Class<T> classOfObjectToDeserialize)
+            throws DataConversionException, IOException {
         requireNonNull(filePath);
 
         if (!Files.exists(filePath)) {
@@ -68,9 +68,12 @@ public class JsonUtil {
 
         try {
             jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
+        } catch (JsonProcessingException e) {
+            logger.warning("Error processing data from jsonFile file " + filePath + ": " + e);
+            throw new DataConversionException(e);
         } catch (IOException e) {
             logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
-            throw new DataConversionException(e);
+            throw e;
         }
 
         return Optional.of(jsonFile);
@@ -96,7 +99,8 @@ public class JsonUtil {
      * @param <T> The generic type to create an instance of
      * @return The instance of T with the specified values in the JSON string
      */
-    public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException {
+    public static <T> T fromJsonString(String json, Class<T> instanceClass)
+            throws IOException, JsonProcessingException {
         return objectMapper.readValue(json, instanceClass);
     }
 

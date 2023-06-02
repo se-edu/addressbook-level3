@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
  */
 public class ConfigUtil {
 
-    public static Optional<Config> readConfig(Path configFilePath) throws DataConversionException {
+    public static Optional<Config> readConfig(Path configFilePath) throws DataConversionException, IOException {
         return JsonUtil.readJsonFile(configFilePath, Config.class);
     }
 
