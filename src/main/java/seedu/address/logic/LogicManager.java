@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -21,7 +22,17 @@ import seedu.address.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data! The following errors has occured: %s\n"
+            + "Continued usage of the application without fixing this error might lead to data loss.\n"
+            + "You can exit the application by clicking the exit button (i.e., the button marked with an 'X' icon).\n";
+
+
+    public static final String FILE_OPS_PERMISSION_ERROR_MESSAGE = "Could not save data to file: "
+            + "Insufficient permissions for %s.\n\n"
+            + "Please ensure the application .jar file has write permissions to the folder it is in."
+            + "Continued usage of the application without fixing this error might lead to data loss.\n"
+            + "You can exit the application by clicking the exit button (i.e., the button marked with an 'X' icon).\n";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -47,8 +58,10 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+        } catch (AccessDeniedException e) {
+            throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_MESSAGE, e.getMessage()), e);
         } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            throw new CommandException(String.format(FILE_OPS_ERROR_MESSAGE, ioe.getMessage()), ioe);
         }
 
         return commandResult;
