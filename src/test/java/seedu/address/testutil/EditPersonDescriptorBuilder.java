@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -41,32 +46,40 @@ public class EditPersonDescriptorBuilder {
 
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * If the name is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withName(String name) {
+        descriptor.getName().ifPresent(x -> descriptor.addDuplicateField(PREFIX_NAME.getPrefix()));
         descriptor.setName(new Name(name));
         return this;
     }
 
     /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * If the phone is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
+        descriptor.getPhone().ifPresent(x -> descriptor.addDuplicateField(PREFIX_PHONE.getPrefix()));
         descriptor.setPhone(new Phone(phone));
         return this;
     }
 
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * If the email is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
+        descriptor.getEmail().ifPresent(x -> descriptor.addDuplicateField(PREFIX_EMAIL.getPrefix()));
         descriptor.setEmail(new Email(email));
         return this;
     }
 
     /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * If the address is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
+        descriptor.getAddress().ifPresent(x -> descriptor.addDuplicateField(PREFIX_ADDRESS.getPrefix()));
         descriptor.setAddress(new Address(address));
         return this;
     }
