@@ -43,15 +43,22 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
+        handleDuplicatePrefixes(editPersonDescriptor, argMultimap, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_ADDRESS);
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
+        handleDuplicatePrefixes(editPersonDescriptor, argMultimap, PREFIX_PHONE);
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
+        handleDuplicatePrefixes(editPersonDescriptor, argMultimap, PREFIX_EMAIL);
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
+        handleDuplicatePrefixes(editPersonDescriptor, argMultimap, PREFIX_ADDRESS);
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
@@ -79,4 +86,16 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Checks if the multiple prefixes are found, add them to the duplicate fields list in the
+     * descriptor.
+     */
+    private void handleDuplicatePrefixes(EditPersonDescriptor descriptor, ArgumentMultimap argMap,
+            Prefix... prefixes) {
+        for (Prefix prefix : prefixes) {
+            if (argMap.getAllValues(prefix).size() > 1) {
+                descriptor.addDuplicateField(prefix.getPrefix());
+            }
+        }
+    }
 }

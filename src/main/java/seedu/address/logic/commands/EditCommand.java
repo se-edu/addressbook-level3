@@ -49,6 +49,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_FIELDS = "Detected multiple values for the following field%s: "
+            + "%s.\nOnly the last value will be applied.\n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -81,9 +83,17 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        String warning = "";
+
+        Set<String> duplicateFields = editPersonDescriptor.getDuplicateFields();
+        if (duplicateFields.size() > 0) {
+            warning = String.format(MESSAGE_DUPLICATE_FIELDS, duplicateFields.size() > 1 ? "s" : "",
+                    String.join(" ", duplicateFields));
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(warning + String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
     /**
@@ -130,8 +140,11 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<String> duplicatedFields;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+            duplicatedFields = new HashSet<>();
+        }
 
         /**
          * Copy constructor.
@@ -143,6 +156,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            duplicatedFields = new HashSet<>(toCopy.duplicatedFields);
         }
 
         /**
@@ -184,6 +198,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void addDuplicateField(String field) {
+            duplicatedFields.add(field);
+        }
+
+        public Set<String> getDuplicateFields() {
+            return Collections.unmodifiableSet(duplicatedFields);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -220,7 +242,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getDuplicateFields().equals(e.getDuplicateFields());
         }
     }
 }
