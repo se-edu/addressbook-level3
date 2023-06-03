@@ -22,12 +22,16 @@ import seedu.address.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: %s\n"
-            + "Please exit the application by clicking the exit button (i.e., the button marked with an 'X' icon).";
+    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data! The following errors has occured: %s\n"
+            + "Continued usage of the application without fixing this error might lead to data loss.\n"
+            + "You can exit the application by clicking the exit button (i.e., the button marked with an 'X' icon).\n";
+
+
     public static final String FILE_OPS_PERMISSION_ERROR_MESSAGE = "Could not save data to file: "
-            + "Insufficient Permissions for %s.\n\n"
-            + "Please exit the application by clicking the exit button (i.e., the button marked with an 'X' icon).\n"
-            + "Before running it again, ensure the application .jar file has write permissions to the folder it is in.";
+            + "Insufficient permissions for %s.\n\n"
+            + "Please ensure the application .jar file has write permissions to the folder it is in."
+            + "Continued usage of the application without fixing this error might lead to data loss.\n"
+            + "You can exit the application by clicking the exit button (i.e., the button marked with an 'X' icon).\n";
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 

@@ -74,7 +74,8 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonAddressBookExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionAddressBook.json"), DUMMY_IO_EXCEPTION);
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -93,8 +94,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsAdException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookAcessDemoedExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookAccessDeniedExceptionThrowingStub(
-                temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookExceptionThrowingStub(
+                temporaryFolder.resolve("adExceptionAddressBook.json"), DUMMY_AD_EXCEPTION);
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("adExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -170,30 +171,21 @@ public class LogicManagerTest {
     }
 
     /**
-     * A stub class to throw an {@code IOException} when the save method is called.
+     * A stub class to throw an {@code IOException} when the save method is called. Since there can
+     * be multiple types of IOExceptions, we can use this stub to simulate the different types of
+     * IOExceptions.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonAddressBookExceptionThrowingStub extends JsonAddressBookStorage {
+        private IOException exception;
+
+        private JsonAddressBookExceptionThrowingStub(Path filePath, IOException exception) {
             super(filePath);
+            this.exception = exception;
         }
 
         @Override
         public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
-        }
-    }
-
-    /**
-     * A stub class to throw an {@code AccessDeniedException} when the save method is called.
-     */
-    private static class JsonAddressBookAccessDeniedExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookAccessDeniedExceptionThrowingStub(Path filePath) {
-            super(filePath);
-        }
-
-        @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-            throw DUMMY_AD_EXCEPTION;
+            throw exception;
         }
     }
 }
