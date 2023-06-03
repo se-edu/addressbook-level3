@@ -49,7 +49,7 @@ public class EditPersonDescriptorBuilder {
      * If the name is already present, it will be added to the duplicate fields list.
      */
     public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.getEmail().ifPresent(x -> descriptor.addDuplicateField(PREFIX_NAME.getPrefix()));
+        descriptor.getName().ifPresent(x -> descriptor.addDuplicateField(PREFIX_NAME.getPrefix()));
         descriptor.setName(new Name(name));
         return this;
     }

@@ -43,16 +43,23 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (ifPresentHandleDuplicate(editPersonDescriptor, argMultimap, PREFIX_NAME)) {
+
+        handleDuplicatePrefixes(editPersonDescriptor, argMultimap, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (ifPresentHandleDuplicate(editPersonDescriptor, argMultimap, PREFIX_PHONE)) {
+        handleDuplicatePrefixes(editPersonDescriptor, argMultimap, PREFIX_PHONE);
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (ifPresentHandleDuplicate(editPersonDescriptor, argMultimap, PREFIX_EMAIL)) {
+        handleDuplicatePrefixes(editPersonDescriptor, argMultimap, PREFIX_EMAIL);
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (ifPresentHandleDuplicate(editPersonDescriptor, argMultimap, PREFIX_ADDRESS)) {
+        handleDuplicatePrefixes(editPersonDescriptor, argMultimap, PREFIX_ADDRESS);
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
@@ -80,13 +87,15 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Checks if the prefix is present in the argument multimap, if the multiple prefixes are found, add them to the
-     * duplicate fields list in the descriptor.
+     * Checks if the multiple prefixes are found, add them to the duplicate fields list in the
+     * descriptor.
      */
-    private boolean ifPresentHandleDuplicate(EditPersonDescriptor descriptor, ArgumentMultimap argMap, Prefix prefix) {
-        if (argMap.getAllValues(prefix).size() > 1) {
-            descriptor.addDuplicateField(prefix.getPrefix());
+    private void handleDuplicatePrefixes(EditPersonDescriptor descriptor, ArgumentMultimap argMap,
+            Prefix... prefixes) {
+        for (Prefix prefix : prefixes) {
+            if (argMap.getAllValues(prefix).size() > 1) {
+                descriptor.addDuplicateField(prefix.getPrefix());
+            }
         }
-        return argMap.getValue(prefix).isPresent();
     }
 }
