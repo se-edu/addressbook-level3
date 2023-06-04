@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,11 +14,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -49,22 +52,32 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_DUPLICATE_FIELDS = "Detected multiple values for the following field%s: "
-            + "%s.\nOnly the last value will be applied.\n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private final Set<String> duplicateFields;
+
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param editPersonDescriptor details to edit the person with
+     * @param duplicateFields set of duplicate fields
+     */
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, Set<Prefix> duplicateFields) {
+        requireNonNull(index);
+        requireNonNull(editPersonDescriptor);
+        requireNonNull(duplicateFields);
+
+        this.index = index;
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.duplicateFields = duplicateFields.stream().map(Prefix::toString).collect(Collectors.toSet());
+    }
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
-
-        this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this(index, editPersonDescriptor, Set.of());
     }
 
     @Override
@@ -85,10 +98,9 @@ public class EditCommand extends Command {
 
         String warning = "";
 
-        Set<String> duplicateFields = editPersonDescriptor.getDuplicateFields();
-        if (duplicateFields.size() > 0) {
+        if (this.duplicateFields.size() > 0) {
             warning = String.format(MESSAGE_DUPLICATE_FIELDS, duplicateFields.size() > 1 ? "s" : "",
-                    String.join(" ", duplicateFields));
+                    String.join(" ", this.duplicateFields));
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -127,7 +139,8 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor)
+                && duplicateFields.equals(e.duplicateFields);
     }
 
     /**
@@ -140,11 +153,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private Set<String> duplicatedFields;
 
-        public EditPersonDescriptor() {
-            duplicatedFields = new HashSet<>();
-        }
+        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
@@ -156,7 +166,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            duplicatedFields = new HashSet<>(toCopy.duplicatedFields);
         }
 
         /**
@@ -198,14 +207,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void addDuplicateField(String field) {
-            duplicatedFields.add(field);
-        }
-
-        public Set<String> getDuplicateFields() {
-            return Collections.unmodifiableSet(duplicatedFields);
-        }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -242,8 +243,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
-                    && getDuplicateFields().equals(e.getDuplicateFields());
+                    && getTags().equals(e.getTags());
         }
     }
 }

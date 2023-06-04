@@ -1,13 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -37,13 +42,23 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
+    private final Set<String> duplicateFields;
+
+    /**
+     * Creates an AddCommand to add the specified {@code Person} with duplicated fields {@code duplicateFields}.
+     */
+    public AddCommand(Person person, Set<Prefix> duplicateFields) {
+        requireNonNull(person);
+        requireNonNull(duplicateFields);
+        toAdd = person;
+        this.duplicateFields = duplicateFields.stream().map(Prefix::toString).collect(Collectors.toSet());
+    }
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
     public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+        this(person, Set.of());
     }
 
     @Override
@@ -55,13 +70,22 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        String warning = "";
+
+        if (this.duplicateFields.size() > 0) {
+            warning = String.format(MESSAGE_DUPLICATE_FIELDS, duplicateFields.size() > 1 ? "s" : "",
+                    String.join(" ", this.duplicateFields));
+        }
+
+        return new CommandResult(String.format(warning + MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && toAdd.equals(((AddCommand) other).toAdd))
+                && duplicateFields.equals(((AddCommand) other).duplicateFields);
     }
 }
