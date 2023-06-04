@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,11 +14,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -52,17 +55,29 @@ public class EditCommand extends Command {
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private final Set<String> duplicateFields;
+
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param editPersonDescriptor details to edit the person with
+     * @param duplicateFields set of duplicate fields
+     */
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, Set<Prefix> duplicateFields) {
+        requireNonNull(index);
+        requireNonNull(editPersonDescriptor);
+        requireNonNull(duplicateFields);
+
+        this.index = index;
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.duplicateFields = duplicateFields.stream().map(Prefix::toString).collect(Collectors.toSet());
+    }
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
-
-        this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this(index, editPersonDescriptor, Set.of());
     }
 
     @Override
@@ -81,9 +96,16 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        String warning = "";
+
+        if (this.duplicateFields.size() > 0) {
+            warning = String.format(MESSAGE_DUPLICATE_FIELDS, duplicateFields.size() > 1 ? "s" : "",
+                    String.join(" ", this.duplicateFields));
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(warning + String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
     /**
@@ -117,7 +139,8 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor)
+                && duplicateFields.equals(e.duplicateFields);
     }
 
     /**
