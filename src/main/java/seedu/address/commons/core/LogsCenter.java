@@ -20,25 +20,30 @@ import java.util.logging.SimpleFormatter;
 public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
+    private static final String LOGGER_PREFIX = "AB3.";
     private static final String LOG_FILE = "addressbook.log";
     private static Level currentLogLevel = Level.INFO;
     private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
     private static FileHandler fileHandler;
     private static ConsoleHandler consoleHandler;
+    private static final Logger baseLogger = Logger.getLogger(LOGGER_PREFIX);
 
     /**
      * Initializes with a custom log level (specified in the {@code config} object). <br>
-     * All log file handlers will be adjust to the new level. <br>
-     * Meaning subsequent logs saved to the log file will be at the new level. <br>
-     * Console loggers will not be affected and will remain at Level.INFO.
+     * All log handlers will be adjust to the new level. <br>
+     * Meaning subsequent will be at the new level. <br>
+     * This method should only be called once, during the start of the application.
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
         logger.info("currentLogLevel: " + currentLogLevel);
-
+        baseLogger.setLevel(currentLogLevel);
+        // if these handler is null, then all subsequent logger created will have the correct level
         if (fileHandler != null) {
-            // if file handler is null, then all subsequent logger created will have the correct level
             fileHandler.setLevel(currentLogLevel);
+        }
+        if (consoleHandler != null) {
+            consoleHandler.setLevel(currentLogLevel);
         }
     }
 
@@ -61,7 +66,7 @@ public class LogsCenter {
      */
     public static <T> Logger getLogger(Class<T> clazz) {
         requireNonNull(clazz);
-        return getLogger(clazz.getSimpleName());
+        return getLogger(LOGGER_PREFIX + clazz.getSimpleName());
     }
 
     /**
