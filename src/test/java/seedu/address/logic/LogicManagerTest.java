@@ -30,6 +30,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
 
@@ -72,18 +73,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookExceptionThrowingStub(
-                        temporaryFolder.resolve("ioExceptionAddressBook.json"), DUMMY_IO_EXCEPTION);
-        JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        // Setup LogicManager with a Stubbed JsonAddressBook that throws an IOException
+        Storage storage = createStorageWithStubbedExceptionThrowingAddressBook(DUMMY_IO_EXCEPTION);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
@@ -93,22 +89,18 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsAdException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookAcessDemoedExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookExceptionThrowingStub(
-                temporaryFolder.resolve("adExceptionAddressBook.json"), DUMMY_AD_EXCEPTION);
-        JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("adExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        // Setup LogicManager with a Stubbed JsonAddressBook that throws an AccessDeniedException
+        Storage storage = createStorageWithStubbedExceptionThrowingAddressBook(DUMMY_AD_EXCEPTION);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand =
-                AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
-        String expectedMessage =
-                String.format(LogicManager.FILE_OPS_PERMISSION_ERROR_MESSAGE, DUMMY_AD_EXCEPTION.getMessage());
+        String expectedMessage = String.format(LogicManager.FILE_OPS_PERMISSION_ERROR_MESSAGE,
+                DUMMY_AD_EXCEPTION.getMessage());
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
@@ -171,21 +163,19 @@ public class LogicManagerTest {
     }
 
     /**
-     * A stub class to throw an {@code IOException} when the save method is called. Since there can
-     * be multiple types of IOExceptions, we can use this stub to simulate the different types of
-     * IOExceptions.
+     * A method that returns a {@code StorageManager} with the {@code JsonAddressBookStorage} that
+     * throws an {@code IOException} when {@code saveAddressBook()} is called.
      */
-    private static class JsonAddressBookExceptionThrowingStub extends JsonAddressBookStorage {
-        private IOException exception;
-
-        private JsonAddressBookExceptionThrowingStub(Path filePath, IOException exception) {
-            super(filePath);
-            this.exception = exception;
-        }
-
-        @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-            throw exception;
-        }
+    private Storage createStorageWithStubbedExceptionThrowingAddressBook(IOException exception) {
+        // Setup LogicManager with JsonAddressBookAcessDemoedExceptionThrowingStub
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(temporaryFolder) {
+            @Override
+            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+                throw exception;
+            }
+        };
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
+        return new StorageManager(addressBookStorage, userPrefsStorage);
     }
 }
