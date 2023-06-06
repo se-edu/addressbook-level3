@@ -20,21 +20,31 @@ import java.util.logging.SimpleFormatter;
 public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
+    private static final String BASE_LOGGER_NAME = "AB3";
     private static final String LOG_FILE = "addressbook.log";
     private static Level currentLogLevel = Level.INFO;
     private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
     private static FileHandler fileHandler;
     private static ConsoleHandler consoleHandler;
+    private static final Logger baseLogger = Logger.getLogger(BASE_LOGGER_NAME);
 
     /**
-     * Initializes with a custom log level (specified in the {@code config} object)
-     * Loggers obtained *AFTER* this initialization will have their logging level changed<br>
-     * Logging levels for existing loggers will only be updated if the logger with the same name
-     * is requested again from the LogsCenter.
+     * Initializes with a custom log level (specified in the {@code config} object). All Loggers
+     * created using {@link #getLogger(String)} and {@link #getLogger(Class)} will have the same log
+     * level as the one specified in the {@code config} object.
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
         logger.info("currentLogLevel: " + currentLogLevel);
+        baseLogger.setLevel(currentLogLevel);
+
+        // Set the log level of log handlers to the current log level if they are not null
+        if (fileHandler != null) {
+            fileHandler.setLevel(currentLogLevel);
+        }
+        if (consoleHandler != null) {
+            consoleHandler.setLevel(currentLogLevel);
+        }
     }
 
     /**
@@ -56,7 +66,16 @@ public class LogsCenter {
      */
     public static <T> Logger getLogger(Class<T> clazz) {
         requireNonNull(clazz);
-        return getLogger(clazz.getSimpleName());
+        /*
+         * Loggers will all inherit from a parent logger and are structured like a tree. Each logger
+         * can be represented by a path from root by separating each name with a "." character. The
+         * root logger is the parent of all loggers and is named "". Changing the log level of a
+         * logger or adding handlers to it will affect all its children loggers.
+         *
+         * As we only want to change loggers created by us, we will use a base logger named to
+         * represent the parent logger of all loggers created by us.
+         */
+        return getLogger(BASE_LOGGER_NAME + "." + clazz.getSimpleName());
     }
 
     /**
