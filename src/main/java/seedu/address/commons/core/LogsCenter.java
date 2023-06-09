@@ -20,7 +20,7 @@ import java.util.logging.SimpleFormatter;
 public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
-    private static final String BASE_LOGGER_NAME = "AB3";
+    private static final String BASE_LOGGER_NAME = "seedu.address";
     private static final String LOG_FILE = "addressbook.log";
     private static Level currentLogLevel = Level.INFO;
     private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
@@ -66,15 +66,14 @@ public class LogsCenter {
      */
     public static <T> Logger getLogger(Class<T> clazz) {
         requireNonNull(clazz);
-        /*
-         * Loggers will all inherit from a parent logger and are structured like a tree. Each logger
-         * can be represented by a path from root by separating each name with a "." character. The
-         * root logger is the parent of all loggers and is named "". Changing the log level of a
-         * logger or adding handlers to it will affect all its children loggers.
-         *
-         * As we only want to change loggers created by us, we will use a base logger named to
-         * represent the parent logger of all loggers created by us.
-         */
+        // The BASE_LOGGER_NAME acts as a common prefix for all application loggers,
+        // organizing them based on functionality or module.
+        // The dot (".") serves as a separator, reflecting the package structure and providing a
+        // hierarchical representation.
+
+        // Changing the BASE_LOGGER_NAME affects all related loggers, enabling centralized control
+        // over their configuration and behavior. It allows for easy adjustment of multiple loggers
+        // simultaneously.
         return getLogger(BASE_LOGGER_NAME + "." + clazz.getSimpleName());
     }
 
