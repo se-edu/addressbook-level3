@@ -84,11 +84,12 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " is not in the correct format."
+            logger.warning("Data file at " + storage.getAddressBookFilePath()
+                    + " is might be corrupted or in the wrong format."
                     + " Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file " + storage.getAddressBookFilePath()
+            logger.warning("Problem while reading from the data file " + storage.getAddressBookFilePath()
                     + ". Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
         }
@@ -106,10 +107,7 @@ public class MainApp extends Application {
      * if {@code configFilePath} is null.
      */
     protected Config initConfig(Path configFilePath) {
-        Config initializedConfig;
-        Path configFilePathUsed;
-
-        configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
+        Path configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
 
         if (configFilePath != null) {
             logger.info("Custom Config file specified " + configFilePath);
@@ -117,18 +115,22 @@ public class MainApp extends Application {
         }
 
         logger.info("Using config file : " + configFilePathUsed);
-
+        Optional<Config> configOptional = Optional.empty();
         try {
-            Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
+            configOptional = ConfigUtil.readConfig(configFilePathUsed);
             if (!configOptional.isPresent()) {
                 logger.info("Creating new config file " + configFilePathUsed);
             }
-            initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format."
-                    + " Using default config properties.");
-            initializedConfig = new Config();
+            logger.warning("Config file at " + configFilePathUsed
+                    + " might be corrupted or in the wrong format"
+                    + ". Using default config properties.");
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the config file " + configFilePathUsed
+                    + ". Using default config properties.");
         }
+
+        Config initializedConfig = configOptional.orElse(new Config());
 
         //Update config file in case it was missing to begin with or there are new/unused fields
         try {
@@ -148,22 +150,20 @@ public class MainApp extends Application {
         Path prefsFilePath = storage.getUserPrefsFilePath();
         logger.info("Using preference file : " + prefsFilePath);
 
-        UserPrefs initializedPrefs;
+        Optional<UserPrefs> prefsOptional = Optional.empty();
         try {
-            Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
+            prefsOptional = storage.readUserPrefs();
             if (!prefsOptional.isPresent()) {
                 logger.info("Creating new preference file " + prefsFilePath);
             }
-            initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
-            logger.warning("Preference file at " + prefsFilePath + " is not in the correct format."
+            logger.warning("Preference file at " + prefsFilePath + " might be corrupted or in the wrong format."
                     + " Using default preferences.");
-            initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from preference file " + prefsFilePath
-                    + ". Will be starting with an empty AddressBook.");
-            initializedPrefs = new UserPrefs();
+                    + ". Using default preferences");
         }
+        UserPrefs initializedPrefs = prefsOptional.orElse(new UserPrefs());
 
         //Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
