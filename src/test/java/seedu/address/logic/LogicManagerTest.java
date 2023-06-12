@@ -72,13 +72,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        assertCommandFailureForException(DUMMY_IO_EXCEPTION, String
+        assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String
                 .format(LogicManager.FILE_OPS_ERROR_MESSAGE, DUMMY_IO_EXCEPTION.getMessage()));
     }
 
     @Test
     public void execute_storageThrowsAdException_throwsCommandException() {
-        assertCommandFailureForException(DUMMY_AD_EXCEPTION, String.format(
+        assertCommandFailureForExceptionFromStorage(DUMMY_AD_EXCEPTION, String.format(
                 LogicManager.FILE_OPS_PERMISSION_ERROR_MESSAGE, DUMMY_AD_EXCEPTION.getMessage()));
     }
 
@@ -141,15 +141,15 @@ public class LogicManagerTest {
     }
 
     /**
-     * Execute a dummy command in a {@code LogicManager} containg a {@code Storage} Stub that will
-     * throw an {@code IOException}, this will confirm that <br>
-     * - the {@code expectedException} is thrown <br>
-     * - the resulting error message is equal to {@code expectedMessage} <br>
+     * Test the handling of an {@code IOException} in a dummy command execution scenario by the
+     * Storage component. This test verifies that:<br>
+     * - The expected exception ({@code e}) is thrown<br>
+     * - The resulting error message matches the expected message ({@code expectedMessage})<br>
      *
-     * @param e exception to be thrown by the AddressBookStorage
-     * @param expectedMessage expected message to be thrown
+     * @param e the exception to be thrown by the AddressBookStorage
+     * @param expectedMessage the expected message to be thrown
      */
-    private void assertCommandFailureForException(IOException e, String expectedMessage) {
+    private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Setup LogicManager with an AddressBookStorage that throws an IOException when saving
