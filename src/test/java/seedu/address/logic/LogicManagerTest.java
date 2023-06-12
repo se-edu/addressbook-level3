@@ -34,8 +34,8 @@ import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
-    private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy io exception");
-    private static final IOException DUMMY_AD_EXCEPTION = new AccessDeniedException("dummy ad exception");
+    private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
+    private static final IOException DUMMY_AD_EXCEPTION = new AccessDeniedException("dummy access denied exception");
 
     @TempDir
     public Path temporaryFolder;
@@ -72,8 +72,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String
-                .format(LogicManager.FILE_OPS_ERROR_MESSAGE, DUMMY_IO_EXCEPTION.getMessage()));
+        assertCommandFailureForExceptionFromStorage(DUMMY_IO_EXCEPTION, String.format(
+            LogicManager.FILE_OPS_ERROR_MESSAGE, DUMMY_IO_EXCEPTION.getMessage()));
     }
 
     @Test
@@ -141,18 +141,15 @@ public class LogicManagerTest {
     }
 
     /**
-     * Test the handling of an {@code IOException} in a dummy command execution scenario by the
-     * Storage component. This test verifies that:<br>
-     * - The expected exception ({@code e}) is thrown<br>
-     * - The resulting error message matches the expected message ({@code expectedMessage})<br>
+     * Tests the Logic component's handling of an {@code IOException} thrown by the Storage component.
      *
-     * @param e the exception to be thrown by the AddressBookStorage
-     * @param expectedMessage the expected message to be thrown
+     * @param e the exception to be thrown by the Storage component
+     * @param expectedMessage the message expected inside exception thrown by the Logic component
      */
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
-        // Setup LogicManager with an AddressBookStorage that throws an IOException when saving
+        // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
             @Override
             public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
@@ -167,7 +164,7 @@ public class LogicManagerTest {
 
         logic = new LogicManager(model, storage);
 
-        // Execute add command
+        // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
