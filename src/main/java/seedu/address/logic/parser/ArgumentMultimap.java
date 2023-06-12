@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Stores mapping of prefixes to their respective arguments.
  * Each key may be associated with multiple argument values.
@@ -61,17 +64,22 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns a set of all prefixes given in the {@code prefixes} that appeared more than once in
-     * the argument multimap.
+     * throws a ParseException if any of the prefixes given in {@code prefixes} appeared more than
+     * once in the argument multimap.
      */
-    public Set<Prefix> getDuplicatePrefixes(Prefix... prefixes) {
-        Set<Prefix> ret = new HashSet<>();
+    public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws ParseException {
+        Set<Prefix> duplicatedPrefixes = new HashSet<>();
         Set<Prefix> prefixSet = Set.of(prefixes);
         argMultimap.forEach((key, list) -> {
             if (list.size() > 1 && prefixSet.contains(key)) {
-                ret.add(key);
+                duplicatedPrefixes.add(key);
             }
         });
-        return ret;
+
+        if (duplicatedPrefixes.isEmpty()) {
+            return;
+        }
+
+        throw new ParseException(Messages.getDuplicatePrefixesToMessage(duplicatedPrefixes));
     }
 }

@@ -20,13 +20,12 @@ public class Messages {
     /**
      * Formats the duplicate prefixes into an error message.
      */
-    public static String formatDuplicatePrefixesToMessage(Set<Prefix> duplicatePrefixes) {
+    public static String getDuplicatePrefixesToMessage(Set<Prefix> duplicatePrefixes) {
         if (duplicatePrefixes.size() == 0) {
             return "";
         }
 
         Set<String> duplicateFields = duplicatePrefixes.stream().map(Prefix::toString).collect(Collectors.toSet());
-
 
         return String.format(MESSAGE_DUPLICATE_FIELDS, duplicateFields.size() > 1 ? "s" : "",
                 String.join(" ", duplicateFields));

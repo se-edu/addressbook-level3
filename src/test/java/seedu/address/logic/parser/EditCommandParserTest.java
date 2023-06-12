@@ -179,7 +179,7 @@ public class EditCommandParserTest {
         Set<Prefix> duplicatePrefixes = Set.of(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         assertParseFailure(parser, userInput,
-                Messages.formatDuplicatePrefixesToMessage(duplicatePrefixes));
+                Messages.getDuplicatePrefixesToMessage(duplicatePrefixes));
     }
 
     @Test
@@ -190,13 +190,13 @@ public class EditCommandParserTest {
         Set<Prefix> duplicatePrefixes = Set.of(PREFIX_PHONE);
 
         assertParseFailure(parser, userInput,
-                Messages.formatDuplicatePrefixesToMessage(duplicatePrefixes));
+                Messages.getDuplicatePrefixesToMessage(duplicatePrefixes));
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
                 + PHONE_DESC_BOB;
         assertParseFailure(parser, userInput,
-                Messages.formatDuplicatePrefixesToMessage(duplicatePrefixes));
+                Messages.getDuplicatePrefixesToMessage(duplicatePrefixes));
     }
 
     @Test

@@ -67,50 +67,50 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonTagValue_success() {
-        String validExpectedPerson = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+    public void parse_repeatedNonTagValue_exceptionThrown() {
+        String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
 
-        // multiple fields repeated
-        assertParseFailure(parser,
-                validExpectedPerson + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY
-                        + ADDRESS_DESC_AMY + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_NAME,
-                        PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE)));
-
         // multiple names
-        assertParseFailure(parser, NAME_DESC_AMY + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_NAME)));
+        assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_NAME)));
 
         // multiple phones
-        assertParseFailure(parser, PHONE_DESC_AMY + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_PHONE)));
+        assertParseFailure(parser, PHONE_DESC_AMY + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_PHONE)));
 
         // multiple emails
-        assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_EMAIL)));
+        assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_EMAIL)));
 
         // multiple addresses
-        assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_ADDRESS)));
+        assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_ADDRESS)));
 
         // invalid value followed by valid value
 
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_NAME)));
+        assertParseFailure(parser, INVALID_NAME_DESC + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_NAME)));
 
         // invalid email
-        assertParseFailure(parser, INVALID_EMAIL_DESC + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_EMAIL)));
+        assertParseFailure(parser, INVALID_EMAIL_DESC + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_EMAIL)));
 
         // invalid phone
-        assertParseFailure(parser, INVALID_PHONE_DESC + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_PHONE)));
+        assertParseFailure(parser, INVALID_PHONE_DESC + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_PHONE)));
 
         // invalid address
-        assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedPerson,
-                Messages.formatDuplicatePrefixesToMessage(Set.of(PREFIX_ADDRESS)));
+        assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_ADDRESS)));
+
+        // multiple fields repeated
+        assertParseFailure(parser,
+                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY
+                        + ADDRESS_DESC_AMY + validExpectedPersonString,
+                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_NAME,
+                        PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE)));
     }
 
     @Test
