@@ -25,7 +25,7 @@ public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data. The following errors has occured: %s\n";
 
     public static final String FILE_OPS_PERMISSION_ERROR_MESSAGE =
-            "Could not save data to file. Insufficient permissions to write to the file %s.\n";
+            "Could not save data to file (or the folder). Insufficient permissions to write to the file %s.\n";
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
