@@ -22,10 +22,10 @@ import seedu.address.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data. The following errors has occured: %s\n";
+    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data. The following errors has occured: %s";
 
     public static final String FILE_OPS_PERMISSION_ERROR_MESSAGE =
-            "Could not save data to file %s. Insufficient permissions to write to the file (or the folder).\n";
+            "Could not save data to file %s due to insufficient permissions to write to the file (or the folder).\n";
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
