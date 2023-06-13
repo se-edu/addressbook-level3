@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.ConfigLoadingException;
 import seedu.address.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {
@@ -28,21 +28,19 @@ public class JsonUserPrefsStorageTest {
         assertThrows(NullPointerException.class, () -> readUserPrefs(null));
     }
 
-    private Optional<UserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder)
-            throws DataConversionException {
+    private Optional<UserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder) throws ConfigLoadingException {
         Path prefsFilePath = addToTestDataPathIfNotNull(userPrefsFileInTestDataFolder);
         return new JsonUserPrefsStorage(prefsFilePath).readUserPrefs(prefsFilePath);
     }
 
     @Test
-    public void readUserPrefs_missingFile_emptyResult() throws DataConversionException {
+    public void readUserPrefs_missingFile_emptyResult() throws ConfigLoadingException {
         assertFalse(readUserPrefs("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void readUserPrefs_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class,
-                () -> readUserPrefs("NotJsonFormatUserPrefs.json"));
+        assertThrows(ConfigLoadingException.class, () -> readUserPrefs("NotJsonFormatUserPrefs.json"));
     }
 
     private Path addToTestDataPathIfNotNull(String userPrefsFileInTestDataFolder) {
@@ -52,22 +50,20 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
-    public void readUserPrefs_fileInOrder_successfullyRead() throws DataConversionException {
+    public void readUserPrefs_fileInOrder_successfullyRead() throws ConfigLoadingException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("TypicalUserPref.json").get();
         assertEquals(expected, actual);
     }
 
     @Test
-    public void readUserPrefs_valuesMissingFromFile_defaultValuesUsed()
-            throws DataConversionException {
+    public void readUserPrefs_valuesMissingFromFile_defaultValuesUsed() throws ConfigLoadingException {
         UserPrefs actual = readUserPrefs("EmptyUserPrefs.json").get();
         assertEquals(new UserPrefs(), actual);
     }
 
     @Test
-    public void readUserPrefs_extraValuesInFile_extraValuesIgnored()
-            throws DataConversionException {
+    public void readUserPrefs_extraValuesInFile_extraValuesIgnored() throws ConfigLoadingException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
 
@@ -104,7 +100,7 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
-    public void saveUserPrefs_allInOrder_success() throws DataConversionException, IOException {
+    public void saveUserPrefs_allInOrder_success() throws ConfigLoadingException, IOException {
 
         UserPrefs original = new UserPrefs();
         original.setGuiSettings(new GuiSettings(1200, 200, 0, 2));
