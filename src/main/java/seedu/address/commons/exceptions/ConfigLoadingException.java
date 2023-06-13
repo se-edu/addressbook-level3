@@ -1,7 +1,7 @@
 package seedu.address.commons.exceptions;
 
 /**
- * Represents an error during conversion of data from one format to another
+ * Represents an error during loading of files from the file system.
  */
 public class ConfigLoadingException extends Exception {
     public ConfigLoadingException(Exception cause) {

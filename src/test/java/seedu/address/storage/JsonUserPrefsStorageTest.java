@@ -57,8 +57,7 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
-    public void readUserPrefs_valuesMissingFromFile_defaultValuesUsed()
-            throws ConfigLoadingException {
+    public void readUserPrefs_valuesMissingFromFile_defaultValuesUsed() throws ConfigLoadingException {
         UserPrefs actual = readUserPrefs("EmptyUserPrefs.json").get();
         assertEquals(new UserPrefs(), actual);
     }

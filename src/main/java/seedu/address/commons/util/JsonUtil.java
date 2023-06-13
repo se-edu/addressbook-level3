@@ -55,7 +55,7 @@ public class JsonUtil {
      *
      * @param filePath cannot be null.
      * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class given here.
-     * @throws ConfigLoadingException if the file format is not as expected.
+     * @throws ConfigLoadingException if the loading of file failed
      */
     public static <T> Optional<T> readJsonFile(Path filePath, Class<T> classOfObjectToDeserialize)
             throws ConfigLoadingException {

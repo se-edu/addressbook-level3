@@ -22,7 +22,7 @@ public interface UserPrefsStorage {
      * Returns UserPrefs data from storage. Returns {@code Optional.empty()} if storage file is not
      * found.
      *
-     * @throws ConfigLoadingException if the data in storage is not in the expected format.
+     * @throws ConfigLoadingException if the data in storage fails to be load.
      */
     Optional<UserPrefs> readUserPrefs() throws ConfigLoadingException;
 
