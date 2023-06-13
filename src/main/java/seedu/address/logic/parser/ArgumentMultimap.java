@@ -2,9 +2,14 @@ package seedu.address.logic.parser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -56,5 +61,25 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * throws a ParseException if any of the prefixes given in {@code prefixes} appeared more than
+     * once in the argument multimap.
+     */
+    public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws ParseException {
+        Set<Prefix> duplicatedPrefixes = new HashSet<>();
+        Set<Prefix> prefixSet = Set.of(prefixes);
+        argMultimap.forEach((key, list) -> {
+            if (list.size() > 1 && prefixSet.contains(key)) {
+                duplicatedPrefixes.add(key);
+            }
+        });
+
+        if (duplicatedPrefixes.isEmpty()) {
+            return;
+        }
+
+        throw new ParseException(Messages.getDuplicatePrefixesToMessage(duplicatedPrefixes));
     }
 }
