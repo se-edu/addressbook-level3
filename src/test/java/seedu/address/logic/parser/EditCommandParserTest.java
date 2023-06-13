@@ -94,10 +94,6 @@ public class EditCommandParserTest {
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
-
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
@@ -171,20 +167,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_failure() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
-
-        Set<Prefix> duplicatePrefixes = Set.of(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-
-        assertParseFailure(parser, userInput,
-                Messages.getDuplicatePrefixesToMessage(duplicatePrefixes));
-    }
-
-    @Test
-    public void parse_invalidValueFollowedByValidValue_failure() {
-        // no other valid values specified
+        // valid followed by invalid
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         Set<Prefix> duplicatePrefixes = Set.of(PREFIX_PHONE);
@@ -192,9 +175,26 @@ public class EditCommandParserTest {
         assertParseFailure(parser, userInput,
                 Messages.getDuplicatePrefixesToMessage(duplicatePrefixes));
 
-        // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-                + PHONE_DESC_BOB;
+        // invalid followed by valid
+        userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + INVALID_PHONE_DESC;
+
+        assertParseFailure(parser, userInput,
+                Messages.getDuplicatePrefixesToMessage(duplicatePrefixes));
+
+        // mulltiple valid field repeated
+        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
+                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+
+        duplicatePrefixes = Set.of(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        assertParseFailure(parser, userInput,
+                Messages.getDuplicatePrefixesToMessage(duplicatePrefixes));
+
+        // multiple invalid values
+        userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC
+                + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC;
+
         assertParseFailure(parser, userInput,
                 Messages.getDuplicatePrefixesToMessage(duplicatePrefixes));
     }
