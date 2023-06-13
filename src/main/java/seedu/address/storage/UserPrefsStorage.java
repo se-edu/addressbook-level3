@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.ConfigLoadingException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -22,9 +22,9 @@ public interface UserPrefsStorage {
      * Returns UserPrefs data from storage. Returns {@code Optional.empty()} if storage file is not
      * found.
      *
-     * @throws DataConversionException if the data in storage fails to be load.
+     * @throws ConfigLoadingException if the data in storage fails to be load.
      */
-    Optional<UserPrefs> readUserPrefs() throws DataConversionException;
+    Optional<UserPrefs> readUserPrefs() throws ConfigLoadingException;
 
     /**
      * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.

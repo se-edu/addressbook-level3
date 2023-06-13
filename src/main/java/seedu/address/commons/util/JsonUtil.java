@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.ConfigLoadingException;
 
 /**
  * Converts a Java object instance to JSON and vice versa
@@ -55,10 +55,10 @@ public class JsonUtil {
      *
      * @param filePath cannot be null.
      * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class given here.
-     * @throws DataConversionException if the loading of file failed
+     * @throws ConfigLoadingException if the loading of file failed
      */
     public static <T> Optional<T> readJsonFile(Path filePath, Class<T> classOfObjectToDeserialize)
-            throws DataConversionException {
+            throws ConfigLoadingException {
         requireNonNull(filePath);
 
         if (!Files.exists(filePath)) {
@@ -72,10 +72,10 @@ public class JsonUtil {
             jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
         } catch (JsonProcessingException e) {
             logger.warning("Error parsing json file " + filePath + ": " + e);
-            throw new DataConversionException(e);
+            throw new ConfigLoadingException(e);
         } catch (IOException e) {
             logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
-            throw new DataConversionException(e);
+            throw new ConfigLoadingException(e);
         }
 
         return Optional.of(jsonFile);
