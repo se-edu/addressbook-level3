@@ -18,17 +18,18 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
-     * @throws DataConversionException if the data in storage is not in the expected format.
+     * Returns AddressBook data as a {@link ReadOnlyAddressBook}. Returns {@code Optional.empty()}
+     * if storage file is not found.
+     *
+     * @throws DataConversionException if loading the data from storage fails.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
