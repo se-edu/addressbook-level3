@@ -165,6 +165,11 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_failure() {
+        /*
+         * More extensive testing of duplicate parameter detections is done in
+         * AddCommandParserTest#parse_repeatedNonTagValue_failure()
+         */
+
         // valid followed by invalid
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
