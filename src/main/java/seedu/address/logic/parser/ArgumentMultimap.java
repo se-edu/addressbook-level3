@@ -64,8 +64,8 @@ public class ArgumentMultimap {
     }
 
     /**
-     * throws a ParseException if any of the prefixes given in {@code prefixes} appeared more than
-     * once in the argument multimap.
+     * Throws a {@code ParseException} if any of the prefixes given in {@code prefixes} appeared more than
+     * once among the arguments.
      */
     public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws ParseException {
         Set<Prefix> duplicatedPrefixes = new HashSet<>();
@@ -76,10 +76,8 @@ public class ArgumentMultimap {
             }
         });
 
-        if (duplicatedPrefixes.isEmpty()) {
-            return;
+        if (!duplicatedPrefixes.isEmpty()) {
+            throw new ParseException(Messages.getDuplicatePrefixesToMessage(duplicatedPrefixes));
         }
-
-        throw new ParseException(Messages.getDuplicatePrefixesToMessage(duplicatedPrefixes));
     }
 }
