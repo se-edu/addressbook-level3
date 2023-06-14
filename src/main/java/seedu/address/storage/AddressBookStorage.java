@@ -19,16 +19,16 @@ public interface AddressBookStorage {
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataLoadingException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
