@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.commons.exceptions.ConfigLoadingException;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
@@ -21,14 +21,15 @@ public interface AddressBookStorage {
      * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @throws ConfigLoadingException if loading the data from storage failed.
+     * @throws DataLoadingException if the data in storage is not in the expected format.
+     * @throws IOException if loading of the JSON file failed.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws ConfigLoadingException;
+    Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws ConfigLoadingException;
+    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.

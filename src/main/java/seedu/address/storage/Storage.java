@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.commons.exceptions.ConfigLoadingException;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
 public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
     @Override
-    Optional<UserPrefs> readUserPrefs() throws ConfigLoadingException;
+    Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
@@ -24,7 +24,7 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws ConfigLoadingException;
+    Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
 
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
