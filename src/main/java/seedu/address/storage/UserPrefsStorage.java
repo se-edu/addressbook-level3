@@ -23,9 +23,8 @@ public interface UserPrefsStorage {
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws ConfigLoadingException if the loading of data from the preference file failed.
-     * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<UserPrefs> readUserPrefs() throws ConfigLoadingException, IOException;
+    Optional<UserPrefs> readUserPrefs() throws ConfigLoadingException;
 
     /**
      * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.

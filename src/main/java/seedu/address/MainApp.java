@@ -87,10 +87,6 @@ public class MainApp extends Application {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be read."
                     + " Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file " + storage.getAddressBookFilePath()
-                    + ". Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -158,10 +154,6 @@ public class MainApp extends Application {
         } catch (ConfigLoadingException e) {
             logger.warning("Preference file at " + prefsFilePath + " could not be read."
                     + " Using default preferences.");
-            initializedPrefs = new UserPrefs();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from preference file " + prefsFilePath
-                    + ". Will be starting with an empty AddressBook.");
             initializedPrefs = new UserPrefs();
         }
 
