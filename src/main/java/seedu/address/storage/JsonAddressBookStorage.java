@@ -40,7 +40,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * Similar to {@link #readAddressBook()}.
      *
      * @param filePath location of the data. Cannot be null.
-     * @throws DataLoadingException if the file is not in the correct format.
+     * @throws DataLoadingException if loading the data from storage failed.
      */
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
