@@ -25,7 +25,7 @@ public interface UserPrefsStorage {
      * @throws DataLoadingException if the loading of data from preference file failed.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<UserPrefs> readUserPrefs() throws DataLoadingException, IOException;
+    Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
 
     /**
      * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.
