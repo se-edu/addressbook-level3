@@ -19,10 +19,10 @@ public interface UserPrefsStorage {
     Path getUserPrefsFilePath();
 
     /**
-     * Returns UserPrefs data from storage. Returns {@code Optional.empty()} if storage file is not
-     * found.
+     * Returns UserPrefs data from storage.
+     * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @throws ConfigLoadingException if the data in storage fails to be load.
+     * @throws ConfigLoadingException if the loading of data from the preference file failed.
      */
     Optional<UserPrefs> readUserPrefs() throws ConfigLoadingException;
 

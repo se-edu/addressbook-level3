@@ -34,7 +34,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
      * Similar to {@link #readUserPrefs()}
      *
      * @param prefsFilePath location of the data. Cannot be null.
-     * @throws ConfigLoadingException if the loading of the preference file fails.
+     * @throws ConfigLoadingException if the loading of data from preference file failed.
      */
     public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws ConfigLoadingException {
         return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);

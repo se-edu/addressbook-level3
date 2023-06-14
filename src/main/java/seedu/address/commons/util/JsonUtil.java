@@ -49,16 +49,15 @@ public class JsonUtil {
     }
 
     /**
-     * Returns the Json object from the given file or {@code Optional.empty()} object if the file is
-     * not found. If any values are missing from the file, default values will be used, as long as
-     * the file is a valid json file.
+     * Returns the JSON object from the given file or {@code Optional.empty()} object if the file is not found.
+     * If any values are missing from the file, default values will be used, as long as the file is a valid JSON file.
      *
      * @param filePath cannot be null.
-     * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class given here.
-     * @throws ConfigLoadingException if the loading of file failed
+     * @param classOfObjectToDeserialize JSON file has to correspond to the structure in the class given here.
+     * @throws ConfigLoadingException if loading of the JSON file failed.
      */
-    public static <T> Optional<T> readJsonFile(Path filePath, Class<T> classOfObjectToDeserialize)
-            throws ConfigLoadingException {
+    public static <T> Optional<T> readJsonFile(
+            Path filePath, Class<T> classOfObjectToDeserialize) throws ConfigLoadingException {
         requireNonNull(filePath);
 
         if (!Files.exists(filePath)) {
@@ -71,7 +70,7 @@ public class JsonUtil {
         try {
             jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
         } catch (JsonProcessingException e) {
-            logger.warning("Error parsing json file " + filePath + ": " + e);
+            logger.warning("Error parsing jsonFile file " + filePath + ": " + e);
             throw new ConfigLoadingException(e);
         } catch (IOException e) {
             logger.warning("Error reading from jsonFile file " + filePath + ": " + e);

@@ -18,11 +18,10 @@ public interface AddressBookStorage {
     Path getAddressBookFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}. Returns {@code Optional.empty()}
-     * if storage file is not found.
+     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @throws ConfigLoadingException if loading the data from storage fails.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws ConfigLoadingException if loading the data from storage failed.
      */
     Optional<ReadOnlyAddressBook> readAddressBook() throws ConfigLoadingException;
 

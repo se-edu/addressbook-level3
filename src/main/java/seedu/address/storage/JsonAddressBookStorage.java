@@ -40,10 +40,9 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * Similar to {@link #readAddressBook()}.
      *
      * @param filePath location of the data. Cannot be null.
-     * @throws ConfigLoadingException if the loading of the data fails.
+     * @throws ConfigLoadingException if loading the data from storage failed.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath)
-            throws ConfigLoadingException {
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws ConfigLoadingException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
