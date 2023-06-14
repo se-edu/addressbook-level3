@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
-import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
@@ -83,7 +83,7 @@ public class MainApp extends Application {
                         + " populated with a sample AddressBook.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
+        } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " is not in the correct format."
                     + " Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
@@ -124,7 +124,7 @@ public class MainApp extends Application {
                 logger.info("Creating new config file " + configFilePathUsed);
             }
             initializedConfig = configOptional.orElse(new Config());
-        } catch (DataConversionException e) {
+        } catch (DataLoadingException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format."
                     + " Using default config properties.");
             initializedConfig = new Config();
@@ -155,7 +155,7 @@ public class MainApp extends Application {
                 logger.info("Creating new preference file " + prefsFilePath);
             }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
-        } catch (DataConversionException e) {
+        } catch (DataLoadingException e) {
             logger.warning("Preference file at " + prefsFilePath + " is not in the correct format."
                     + " Using default preferences.");
             initializedPrefs = new UserPrefs();
