@@ -33,8 +33,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -67,68 +65,67 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_repeatedNonTagValue_exceptionThrown() {
+    public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_NAME)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_NAME));
 
         // multiple phones
         assertParseFailure(parser, PHONE_DESC_AMY + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_PHONE)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_PHONE));
 
         // multiple emails
         assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_EMAIL)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_EMAIL));
 
         // multiple addresses
         assertParseFailure(parser, ADDRESS_DESC_AMY + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_ADDRESS)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_ADDRESS));
 
         // invalid value followed by valid value
 
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_NAME)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_NAME));
 
         // invalid email
         assertParseFailure(parser, INVALID_EMAIL_DESC + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_EMAIL)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_EMAIL));
 
         // invalid phone
         assertParseFailure(parser, INVALID_PHONE_DESC + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_PHONE)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_PHONE));
 
         // invalid address
         assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_ADDRESS)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_ADDRESS));
 
         // valid value followed by invalid value
 
         // invalid name
         assertParseFailure(parser, validExpectedPersonString + INVALID_NAME_DESC,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_NAME)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_NAME));
 
         // invalid email
         assertParseFailure(parser, validExpectedPersonString + INVALID_EMAIL_DESC,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_EMAIL)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_EMAIL));
 
         // invalid phone
         assertParseFailure(parser, validExpectedPersonString + INVALID_PHONE_DESC,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_PHONE)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_PHONE));
 
         // invalid address
         assertParseFailure(parser, validExpectedPersonString + INVALID_ADDRESS_DESC,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_ADDRESS)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_ADDRESS));
 
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY
                         + ADDRESS_DESC_AMY + validExpectedPersonString,
-                Messages.getDuplicatePrefixesToMessage(Set.of(PREFIX_NAME,
-                        PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE)));
+                Messages.getDuplicatePrefixesToMessage(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
     }
 
     @Test

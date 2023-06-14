@@ -2,11 +2,10 @@ package seedu.address.logic.parser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -68,15 +67,11 @@ public class ArgumentMultimap {
      * once among the arguments.
      */
     public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws ParseException {
-        Set<Prefix> duplicatedPrefixes = new HashSet<>();
-        Set<Prefix> prefixSet = Set.of(prefixes);
-        argMultimap.forEach((key, list) -> {
-            if (list.size() > 1 && prefixSet.contains(key)) {
-                duplicatedPrefixes.add(key);
-            }
-        });
+        Prefix[] duplicatedPrefixes = Stream.of(prefixes).distinct().filter(
+                prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
+                .toArray(Prefix[]::new);
 
-        if (!duplicatedPrefixes.isEmpty()) {
+        if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getDuplicatePrefixesToMessage(duplicatedPrefixes));
         }
     }
