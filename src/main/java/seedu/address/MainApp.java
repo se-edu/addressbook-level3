@@ -84,12 +84,8 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " is not in the correct format."
+            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be read."
                     + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file " + storage.getAddressBookFilePath()
-                    + ". Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
         }
 
@@ -125,7 +121,7 @@ public class MainApp extends Application {
             }
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataLoadingException e) {
-            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format."
+            logger.warning("Config file at " + configFilePathUsed + " could not be read."
                     + " Using default config properties.");
             initializedConfig = new Config();
         }
@@ -156,12 +152,8 @@ public class MainApp extends Application {
             }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataLoadingException e) {
-            logger.warning("Preference file at " + prefsFilePath + " is not in the correct format."
+            logger.warning("Preference file at " + prefsFilePath + " could not be read."
                     + " Using default preferences.");
-            initializedPrefs = new UserPrefs();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from preference file " + prefsFilePath
-                    + ". Will be starting with an empty AddressBook.");
             initializedPrefs = new UserPrefs();
         }
 
