@@ -22,14 +22,13 @@ public interface AddressBookStorage {
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws ConfigLoadingException if loading the data from storage failed.
-     * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws ConfigLoadingException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook() throws ConfigLoadingException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws ConfigLoadingException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws ConfigLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.

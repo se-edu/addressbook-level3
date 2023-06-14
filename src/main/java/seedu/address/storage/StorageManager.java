@@ -36,7 +36,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws ConfigLoadingException, IOException {
+    public Optional<UserPrefs> readUserPrefs() throws ConfigLoadingException {
         return userPrefsStorage.readUserPrefs();
     }
 
@@ -54,12 +54,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws ConfigLoadingException, IOException {
+    public Optional<ReadOnlyAddressBook> readAddressBook() throws ConfigLoadingException {
         return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws ConfigLoadingException, IOException {
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws ConfigLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
         return addressBookStorage.readAddressBook(filePath);
     }
