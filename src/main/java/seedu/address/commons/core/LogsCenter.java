@@ -20,45 +20,36 @@ import java.util.logging.SimpleFormatter;
 public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
-    private static final String BASE_LOGGER_NAME = "seedu.address";
+    private static final String BASE_LOGGER_NAME = "ab3";
     private static final String LOG_FILE = "addressbook.log";
     private static Level currentLogLevel = Level.INFO;
+    private static final Logger baseLogger = LogsCenter.getBaseLogger();
     private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
-    private static FileHandler fileHandler;
-    private static ConsoleHandler consoleHandler;
-    private static final Logger baseLogger = Logger.getLogger(BASE_LOGGER_NAME);
 
     /**
-     * Initializes with a custom log level (specified in the {@code config} object). All Loggers
-     * created using {@link #getLogger(String)} and {@link #getLogger(Class)} will have the same log
-     * level as the one specified in the {@code config} object.
+     * Initializes loggers with the log level specified in the {@code config} object. Applies to all loggers created
+     * using {@link #getLogger(String)} and {@link #getLogger(Class)} methods except for those that are manually
+     * tweaked.
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
         logger.info("currentLogLevel: " + currentLogLevel);
+        // set the level of the baseLogger so that all other loggers will also be set to the same level
         baseLogger.setLevel(currentLogLevel);
-
-        // Set the log level of log handlers to the current log level if they are not null
-        if (fileHandler != null) {
-            fileHandler.setLevel(currentLogLevel);
-        }
-        if (consoleHandler != null) {
-            consoleHandler.setLevel(currentLogLevel);
-        }
     }
 
     /**
      * Creates a logger with the given name.
      */
     public static Logger getLogger(String name) {
-        Logger logger = Logger.getLogger(name);
-        logger.setUseParentHandlers(false);
-
+        // Java organizes loggers into a hierarchy based on their names (using '.' as a separator, similar to how Java
+        // packages form a hierarchy). Furthermore, loggers without a level inherit the level of their parent logger.
+        // By prefixing names of all loggers with baseLogger's name + ".", we make the baseLogger the parent of all
+        // loggers. This allows us to change the level of all loggers simply by changing the baseLogger level.
+        Logger logger = Logger.getLogger(BASE_LOGGER_NAME + "." + name);
         removeHandlers(logger);
-        addConsoleHandler(logger);
-        addFileHandler(logger);
-
-        return Logger.getLogger(name);
+        logger.setUseParentHandlers(true);
+        return logger;
     }
 
     /**
@@ -66,26 +57,22 @@ public class LogsCenter {
      */
     public static <T> Logger getLogger(Class<T> clazz) {
         requireNonNull(clazz);
-        // The BASE_LOGGER_NAME acts as a common prefix for all application loggers,
-        // organizing them based on functionality or module.
-        // The dot (".") serves as a separator, reflecting the package structure and providing a
-        // hierarchical representation.
-
-        // Changing the BASE_LOGGER_NAME affects all related loggers, enabling centralized control
-        // over their configuration and behavior. It allows for easy adjustment of multiple loggers
-        // simultaneously.
-        return getLogger(BASE_LOGGER_NAME + "." + clazz.getSimpleName());
+        return getLogger(clazz.getSimpleName());
     }
 
-    /**
-     * Adds the {@code consoleHandler} to the {@code logger}. <br>
-     * Creates the {@code consoleHandler} if it is null.
-     */
-    private static void addConsoleHandler(Logger logger) {
-        if (consoleHandler == null) {
-            consoleHandler = createConsoleHandler();
+    private static Logger getBaseLogger() {
+        Logger baseLogger = Logger.getLogger(BASE_LOGGER_NAME);
+        baseLogger.setUseParentHandlers(false);
+        removeHandlers(baseLogger);
+        baseLogger.addHandler(createConsoleHandler(Level.ALL));
+
+        try {
+            baseLogger.addHandler(createFileHandler(Level.ALL));
+        } catch (IOException e) {
+            logger.warning("Error adding file handler for logger.");
         }
-        logger.addHandler(consoleHandler);
+
+        return baseLogger;
     }
 
     /**
@@ -97,34 +84,26 @@ public class LogsCenter {
     }
 
     /**
-     * Adds the {@code fileHandler} to the {@code logger}. <br>
-     * Creates {@code fileHandler} if it is null.
-     */
-    private static void addFileHandler(Logger logger) {
-        try {
-            if (fileHandler == null) {
-                fileHandler = createFileHandler();
-            }
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            logger.warning("Error adding file handler for logger.");
-        }
-    }
-
-    /**
      * Creates a {@code FileHandler} for the log file.
+     *
+     * @param level the logging level of the file handler
      * @throws IOException if there are problems opening the file.
      */
-    private static FileHandler createFileHandler() throws IOException {
+    private static FileHandler createFileHandler(Level level) throws IOException {
         FileHandler fileHandler = new FileHandler(LOG_FILE, MAX_FILE_SIZE_IN_BYTES, MAX_FILE_COUNT, true);
         fileHandler.setFormatter(new SimpleFormatter());
-        fileHandler.setLevel(currentLogLevel);
+        fileHandler.setLevel(level);
         return fileHandler;
     }
 
-    private static ConsoleHandler createConsoleHandler() {
+    /**
+     * Creates a {@code ConsoleHandler} for the log file.
+     *
+     * @param level the logging level of the console handler
+     */
+    private static ConsoleHandler createConsoleHandler(Level level) {
         ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(currentLogLevel);
+        consoleHandler.setLevel(level);
         return consoleHandler;
     }
 }
