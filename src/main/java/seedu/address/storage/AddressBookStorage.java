@@ -22,7 +22,6 @@ public interface AddressBookStorage {
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if the data in storage is not in the expected format.
-     * @throws IOException if loading of the JSON file failed.
      */
     Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
 
