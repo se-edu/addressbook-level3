@@ -60,6 +60,12 @@ public class LogsCenter {
         return getLogger(clazz.getSimpleName());
     }
 
+    /**
+     * Creates and returns a base logger with the default configuration with the name {@code BASE_LOGGER_NAME}.
+     * The base logger is the parent of all other loggers. Changing the level of the base logger will change
+     * the level of all other loggers if they are untweaked. Similarly, all loggers created from this class will
+     * inherit the handlers of the base logger.
+     */
     private static Logger getBaseLogger() {
         Logger baseLogger = Logger.getLogger(BASE_LOGGER_NAME);
         baseLogger.setUseParentHandlers(false);
