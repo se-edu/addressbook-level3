@@ -22,13 +22,12 @@ public class LogsCenter {
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
     private static final String LOG_FILE = "addressbook.log";
     private static Level currentLogLevel = Level.INFO;
-    private static final Logger baseLogger = LogsCenter.getBaseLogger("ab3");
+    private static final Logger baseLogger = LogsCenter.getBaseLogger();
     private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
 
     /**
      * Initializes loggers with the log level specified in the {@code config} object. Applies to all loggers created
-     * using {@link #getLogger(String)} and {@link #getLogger(Class)} methods except for those that are manually
-     * tweaked.
+     * using {@link #getLogger(String)} and {@link #getLogger(Class)} methods except for those that are manually set.
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
@@ -66,20 +65,20 @@ public class LogsCenter {
      * the level of all other loggers if they are untweaked. Similarly, all loggers created from this class will
      * inherit the handlers of the base logger.
      */
-    private static Logger getBaseLogger(String loggerName) {
-        Logger baseLogger = Logger.getLogger(loggerName);
+    private static Logger getBaseLogger() {
+        Logger baseLogger = Logger.getLogger("ab3");
         baseLogger.setUseParentHandlers(false);
         removeHandlers(baseLogger);
 
         // Level.ALL is used because loggers filter the log messages by level already,
         // there is no need to control log message level of the handlers.
 
-        // add handler to log to the console
+        // add a ConsoleHandler to log to the console
         ConsoleHandler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.ALL);
         baseLogger.addHandler(consoleHandler);
 
-        // add handler to log to a file
+        // add a FileHandler to log to a file
         try {
             FileHandler fileHandler = new FileHandler(LOG_FILE, MAX_FILE_SIZE_IN_BYTES, MAX_FILE_COUNT, true);
             fileHandler.setFormatter(new SimpleFormatter());
@@ -93,7 +92,7 @@ public class LogsCenter {
     }
 
     /**
-     * Remove all the handlers from {@code logger}.
+     * Removes all handlers from the {@code logger}.
      */
     private static void removeHandlers(Logger logger) {
         Arrays.stream(logger.getHandlers())
