@@ -31,7 +31,7 @@ public class LogsCenter {
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
-        logger.info("currentLogLevel: " + currentLogLevel);
+        logger.info("log level set as: " + currentLogLevel);
         // set the level of the baseLogger which will be inherited by other loggers
         baseLogger.setLevel(currentLogLevel);
     }
@@ -59,8 +59,8 @@ public class LogsCenter {
     }
 
     /**
-     * Creates and returns a base logger with the default configuration with the name {@code BASE_LOGGER_NAME}
-     * and has a {@code ConsoleHandler} and a {@code FileHandler}.
+     * Creates and returns a base logger with the default configuration and containing a {@code ConsoleHandler}
+     * and a {@code FileHandler}.
      * The base logger is the parent of all other loggers. Changing the level of the base logger will change
      * the level of all other loggers if they are untweaked. Similarly, all loggers created from this class will
      * inherit the handlers of the base logger.
