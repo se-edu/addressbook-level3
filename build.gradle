@@ -43,19 +43,14 @@ task coverage(type: JacocoReport) {
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11.0.2'
+    List<String> platforms = [ 'win', 'mac', 'linux' ]
+    List<String> jfxModules = [ 'javafx-base', 'javafx-graphics', 'javafx-controls', 'javafx-fxml' ]
 
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+    jfxModules.each { mod ->
+        platforms.each { os ->
+            implementation group: 'org.openjfx', name: mod, version: javaFxVersion, classifier: os
+        }
+    }
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
