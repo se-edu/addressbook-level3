@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -17,7 +19,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     private Path filePath;
 
     public JsonUserPrefsStorage(Path filePath) {
-        this.filePath = filePath;
+        this.filePath = requireNonNull(filePath);
     }
 
     @Override

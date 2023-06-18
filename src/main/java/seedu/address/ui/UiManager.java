@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -29,7 +31,7 @@ public class UiManager implements Ui {
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
     public UiManager(Logic logic) {
-        this.logic = logic;
+        this.logic = requireNonNull(logic);
     }
 
     @Override

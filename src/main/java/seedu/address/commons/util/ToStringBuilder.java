@@ -1,5 +1,7 @@
 package seedu.address.commons.util;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Builds a string representation of an object that is suitable as the return value of {@link Object#toString()}.
  */
@@ -16,6 +18,7 @@ public class ToStringBuilder {
      * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed with {@code objectName}.
      */
     public ToStringBuilder(String objectName) {
+        requireNonNull(objectName);
         stringBuilder.append(objectName).append(OBJECT_PREFIX);
     }
 

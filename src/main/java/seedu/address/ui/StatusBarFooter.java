@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -22,6 +24,7 @@ public class StatusBarFooter extends UiPart<Region> {
      */
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
+        requireNonNull(saveLocation);
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
     }
 
