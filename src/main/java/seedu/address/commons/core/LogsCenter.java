@@ -22,6 +22,7 @@ public class LogsCenter {
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
     private static final String LOG_FILE = "addressbook.log";
     private static Level currentLogLevel = Level.INFO;
+    // The logger that will be used as the parent of all other loggers created by this class.
     private static final Logger baseLogger = LogsCenter.getBaseLogger();
     private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
 
@@ -37,7 +38,9 @@ public class LogsCenter {
     }
 
     /**
-     * Creates a logger with the given name.
+     * Creates a logger with the given name prefixed by the {@code baseLogger}'s name so that the created logger
+     * becomes a descendant of the {@code baseLogger}. Furthermore, the returned logger will have the same log handlers
+     * as the {@code baseLogger}.
      */
     public static Logger getLogger(String name) {
         // Java organizes loggers into a hierarchy based on their names (using '.' as a separator, similar to how Java
@@ -59,19 +62,15 @@ public class LogsCenter {
     }
 
     /**
-     * Creates and returns a base logger with the default configuration and containing a {@code ConsoleHandler}
-     * and a {@code FileHandler}.
-     * The base logger is the parent of all other loggers. Changing the level of the base logger will change
-     * the level of all other loggers if they are untweaked. Similarly, all loggers created from this class will
-     * inherit the handlers of the base logger.
+     * Creates and returns a logger named 'ab3', and containing a {@code ConsoleHandler} and a {@code FileHandler}.
      */
     private static Logger getBaseLogger() {
         Logger baseLogger = Logger.getLogger("ab3");
         baseLogger.setUseParentHandlers(false);
         removeHandlers(baseLogger);
 
-        // Level.ALL is used because loggers filter the log messages by level already,
-        // there is no need to control log message level of the handlers.
+        // Level.ALL is used as the level for the handlers because the baseLogger filters the log messages by level
+        // already; there is no need to control log message level of the handlers.
 
         // add a ConsoleHandler to log to the console
         ConsoleHandler consoleHandler = new ConsoleHandler();
