@@ -23,8 +23,13 @@ public class LogsCenter {
     private static final String LOG_FILE = "addressbook.log";
     private static Level currentLogLevel = Level.INFO;
     // The logger that will be used as the parent of all other loggers created by this class.
-    private static final Logger baseLogger = LogsCenter.getBaseLogger();
-    private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
+    private static final Logger logger;
+    private static Logger baseLogger;
+
+    static {
+        setBaseLogger();
+        logger = LogsCenter.getLogger(LogsCenter.class);
+    }
 
     /**
      * Initializes loggers with the log level specified in the {@code config} object. Applies to all loggers created
@@ -64,8 +69,8 @@ public class LogsCenter {
     /**
      * Creates and returns a logger named 'ab3', and containing a {@code ConsoleHandler} and a {@code FileHandler}.
      */
-    private static Logger getBaseLogger() {
-        Logger baseLogger = Logger.getLogger("ab3");
+    private static void setBaseLogger() {
+        baseLogger = Logger.getLogger("ab3");
         baseLogger.setUseParentHandlers(false);
         removeHandlers(baseLogger);
 
@@ -86,8 +91,6 @@ public class LogsCenter {
         } catch (IOException e) {
             logger.warning("Error adding file handler for logger.");
         }
-
-        return baseLogger;
     }
 
     /**
