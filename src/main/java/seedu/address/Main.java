@@ -23,8 +23,12 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class Main {
     private static Logger logger = LogsCenter.getLogger(Main.class);
+
+    /**
+     * Main entry point to the application.
+     */
     public static void main(String[] args) {
-        /**
+        /*
          * Since JavaFX 16, JavaFX runtime logs a warning if javafx.* modules are loaded from the classpath.
          * This will result in a warning message whenever the application is launched.
          * As modules are ignored when packed into a FAT Jar file, this warning will always be shown regardless
