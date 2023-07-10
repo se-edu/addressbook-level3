@@ -21,11 +21,11 @@ public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
     private static final String LOG_FILE = "addressbook.log";
+    private static final Logger logger; // logger for this class
+    private static Logger baseLogger; // to be used as the parent of all other loggers created by this class.
     private static Level currentLogLevel = Level.INFO;
-    // The logger that will be used as the parent of all other loggers created by this class.
-    private static final Logger logger;
-    private static Logger baseLogger;
 
+    // This static block ensures essential loggers are created early
     static {
         setBaseLogger();
         logger = LogsCenter.getLogger(LogsCenter.class);
@@ -37,7 +37,7 @@ public class LogsCenter {
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
-        logger.info("log level set as: " + currentLogLevel);
+        logger.info("log level will be set as: " + currentLogLevel);
         // set the level of the baseLogger which will be inherited by other loggers
         baseLogger.setLevel(currentLogLevel);
     }
@@ -67,7 +67,16 @@ public class LogsCenter {
     }
 
     /**
-     * Creates and returns a logger named 'ab3', and containing a {@code ConsoleHandler} and a {@code FileHandler}.
+     * Removes all handlers from the {@code logger}.
+     */
+    private static void removeHandlers(Logger logger) {
+        Arrays.stream(logger.getHandlers())
+                .forEach(logger::removeHandler);
+    }
+
+    /**
+     * Creates a logger named 'ab3', containing a {@code ConsoleHandler} and a {@code FileHandler}.
+     * Sets it as the {@code baseLogger}, to be used as the parent logger of all other loggers.
      */
     private static void setBaseLogger() {
         baseLogger = Logger.getLogger("ab3");
@@ -93,11 +102,5 @@ public class LogsCenter {
         }
     }
 
-    /**
-     * Removes all handlers from the {@code logger}.
-     */
-    private static void removeHandlers(Logger logger) {
-        Arrays.stream(logger.getHandlers())
-                .forEach(logger::removeHandler);
-    }
+
 }
