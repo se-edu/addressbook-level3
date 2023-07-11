@@ -37,7 +37,7 @@ public class LogsCenter {
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
-        logger.info("log level will be set as: " + currentLogLevel);
+        logger.info("Log level will be set as: " + currentLogLevel);
         // set the level of the baseLogger which will be inherited by other loggers
         baseLogger.setLevel(currentLogLevel);
     }
