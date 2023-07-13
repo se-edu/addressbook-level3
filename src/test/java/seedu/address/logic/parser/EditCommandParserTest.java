@@ -174,14 +174,12 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
 
-        assertParseFailure(parser, userInput,
-                        Messages.getDuplicatePrefixesToMessage(PREFIX_PHONE));
+        assertParseFailure(parser, userInput, Messages.getDuplicatePrefixesToMessage(PREFIX_PHONE));
 
         // invalid followed by valid
         userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + INVALID_PHONE_DESC;
 
-        assertParseFailure(parser, userInput,
-                        Messages.getDuplicatePrefixesToMessage(PREFIX_PHONE));
+        assertParseFailure(parser, userInput, Messages.getDuplicatePrefixesToMessage(PREFIX_PHONE));
 
         // mulltiple valid field repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
