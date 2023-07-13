@@ -118,7 +118,6 @@ public class RemarkCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
         if (other == this) {
             return true;
         }
@@ -128,7 +127,6 @@ public class RemarkCommand extends Command {
             return false;
         }
 
-        // state check
         RemarkCommand e = (RemarkCommand) other;
         return index.equals(e.index)
                 && remark.equals(e.remark);
