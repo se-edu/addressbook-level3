@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.commons.core.Messages;
+import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,12 +67,12 @@ public class ArgumentMultimap {
      * once among the arguments.
      */
     public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws ParseException {
-        Prefix[] duplicatedPrefixes = Stream.of(prefixes).distinct().filter(
-                prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
+        Prefix[] duplicatedPrefixes = Stream.of(prefixes).distinct()
+                .filter(prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
                 .toArray(Prefix[]::new);
 
         if (duplicatedPrefixes.length > 0) {
-            throw new ParseException(Messages.getDuplicatePrefixesToMessage(duplicatedPrefixes));
+            throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
 }
