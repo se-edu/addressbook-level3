@@ -65,6 +65,10 @@ public class ArgumentMultimap {
     /**
      * Throws a {@code ParseException} if any of the prefixes given in {@code prefixes} appeared more than
      * once among the arguments.
+     *
+     * @param prefixes Prefixes to check for duplicates
+     * @throws ParseException If any of the prefixes given in {@code prefixes} appeared more than once among the
+     *                       arguments
      */
     public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws ParseException {
         Prefix[] duplicatedPrefixes = Stream.of(prefixes).distinct()
