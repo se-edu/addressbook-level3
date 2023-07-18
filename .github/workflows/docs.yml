@@ -15,4 +15,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           rootDirectory: './docs'
           baseUrl: '/addressbook-level3' # replace with your repo name
-          version: '^4.1.0'
+          version: '^5.0.1'
