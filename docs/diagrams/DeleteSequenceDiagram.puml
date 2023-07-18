@@ -1,5 +1,5 @@
 @startuml
-!include style.puml
+!include diagrams/style.puml
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR

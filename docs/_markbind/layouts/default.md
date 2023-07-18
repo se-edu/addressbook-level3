@@ -32,7 +32,6 @@
   * [FAQ]({{ baseUrl }}/UserGuide.html#faq)
   * [Command Summary]({{ baseUrl }}/UserGuide.html#faq)
 * [Developer Guide]({{ baseUrl }}/DeveloperGuide.html) :expanded:
-  * [About Us]({{ baseUrl }}/AboutUs.html)
   * [Setting Up]({{ baseUrl }}/SettingUp.html)
   * Tutorials
     * [Tracing code]({{ baseUrl }}/tutorials/TracingCode.html)
@@ -43,6 +42,7 @@
   * [Logging]({{ baseUrl }}/Logging.html)
   * [Configuration]({{ baseUrl }}/Configuration.html)
   * [Dev Ops]({{ baseUrl }}/DevOps.html)
+* [About Us]({{ baseUrl }}/AboutUs.html)
       </site-nav>
     </div>
   </nav>
