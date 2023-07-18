@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
-import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
@@ -79,14 +79,13 @@ public class MainApp extends Application {
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
+                        + " populated with a sample AddressBook.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
         }
 
@@ -117,10 +116,13 @@ public class MainApp extends Application {
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
+            if (!configOptional.isPresent()) {
+                logger.info("Creating new config file " + configFilePathUsed);
+            }
             initializedConfig = configOptional.orElse(new Config());
-        } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+        } catch (DataLoadingException e) {
+            logger.warning("Config file at " + configFilePathUsed + " could not be loaded."
+                    + " Using default config properties.");
             initializedConfig = new Config();
         }
 
@@ -140,18 +142,18 @@ public class MainApp extends Application {
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
-        logger.info("Using prefs file : " + prefsFilePath);
+        logger.info("Using preference file : " + prefsFilePath);
 
         UserPrefs initializedPrefs;
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
+            if (!prefsOptional.isPresent()) {
+                logger.info("Creating new preference file " + prefsFilePath);
+            }
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
-        } catch (DataConversionException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
-            initializedPrefs = new UserPrefs();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+        } catch (DataLoadingException e) {
+            logger.warning("Preference file at " + prefsFilePath + " could not be loaded."
+                    + " Using default preferences.");
             initializedPrefs = new UserPrefs();
         }
 

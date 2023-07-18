@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -37,7 +39,8 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
@@ -72,6 +75,13 @@ public class AddCommandTest {
 
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
+    }
+
+    @Test
+    public void toStringMethod() {
+        AddCommand addCommand = new AddCommand(ALICE);
+        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        assertEquals(expected, addCommand.toString());
     }
 
     /**
