@@ -1,5 +1,5 @@
 @startuml
-!include diagrams/style.puml
+!include style.puml
 
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR

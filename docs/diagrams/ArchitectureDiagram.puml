@@ -2,7 +2,7 @@
 !include <office/Concepts/globe_internet>
 !include <office/Concepts/documents>
 !include <office/Users/user>
-!include diagrams/style.puml
+!include style.puml
 
 Package " "<<Rectangle>>{
     Class UI UI_COLOR
