@@ -33,9 +33,10 @@
 
 !define USER_COLOR #000000
 
-skinparam BackgroundColor #FFFFFFF
-
-skinparam Shadowing false
+skinparam Package {
+    BackgroundColor #FFFFFF
+    BorderThickness 1
+}
 
 skinparam Class {
     FontColor #FFFFFF
