@@ -1,5 +1,6 @@
 @startuml
 !include ../style.puml
+skinparam ArrowFontStyle plain
 
 Participant ":LogicManager" as logic LOGIC_COLOR
 Participant ":AddressBookParser" as abp LOGIC_COLOR
