@@ -1,6 +1,4 @@
 @startuml
-!include style.puml
-
 start
 :User executes command;
 
