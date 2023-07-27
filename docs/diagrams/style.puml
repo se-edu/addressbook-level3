@@ -33,12 +33,15 @@
 
 !define USER_COLOR #000000
 
-skinparam BackgroundColor #FFFFFFF
-
-skinparam Shadowing false
+skinparam Package {
+    BackgroundColor #FFFFFF
+    BorderThickness 1
+    FontSize 16
+}
 
 skinparam Class {
     FontColor #FFFFFF
+    FontSize 15
     BorderThickness 1
     BorderColor #FFFFFF
     StereotypeFontColor #FFFFFF
@@ -64,6 +67,7 @@ skinparam Participant {
     Padding 20
 }
 
+skinparam ArrowFontStyle bold
 skinparam MinClassWidth 50
 skinparam ParticipantPadding 10
 skinparam Shadowing false
