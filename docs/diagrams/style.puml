@@ -33,6 +33,13 @@
 
 !define USER_COLOR #000000
 
+skin rose
+
+skinparam PackageBackgroundColor #FFFFFF
+skinparam PackageBorderColor #000000
+skinparam PackageFontStyle bold
+skinparam PackageBorderThickness 1.1
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
