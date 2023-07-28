@@ -79,6 +79,7 @@ public class HelpWindow extends UiPart<Stage> {
      * Hides the help window.
      */
     public void hide() {
+        logger.fine("Hiding help page");
         getRoot().hide();
     }
 
@@ -94,6 +95,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     @FXML
     private void copyUrl() {
+        logger.fine("Copying user guide URL to clipboard");
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);

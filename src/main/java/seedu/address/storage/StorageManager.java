@@ -37,11 +37,13 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<UserPrefs> readUserPrefs() throws DataLoadingException {
+        logger.fine("Attempting to read from preference file: " + getUserPrefsFilePath());
         return userPrefsStorage.readUserPrefs();
     }
 
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+        logger.fine("Attempting to write to preference file: " + getUserPrefsFilePath());
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
