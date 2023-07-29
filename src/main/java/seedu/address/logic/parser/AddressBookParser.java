@@ -46,10 +46,10 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        // Note to developers: Change the log level in .... (config.json) to enable lower level (i.e., FINE and lower)
+        // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE and lower)
         // log messages such as the one below.
         // Currently, lower level log messages are used sparingly, to minimize noise in the code.
-        logger.fine(String.format("Command word: %s ; Arguments: %s", commandWord, arguments));
+        logger.fine("Command word: " + commandWord + " ; Arguments: " + arguments);
 
         switch (commandWord) {
 

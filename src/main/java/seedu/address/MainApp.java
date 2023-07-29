@@ -73,7 +73,7 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.fine("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getAddressBookFilePath());
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
@@ -109,11 +109,11 @@ public class MainApp extends Application {
         configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
 
         if (configFilePath != null) {
-            logger.fine("Custom Config file specified " + configFilePath);
+            logger.info("Custom Config file specified " + configFilePath);
             configFilePathUsed = configFilePath;
         }
 
-        logger.fine("Using config file : " + configFilePathUsed);
+        logger.info("Using config file : " + configFilePathUsed);
 
         try {
             Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
@@ -143,7 +143,7 @@ public class MainApp extends Application {
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
-        logger.fine("Using preference file : " + prefsFilePath);
+        logger.info("Using preference file : " + prefsFilePath);
 
         UserPrefs initializedPrefs;
         try {
