@@ -5,9 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Logger;
-
-import seedu.address.commons.core.LogsCenter;
 
 /**
  * Writes and reads files
@@ -15,7 +12,6 @@ import seedu.address.commons.core.LogsCenter;
 public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
-    private static final Logger logger = LogsCenter.getLogger(FileUtil.class);
 
     public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
@@ -52,7 +48,6 @@ public class FileUtil {
         if (Files.exists(file)) {
             return;
         }
-        logger.fine("Creating file: " + file);
 
         createParentDirsOfFile(file);
 
@@ -66,7 +61,6 @@ public class FileUtil {
         Path parentDir = file.getParent();
 
         if (parentDir != null) {
-            logger.fine("Creating parent directories of file: " + parentDir);
             Files.createDirectories(parentDir);
         }
     }
@@ -83,7 +77,6 @@ public class FileUtil {
      * Will create the file if it does not exist yet.
      */
     public static void writeToFile(Path file, String content) throws IOException {
-        logger.finer(String.format("Writing to file %s with %s", file, content));
         Files.write(file, content.getBytes(CHARSET));
     }
 

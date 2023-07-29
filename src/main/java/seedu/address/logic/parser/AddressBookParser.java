@@ -45,45 +45,40 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        logger.fine("Command word: " + commandWord);
-        logger.fine("Arguments: " + arguments);
+
+        // Note to developers: Change the log level in .... (config.json) to enable lower level (i.e., FINE and lower)
+        // log messages such as the one below.
+        // Currently, lower level log messages are used sparingly, to minimize noise in the code.
+        logger.fine(String.format("Command word: %s ; Arguments: %s", commandWord, arguments));
 
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            logger.fine("Add command detected");
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
-            logger.fine("Edit command detected");
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            logger.fine("Delete command detected");
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            logger.fine("Clear command detected");
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            logger.fine("Find command detected");
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            logger.fine("List command detected");
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
-            logger.fine("Exit command detected");
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            logger.fine("Help command detected");
             return new HelpCommand();
 
         default:
-            logger.fine("Unknown command detected");
+            logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
