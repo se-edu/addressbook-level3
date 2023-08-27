@@ -35,7 +35,12 @@
 
 <div class="indented">
 
+  * install Java 8 or higher
   * install [Node.js](https://nodejs.org) 16 or higher
+  * install [Graphviz](https://graphviz.org/download/) (for generating diagrams)
+    * For Mac, you can use [Homebrew](https://brew.sh/) to install Graphviz: `brew install graphviz`
+    * For Windows, you can use [Chocolatey](https://chocolatey.org/install) to install Graphviz: `choco install graphviz`
+    * For Linux, you can use your package manager to install Graphviz: `sudo apt install graphviz`
   * open the project and go to the docs folder: `cd docs`
   * install dependencies, only needed once when setting up the project: `npm ci`
 </div>
