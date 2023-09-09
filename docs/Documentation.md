@@ -11,10 +11,11 @@
 
 * We use [**MarkBind**](https://markbind.org/) to manage documentation.
 * The `docs/` folder is contains the source files for the documentation website.
-* To learn how set it up and maintain the project website, follow the [_**MarkBind User Guide**_](https://markbind.org/userGuide/gettingStarted.html).
+* To learn how set it up and maintain the project website, read the following sections.
+  * To find out more, go to the [_**MarkBind User Guide**_](https://markbind.org/userGuide/gettingStarted.html).
 
 
-<panel header="##### Quick Start :rocket:" expanded>
+<panel header="##### Getting Started :rocket:" expanded>
 
 ++**Introduction**++
 
