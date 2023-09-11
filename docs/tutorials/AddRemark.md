@@ -57,7 +57,7 @@ Run `Main#main` and try out your new `RemarkCommand`. If everything went well, y
 
 While we have successfully printed a message to `ResultDisplay`, the command does not do what it is supposed to do. Let’s change the command to throw a `CommandException` to accurately reflect that our command is still a work in progress.
 
-![The relationship between RemarkCommand and Command](../images/add-remark/CommandInterface.png)
+![The relationship between RemarkCommand and Command](../images/add-remark/RemarkCommandClass.png)
 
 Following the convention in other commands, we add relevant messages as constants and use them.
 
@@ -142,7 +142,7 @@ Now let’s move on to writing a parser that will extract the index and remark f
 
 Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
 
-![The relationship between Parser and RemarkCommandParser](../images/add-remark/ParserInterface.png)
+![The relationship between Parser and RemarkCommandParser](../images/add-remark/RemarkCommandParserClass.png)
 
 Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input. Let’s take a look at the JavaDoc provided for the function to understand what it does.
 
