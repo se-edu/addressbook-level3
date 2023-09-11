@@ -1,0 +1,25 @@
+name: MarkBind Action
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Graphviz
+        run: sudo apt-get install graphviz
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Build & Deploy MarkBind site
+        uses: MarkBind/markbind-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          rootDirectory: './docs'
+          baseUrl: '/addressbook-level3' # replace with your repo name
+          version: '^5.1.0'
