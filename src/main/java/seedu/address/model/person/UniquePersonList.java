@@ -147,4 +147,10 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    public static ObservableList<Person> getInternalList(){
+//        return internalList;
+    }
+
+
 }
