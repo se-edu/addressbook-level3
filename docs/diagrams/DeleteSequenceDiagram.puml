@@ -34,7 +34,7 @@ create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser : 
+DeleteCommand --> DeleteCommandParser :
 deactivate DeleteCommand
 
 DeleteCommandParser --> AddressBookParser : d

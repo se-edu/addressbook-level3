@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+end box
+
+[-> Model : undoAddressBook()
+activate Model
+
+Model -> VersionedAddressBook : undo()
+activate VersionedAddressBook
+
+VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
+VersionedAddressBook --> Model :
+deactivate VersionedAddressBook
+
+[<-- Model
+deactivate Model
+
+@enduml
