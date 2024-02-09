@@ -28,10 +28,10 @@ HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
 LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+AddressBookParser ..> XYZCommand : <<create>>
 
 XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+LogicManager .left.> Command : <<call>>
 
 LogicManager --> Model
 LogicManager --> Storage
@@ -42,5 +42,5 @@ note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
-Command .up.> CommandResult : produces >
+Command .up.> CommandResult : <<create>>
 @enduml
