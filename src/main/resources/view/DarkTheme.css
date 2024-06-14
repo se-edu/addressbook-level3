@@ -120,7 +120,13 @@
     -fx-text-fill: white;
 }
 
-.cell_big_label {
+.cell_big_index {
+    -fx-font-family: "Arial Mono MT Pro";
+    -fx-font-size: 16.65px;
+    -fx-text-fill: #010504;
+}
+
+.cell_big_name {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
