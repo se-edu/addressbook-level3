@@ -14,12 +14,12 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
-          distribution: 'temurin'
+          java-version: '17'
+          distribution: 'zulu'
       - name: Build & Deploy MarkBind site
         uses: MarkBind/markbind-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           rootDirectory: './docs'
           baseUrl: '/tp' # assuming your repo name is tp
-          version: '^5.2.0'
+          version: '^5.5.2'
