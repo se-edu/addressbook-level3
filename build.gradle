@@ -6,7 +6,7 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'seedu.address.MainApp'
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
@@ -64,6 +64,11 @@ dependencies {
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
+
+application {
+    mainClass.set("seedu.address.MainApp")
+}
+
 
 shadowJar {
     archiveFileName = 'addressbook.jar'
