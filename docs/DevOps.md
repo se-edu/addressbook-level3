@@ -19,7 +19,7 @@ Given below are how to use Gradle for some important project tasks.
 * **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).<br>
   e.g. `./gradlew clean`
 
-* **`shadowJar`**: Uses the ShadowJar plugin to creat a fat JAR file in the `build/lib` folder, *if the current file is outdated*.<br>
+* **`shadowJar`**: Uses the ShadowJar plugin to create a fat JAR file in the `build/lib` folder, *if the current file is outdated*.<br>
   e.g. `./gradlew shadowJar`.
 
 * **`run`**: Builds and runs the application.<br>
