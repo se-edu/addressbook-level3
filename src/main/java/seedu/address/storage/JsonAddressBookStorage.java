@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -46,7 +48,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+                filePath, new TypeReference<JsonSerializableAddressBook>() {});
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }

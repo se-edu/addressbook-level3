@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -36,7 +38,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
      * @throws DataLoadingException if the file format is not as expected.
      */
     public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws DataLoadingException {
-        return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);
+        return JsonUtil.readJsonFile(prefsFilePath, new TypeReference<UserPrefs>() {});
     }
 
     @Override
