@@ -1,15 +1,22 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id("com.gradleup.shadow") version "9.4.3" // UPGRADE: Gradle 9 requires v9+
     id 'application'
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+// UPGRADE: Gradle 9 requires this new syntax
+application {
+    mainClass = 'seedu.address.Main'
+}
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+// UPGRADE: Gradle 9 requires this new syntax
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
 
 repositories {
     mavenCentral()
@@ -41,7 +48,11 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
-    String jUnitVersion = '5.4.0'
+    String jUnitVersion = '5.14.4' // UPGRADE: Java 25 requires v5.11.4+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
     String javaFxVersion = '17.0.7'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
