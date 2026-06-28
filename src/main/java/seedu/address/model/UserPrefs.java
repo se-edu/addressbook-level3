@@ -68,8 +68,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         }
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
+        Path otherPath = otherUserPrefs.addressBookFilePath.toAbsolutePath().normalize();
+
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath);
+                && addressBookFilePath.toAbsolutePath().normalize().equals(otherPath);
     }
 
     @Override

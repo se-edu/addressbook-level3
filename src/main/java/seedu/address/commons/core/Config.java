@@ -46,8 +46,11 @@ public class Config {
         }
 
         Config otherConfig = (Config) other;
+        Path thisPath = userPrefsFilePath.toAbsolutePath().normalize();
+        Path otherPath = otherConfig.userPrefsFilePath.toAbsolutePath().normalize();
+
         return Objects.equals(logLevel, otherConfig.logLevel)
-                && Objects.equals(userPrefsFilePath, otherConfig.userPrefsFilePath);
+                && Objects.equals(thisPath, otherPath);
     }
 
     @Override
