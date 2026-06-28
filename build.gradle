@@ -1,15 +1,22 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'com.gradleup.shadow' version '9.4.3'
     id 'application'
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+application {
+    mainClass = 'seedu.address.Main'
+}
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
 
 repositories {
     mavenCentral()
@@ -20,52 +27,80 @@ checkstyle {
     toolVersion = '11.0.0'
 }
 
+jacoco {
+    toolVersion = '0.8.14'
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
 
-task coverage(type: JacocoReport) {
+tasks.register('coverage', JacocoReport) {
+    dependsOn 'test'
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
     classDirectories.from files(sourceSets.main.output)
     executionData.from files(jacocoTestReport.executionData)
-    afterEvaluate {
-        classDirectories.from files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/*.jar'])
-        })
-    }
     reports {
         html.required = true
         xml.required = true
     }
 }
 
-dependencies {
-    String jUnitVersion = '5.4.0'
-    String javaFxVersion = '17.0.7'
+configurations {
+    shadowDependencies
+}
 
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+dependencies {
+    String javaFxVersion = '25.0.1'
+
+    // Detect the current platform for local testing and building
+    String osName = System.getProperty("os.name").toLowerCase()
+    String osArch = System.getProperty("os.arch").toLowerCase()
+    String osClassifier
+
+    if (osName.contains("win")) {
+        osClassifier = 'win'
+    } else if (osName.contains("mac") || osName.contains("darwin")) {
+        if (osArch.contains("aarch64") || osArch.contains("arm64")) {
+            osClassifier = 'mac-aarch64'
+        } else {
+            osClassifier = 'mac'
+        }
+    } else if (osName.contains("nux")) {
+        osClassifier = 'linux'
+    } else {
+        osClassifier = 'mac-aarch64' // Default fallback
+    }
+
+    // Add current platform JavaFX dependencies to compile and runtime classpath
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: osClassifier
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: osClassifier
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: osClassifier
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: osClassifier
+
+    // Add other platforms' JavaFX dependencies to shadowOnly for cross-platform jar
+    def allPlatforms = ['win', 'mac', 'mac-aarch64', 'linux']
+    allPlatforms.remove(osClassifier)
+
+    for (p in allPlatforms) {
+        shadowDependencies group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: p
+        shadowDependencies group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: p
+        shadowDependencies group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: p
+        shadowDependencies group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: p
+    }
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
-
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    testImplementation platform("org.junit:junit-bom:6.1.0")
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine'
+    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-launcher'
 }
 
 shadowJar {
+    configurations = [project.configurations.runtimeClasspath, project.configurations.shadowDependencies]
     archiveFileName = 'addressbook.jar'
 }
 
