@@ -53,15 +53,19 @@ dependencies {
     String javaFxVersion = '25.0.1'
 
     implementation "org.openjfx:javafx-base:${javaFxVersion}:win"
+    implementation "org.openjfx:javafx-base:${javaFxVersion}:mac"
     implementation "org.openjfx:javafx-base:${javaFxVersion}:mac-aarch64"
     implementation "org.openjfx:javafx-base:${javaFxVersion}:linux"
     implementation "org.openjfx:javafx-controls:${javaFxVersion}:win"
+    implementation "org.openjfx:javafx-controls:${javaFxVersion}:mac"
     implementation "org.openjfx:javafx-controls:${javaFxVersion}:mac-aarch64"
     implementation "org.openjfx:javafx-controls:${javaFxVersion}:linux"
     implementation "org.openjfx:javafx-fxml:${javaFxVersion}:win"
+    implementation "org.openjfx:javafx-fxml:${javaFxVersion}:mac"
     implementation "org.openjfx:javafx-fxml:${javaFxVersion}:mac-aarch64"
     implementation "org.openjfx:javafx-fxml:${javaFxVersion}:linux"
     implementation "org.openjfx:javafx-graphics:${javaFxVersion}:win"
+    implementation "org.openjfx:javafx-graphics:${javaFxVersion}:mac"
     implementation "org.openjfx:javafx-graphics:${javaFxVersion}:mac-aarch64"
     implementation "org.openjfx:javafx-graphics:${javaFxVersion}:linux"
 
