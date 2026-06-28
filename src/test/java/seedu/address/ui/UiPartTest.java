@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 
@@ -32,7 +33,7 @@ public class UiPartTest {
 
     @Test
     public void constructor_missingFileUrl_throwsAssertionError() throws Exception {
-        URL missingFileUrl = new URL(testFolder.toUri().toURL(), MISSING_FILE_PATH);
+        URL missingFileUrl = URI.create(testFolder.toUri() + MISSING_FILE_PATH).toURL();
         assertThrows(AssertionError.class, () -> new TestUiPart<Object>(missingFileUrl));
         assertThrows(AssertionError.class, () -> new TestUiPart<Object>(missingFileUrl, new Object()));
     }

@@ -1,72 +1,83 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'com.gradleup.shadow' version '9.4.3'
     id 'application'
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+application {
+    mainClass = 'seedu.address.Main'
+    applicationDefaultJvmArgs = ['--enable-native-access=ALL-UNNAMED']
+}
 
 repositories {
     mavenCentral()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 checkstyle {
-    toolVersion = '11.0.0'
+    toolVersion = '13.6.0'
+}
+
+jacoco {
+    toolVersion = '0.8.15'
 }
 
 test {
     useJUnitPlatform()
+    jvmArgs '--enable-native-access=ALL-UNNAMED'
     finalizedBy jacocoTestReport
 }
 
-task coverage(type: JacocoReport) {
+tasks.register('coverage', JacocoReport) {
+    dependsOn test
+
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
     classDirectories.from files(sourceSets.main.output)
     executionData.from files(jacocoTestReport.executionData)
-    afterEvaluate {
-        classDirectories.from files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/*.jar'])
-        })
-    }
     reports {
-        html.required = true
-        xml.required = true
+        html.required.set(true)
+        xml.required.set(true)
     }
 }
 
 dependencies {
-    String jUnitVersion = '5.4.0'
-    String javaFxVersion = '17.0.7'
+    String javaFxVersion = '25.0.3'
 
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'linux'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
-    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+    implementation platform('com.fasterxml.jackson:jackson-bom:2.22.0')
 
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
+    implementation "org.openjfx:javafx-base:${javaFxVersion}:win"
+    implementation "org.openjfx:javafx-base:${javaFxVersion}:mac"
+    implementation "org.openjfx:javafx-base:${javaFxVersion}:mac-aarch64"
+    implementation "org.openjfx:javafx-base:${javaFxVersion}:linux"
+    implementation "org.openjfx:javafx-controls:${javaFxVersion}:win"
+    implementation "org.openjfx:javafx-controls:${javaFxVersion}:mac"
+    implementation "org.openjfx:javafx-controls:${javaFxVersion}:mac-aarch64"
+    implementation "org.openjfx:javafx-controls:${javaFxVersion}:linux"
+    implementation "org.openjfx:javafx-fxml:${javaFxVersion}:win"
+    implementation "org.openjfx:javafx-fxml:${javaFxVersion}:mac"
+    implementation "org.openjfx:javafx-fxml:${javaFxVersion}:mac-aarch64"
+    implementation "org.openjfx:javafx-fxml:${javaFxVersion}:linux"
+    implementation "org.openjfx:javafx-graphics:${javaFxVersion}:win"
+    implementation "org.openjfx:javafx-graphics:${javaFxVersion}:mac"
+    implementation "org.openjfx:javafx-graphics:${javaFxVersion}:mac-aarch64"
+    implementation "org.openjfx:javafx-graphics:${javaFxVersion}:linux"
 
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    testImplementation 'org.junit.jupiter:junit-jupiter:6.1.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName.set('addressbook.jar')
 }
 
 defaultTasks 'clean', 'test'
