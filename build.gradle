@@ -20,7 +20,7 @@ java {
 
 repositories {
     mavenCentral()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 checkstyle {
@@ -29,13 +29,13 @@ checkstyle {
 
 test {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
+    finalizedBy tasks.named('jacocoTestReport')
 }
 
-task coverage(type: JacocoReport) {
+tasks.register('coverage', JacocoReport) {
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
     classDirectories.from files(sourceSets.main.output)
-    executionData.from files(jacocoTestReport.executionData)
+    executionData.from tasks.named('jacocoTestReport', JacocoReport).map { it.executionData }
     afterEvaluate {
         classDirectories.from files(classDirectories.files.collect {
             fileTree(dir: it, exclude: ['**/*.jar'])
