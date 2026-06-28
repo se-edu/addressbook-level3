@@ -1,15 +1,15 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
-    id 'application'
     id 'jacoco'
+    id 'application'
 }
 
-mainClassName = 'seedu.address.Main'
-
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
 
 repositories {
     mavenCentral()
@@ -41,7 +41,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
-    String jUnitVersion = '5.4.0'
+    String jUnitVersion = '5.9.3'
     String javaFxVersion = '17.0.7'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
@@ -63,10 +63,26 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.9.3'
 }
 
-shadowJar {
+jar {
+    manifest {
+        attributes 'Main-Class': 'seedu.address.Main'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
     archiveFileName = 'addressbook.jar'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE // Handle duplicate entries
+}
+
+application {
+    mainClass = 'seedu.address.Main'
+    applicationDefaultJvmArgs = [
+            '--enable-native-access=ALL-UNNAMED',
+            '--add-opens=java.base/java.lang=ALL-UNNAMED'
+    ]
 }
 
 defaultTasks 'clean', 'test'
