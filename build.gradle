@@ -6,7 +6,9 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+application {
+    mainClass = 'seedu.address.Main'
+}
 
 java {
     sourceCompatibility = '25'
