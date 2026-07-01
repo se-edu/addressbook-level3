@@ -1,17 +1,15 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id("com.gradleup.shadow") version "9.4.3" // UPGRADE: Gradle 9 requires v9+
+    id("com.gradleup.shadow") version "9.4.3"
     id 'application'
     id 'jacoco'
 }
 
-// UPGRADE: Gradle 9 requires this new syntax
 application {
     mainClass = 'seedu.address.Main'
 }
 
-// UPGRADE: Gradle 9 requires this new syntax
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(25)
@@ -48,9 +46,7 @@ tasks.register('coverage', JacocoReport) {
 }
 
 dependencies {
-    String jUnitVersion = '5.14.4' // UPGRADE: Java 25 requires v5.11.4+
-//    String jUnitVersion = '5.4.0'
-//    String jUnitVersion = '5.11.4'
+    String jUnitVersion = '5.14.4'
     testImplementation "org.junit.jupiter:junit-jupiter:${jUnitVersion}"
     testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 
@@ -82,9 +78,3 @@ shadowJar {
 }
 
 defaultTasks 'clean', 'test'
-
-allprojects {
-    tasks.withType(JavaCompile) {
-        options.compilerArgs << "-Xlint:deprecation"
-    }
-}
