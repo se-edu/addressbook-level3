@@ -49,9 +49,10 @@ tasks.register('coverage', JacocoReport) {
 
 dependencies {
     String jUnitVersion = '5.14.4' // UPGRADE: Java 25 requires v5.11.4+
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+//    String jUnitVersion = '5.4.0'
+//    String jUnitVersion = '5.11.4'
+    testImplementation "org.junit.jupiter:junit-jupiter:${jUnitVersion}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 
     String javaFxVersion = '17.0.7'
 
@@ -81,3 +82,9 @@ shadowJar {
 }
 
 defaultTasks 'clean', 'test'
+
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:deprecation"
+    }
+}
