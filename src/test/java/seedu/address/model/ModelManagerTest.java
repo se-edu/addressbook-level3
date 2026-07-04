@@ -28,15 +28,10 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
-    }
-
-    @Test
-    public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
+    public void constructor_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
-        modelManager.setUserPrefs(userPrefs);
+        modelManager = new ModelManager(new AddressBook(), userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
