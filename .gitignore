@@ -10,7 +10,6 @@ src/main/resources/docs/
 
 # Storage/log files
 /data/
-/config.json
 /preferences.json
 /*.log.*
 hs_err_pid[0-9]*.log
