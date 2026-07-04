@@ -1,6 +1,5 @@
 package seedu.address.model;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -33,16 +32,6 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
-
-    /**
-     * Sets the user prefs' address book file path.
-     */
-    void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
