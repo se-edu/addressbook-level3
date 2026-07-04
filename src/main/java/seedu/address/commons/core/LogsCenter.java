@@ -18,28 +18,19 @@ import java.util.logging.SimpleFormatter;
  *   file reaches 5MB big, up to a maximum of 5 files.<br>
  */
 public class LogsCenter {
+    // Change this to a lower level (e.g., Level.FINE) to enable more detailed log messages
+    private static final Level LOG_LEVEL = Level.INFO;
+
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
     private static final String LOG_FILE = "addressbook.log";
     private static final Logger logger; // logger for this class
     private static Logger baseLogger; // to be used as the parent of all other loggers created by this class.
-    private static Level currentLogLevel = Level.INFO;
 
     // This static block ensures essential loggers are created early
     static {
         setBaseLogger();
         logger = LogsCenter.getLogger(LogsCenter.class);
-    }
-
-    /**
-     * Initializes loggers with the log level specified in the {@code config} object. Applies to all loggers created
-     * using {@link #getLogger(String)} and {@link #getLogger(Class)} methods except for those that are manually set.
-     */
-    public static void init(Config config) {
-        currentLogLevel = config.getLogLevel();
-        logger.info("Log level will be set as: " + currentLogLevel);
-        // set the level of the baseLogger which will be inherited by other loggers
-        baseLogger.setLevel(currentLogLevel);
     }
 
     /**
@@ -82,6 +73,8 @@ public class LogsCenter {
         baseLogger = Logger.getLogger("ab3");
         baseLogger.setUseParentHandlers(false);
         removeHandlers(baseLogger);
+        // set the level of the baseLogger, which will be inherited by other loggers
+        baseLogger.setLevel(LOG_LEVEL);
 
         // Level.ALL is used as the level for the handlers because the baseLogger filters the log messages by level
         // already; there is no need to control log message level of the handlers.
