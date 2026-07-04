@@ -12,7 +12,7 @@ import seedu.address.model.UserPrefs;
 /**
  * A class to access UserPrefs stored in the hard disk as a json file
  */
-public class JsonUserPrefsStorage implements UserPrefsStorage {
+public class JsonUserPrefsStorage {
 
     private Path filePath;
 
@@ -20,12 +20,16 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
         this.filePath = filePath;
     }
 
-    @Override
     public Path getUserPrefsFilePath() {
         return filePath;
     }
 
-    @Override
+    /**
+     * Returns UserPrefs data from storage.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataLoadingException if the loading of data from preference file failed.
+     */
     public Optional<UserPrefs> readUserPrefs() throws DataLoadingException {
         return readUserPrefs(filePath);
     }
@@ -39,7 +43,11 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
         return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);
     }
 
-    @Override
+    /**
+     * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.
+     * @param userPrefs cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         JsonUtil.saveJsonFile(userPrefs, filePath);
     }
