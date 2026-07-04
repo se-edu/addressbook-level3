@@ -37,6 +37,7 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private static final Path USER_PREFS_FILE_PATH = Paths.get("preferences.json");
+    private static final Path ADDRESS_BOOK_FILE_PATH = Paths.get("data", "addressbook.json");
 
     protected Ui ui;
     protected Logic logic;
@@ -50,14 +51,14 @@ public class MainApp extends Application {
 
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(USER_PREFS_FILE_PATH);
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(ADDRESS_BOOK_FILE_PATH);
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        ui = new UiManager(logic, storage.getAddressBookFilePath());
     }
 
     /**

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -23,13 +24,16 @@ public class UiManager implements Ui {
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
     private Logic logic;
+    private Path dataFilePath;
     private MainWindow mainWindow;
 
     /**
-     * Creates a {@code UiManager} with the given {@code Logic}.
+     * Creates a {@code UiManager} with the given {@code Logic} and the data file path
+     * to show in the status bar.
      */
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, Path dataFilePath) {
         this.logic = logic;
+        this.dataFilePath = dataFilePath;
     }
 
     @Override
@@ -40,7 +44,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic, dataFilePath);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
