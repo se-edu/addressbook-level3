@@ -17,13 +17,13 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private JsonAddressBookStorage addressBookStorage;
+    private JsonUserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given address book and user prefs storage.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(JsonAddressBookStorage addressBookStorage, JsonUserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -55,24 +55,14 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        logger.fine("Attempting to read data from file: " + addressBookStorage.getAddressBookFilePath());
+        return addressBookStorage.readAddressBook();
     }
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        logger.fine("Attempting to write to data file: " + addressBookStorage.getAddressBookFilePath());
+        addressBookStorage.saveAddressBook(addressBook);
     }
 
 }
