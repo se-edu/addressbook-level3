@@ -112,7 +112,7 @@ public class MainApp extends Application {
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            logger.warning("Failed to save preference file : " + StringUtil.getDetails(e));
         }
 
         return initializedPrefs;
