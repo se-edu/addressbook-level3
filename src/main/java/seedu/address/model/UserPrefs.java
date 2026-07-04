@@ -22,6 +22,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
      */
     public UserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
         setGuiSettings(userPrefs.getGuiSettings());
     }
 
