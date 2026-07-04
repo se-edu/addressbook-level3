@@ -17,7 +17,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonAddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
@@ -31,7 +31,12 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         return filePath;
     }
 
-    @Override
+    /**
+     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
         return readAddressBook(filePath);
     }
@@ -59,7 +64,11 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         }
     }
 
-    @Override
+    /**
+     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * @param addressBook cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
         saveAddressBook(addressBook, filePath);
     }
