@@ -26,8 +26,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        logger.warning("The warnings about a 'restricted method in java.lang.System' " +
-                "and 'enabling native access' appearing below (if any) can be ignored.");
+        logger.warning("The warnings about a 'restricted method in java.lang.System' "
+            + "and 'enabling native access' appearing below (if any) can be ignored.");
         Application.launch(MainApp.class, args);
     }
 }
