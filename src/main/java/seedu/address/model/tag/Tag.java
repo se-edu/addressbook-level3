@@ -39,11 +39,10 @@ public class Tag {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Tag)) {
+        if (!(other instanceof Tag otherTag)) {
             return false;
         }
 
-        Tag otherTag = (Tag) other;
         return tagName.equals(otherTag.tagName);
     }
 

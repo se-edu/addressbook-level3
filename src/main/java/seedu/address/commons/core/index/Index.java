@@ -54,11 +54,10 @@ public class Index {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Index)) {
+        if (!(other instanceof Index otherIndex)) {
             return false;
         }
 
-        Index otherIndex = (Index) other;
         return zeroBasedIndex == otherIndex.zeroBasedIndex;
     }
 

@@ -63,11 +63,10 @@ public class Email {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Email)) {
+        if (!(other instanceof Email otherEmail)) {
             return false;
         }
 
-        Email otherEmail = (Email) other;
         return value.equals(otherEmail.value);
     }
 

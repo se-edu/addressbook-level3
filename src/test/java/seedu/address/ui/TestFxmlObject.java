@@ -34,11 +34,10 @@ public class TestFxmlObject {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TestFxmlObject)) {
+        if (!(other instanceof TestFxmlObject otherTestFxmlObject)) {
             return false;
         }
 
-        TestFxmlObject otherTestFxmlObject = (TestFxmlObject) other;
         return Objects.equals(text, otherTestFxmlObject.text);
     }
 
