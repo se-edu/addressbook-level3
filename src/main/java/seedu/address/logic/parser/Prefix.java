@@ -32,11 +32,10 @@ public class Prefix {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Prefix)) {
+        if (!(other instanceof Prefix otherPrefix)) {
             return false;
         }
 
-        Prefix otherPrefix = (Prefix) other;
         return prefix.equals(otherPrefix.prefix);
     }
 }
