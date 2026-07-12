@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Set up repository
-        uses: actions/checkout@main
+        uses: actions/checkout@v7
 
       - name: Set up repository
-        uses: actions/checkout@main
+        uses: actions/checkout@v7
         with:
           ref: master
 
