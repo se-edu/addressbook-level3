@@ -13,14 +13,6 @@ jobs:
       - name: Set up repository
         uses: actions/checkout@v7
 
-      - name: Set up repository
-        uses: actions/checkout@v7
-        with:
-          ref: master
-
-      - name: Merge to master
-        run: git checkout --progress --force ${{ github.sha }}
-
       - name: Run repository-wide tests
         if: runner.os == 'Linux'
         working-directory:  ${{ github.workspace }}/.github
