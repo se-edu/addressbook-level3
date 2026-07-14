@@ -36,7 +36,7 @@ The following commands perform common Gradle tasks.
 
 ## Continuous integration (CI)
 
-This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files (in the `.github/workflows` folder). No further setting up required.
+This project uses GitHub Actions for CI. The necessary workflow configuration files are in `.github/workflows`. No further setup is required.
 
 ### Code coverage
 
