@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* _{List the sources of reused or adapted ideas, code, documentation, and third-party libraries here, with links to the originals.}_
 
 --------------------------------------------------------------------------------------------------------------------
 
