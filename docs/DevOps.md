@@ -13,7 +13,7 @@ title: DevOps guide
 This project uses Gradle for **build automation and dependency management**. **You are recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
 
 
-Given below are how to use Gradle for some important project tasks.
+The following commands perform common Gradle tasks.
 
 
 * **`clean`**: Deletes the files created during the previous build tasks (e.g. files in the `build` folder).<br>
