@@ -36,7 +36,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-   Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
+   Optionally, follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to learn how to use Checkstyle in IDEA, for example to report problems _as_ you write code.
    </div>
 
 1. **Set up CI**
