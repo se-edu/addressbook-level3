@@ -41,7 +41,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Set up CI**
 
-   This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up required.
+   This project includes GitHub Actions configuration files in `.github/workflows`. GitHub runs CI automatically for every push and pull request. No setup is required.
 
 1. **Learn the design**
 
