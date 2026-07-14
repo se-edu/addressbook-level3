@@ -23,7 +23,7 @@ Given below are how to use Gradle for some important project tasks.
   For example: `./gradlew shadowJar`
 
 * **`run`**: Builds and runs the application.<br>
-  **`runShadow`**: Builds the application as a fat JAR, and then runs it.
+  **`runShadow`**: Builds the application as a fat JAR, then runs it.
 
 * **`checkstyleMain`**: Runs the code style check for the main code base.<br>
   **`checkstyleTest`**: Runs the code style check for the test code base.
