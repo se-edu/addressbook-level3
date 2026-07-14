@@ -10,7 +10,7 @@ title: Testing guide
 
 ## Running tests
 
-There are two ways to run tests.
+You can run tests in two ways.
 
 * **Method 1: Using IntelliJ JUnit test runner**
   * To run all tests, right-click on the `src/test/java` folder and choose `Run 'All Tests'`
