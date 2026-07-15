@@ -36,7 +36,7 @@ AddressBook Level 3 (AB3) is a **desktop application for managing contacts, opti
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
