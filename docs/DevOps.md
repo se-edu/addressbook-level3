@@ -28,9 +28,9 @@ The following commands perform common Gradle tasks.
 * **`checkstyleMain`**: Runs the code style check for the main code base.<br>
   **`checkstyleTest`**: Runs the code style check for the test code base.
 
-* **`test`**: Runs all tests.
-  * `./gradlew test` — Runs all tests
-  * `./gradlew clean test` — Cleans the project and runs tests
+* **`test`**
+  * `./gradlew test`: Runs all tests.
+  * `./gradlew clean test`: Cleans the project before running all tests
 
 --------------------------------------------------------------------------------------------------------------------
 
