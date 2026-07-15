@@ -90,7 +90,7 @@ public class MainWindow extends UiPart<Stage> {
         /*
          * TODO: the code below can be removed once the bug reported here
          * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
+         * is fixed in a later version of the SDK.
          *
          * According to the bug report, TextInputControl (TextField, TextArea) will
          * consume function-key events. Because CommandBox contains a TextField, and
