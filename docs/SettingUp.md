@@ -9,21 +9,21 @@ title: Setting up and getting started
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Setting up the project in your computer
+## Setting up the project on your computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
-Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
+Follow the steps below precisely. The setup may fail if you skip or change a step.
 </div>
 
 First, **fork** this repo, and **clone** the fork into your computer.
 
-If you plan to use Intellij IDEA (highly recommended):
-1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to ensure Intellij is configured to use **JDK 25**.
+If you plan to use IntelliJ IDEA (highly recommended):
+1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to ensure IntelliJ is configured to use **JDK 25**.
 1. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 1. **Verify the setup**:
-   1. Run the `seedu.address.Main` and try a few commands.
+   1. Run `seedu.address.Main` and try a few commands.
    1. [Run the tests](Testing.md) to ensure they all pass.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -36,12 +36,12 @@ If you plan to use Intellij IDEA (highly recommended):
 
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-   Optionally, you can follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the CheckStyle within IDEA e.g., to report problems _as_ you write code.
+   Optionally, follow the guide [_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to learn how to use Checkstyle in IDEA, for example to report problems _as_ you write code.
    </div>
 
 1. **Set up CI**
 
-   This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up required.
+   This project includes GitHub Actions configuration files in `.github/workflows`. GitHub runs CI automatically for every push and pull request. No setup is required.
 
 1. **Learn the design**
 
