@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A UI component that displays the result of a command execution.
  */
 public class ResultDisplay extends UiPart<Region> {
 

@@ -85,7 +85,7 @@ public class JsonUtil {
 
 
     /**
-     * Converts a given string representation of a JSON data to instance of a class
+     * Converts a given string representation of JSON data to an instance of a class
      * @param <T> The generic type to create an instance of
      * @return The instance of T with the specified values in the JSON string
      */
