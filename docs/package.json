@@ -9,6 +9,6 @@
     "deploy": "markbind deploy"
   },
   "devDependencies": {
-    "markbind-cli": "^5.1.0"
+    "markbind-cli": "7.2.1"
   }
 }
